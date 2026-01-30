@@ -11,7 +11,6 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import SVProgressHUD
-import SwiftMessageBar
 
 class ProfiletViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -22,7 +21,7 @@ class ProfiletViewController: BaseViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var user_imageV: UIImageView!
     var userImageUrl: String?
     var ref: DatabaseReference?
-    var storageRef = StorageReference()
+    var storageRef = Storage.storage().reference()
     var imagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -87,8 +86,8 @@ class ProfiletViewController: BaseViewController, UIImagePickerControllerDelegat
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let img = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let img = info[.originalImage] as? UIImage {
             user_imageV.image = img
             setupImageSize()
         }
@@ -103,19 +102,25 @@ class ProfiletViewController: BaseViewController, UIImagePickerControllerDelegat
         guard  let img = user_imageV.image else {
             return
         }
-        let data = UIImageJPEGRepresentation(img, 0.8)
+        let data = img.jpegData(compressionQuality: 0.8)
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpeg"
         
-        storageRef.putData(data!,metadata: metaData) { (storageMetaData, error) in
-            let userImageUrl = storageMetaData?.downloadURL()?.absoluteString
-            if let id = Auth.auth().currentUser?.uid {
-                self.ref?.child("Users").child(String(describing:id)).updateChildValues(["userImageUrl": userImageUrl])
-            }
-            if error != nil {
+        storageRef.putData(data!,metadata: metaData) { (_, error) in
+            if let error = error {
                 SVProgressHUD.dismiss()
-                print(error?.localizedDescription)
+                print(error.localizedDescription)
                 SwiftMessageBar.showMessageWithTitle("Cannot upload", message: "Something went wrong.", type: .error)
+                return
+            }
+            self.storageRef.downloadURL { url, error in
+                let userImageUrl = url?.absoluteString
+                if let id = Auth.auth().currentUser?.uid {
+                    self.ref?.child("Users").child(String(describing:id)).updateChildValues(["userImageUrl": userImageUrl as Any])
+                }
+                if let error = error {
+                    print(error.localizedDescription)
+                }
             }
         }
     }

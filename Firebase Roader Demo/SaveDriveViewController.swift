@@ -7,12 +7,10 @@
 //
 
 import UIKit
-import GoogleMaps
 import CoreLocation
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
-import SwiftMessageBar
 
 class SaveDriveViewController: UIViewController {
 
@@ -71,7 +69,7 @@ class SaveDriveViewController: UIViewController {
     }
     
     @IBAction func save_btn_action(_ sender: UIButton) {
-        if path?.pathName?.characters.count != 0 {
+        if path?.pathName?.isEmpty == false {
             databaseRef?.child("Paths").child((path?.pathID)!).updateChildValues(["pathName": path?.pathName ?? "New Path", "pathType": path?.pathType.rawValue ?? "public", "difficulty": path?.difficulty.rawValue ?? "easy"])
         
             SwiftMessageBar.showMessageWithTitle("Success", message: "Path saved successfully.", type: .success)

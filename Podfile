@@ -1,21 +1,17 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+# Use a modern iOS deployment target that is compatible with recent SDKs.
+platform :ios, '13.0'
 
 target 'Firebase Roader Demo' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-#  pod 'GoogleMaps'
-#  pod 'Firebase/Core'
-#  pod 'Firebase/Auth'
-#  pod 'Firebase/Database'
-#  pod 'Firebase/Storage'
-#  pod 'UITextView+Placeholder', '~> 1.2'
-#  pod 'SVProgressHUD', '~> 2.2'
-#  pod 'SwiftMessageBar'
-#  pod 'FBSDKCoreKit'
-#  pod 'FBSDKShareKit'
-#  pod 'FBSDKLoginKit'
-#  pod 'GoogleSignIn'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  pod 'SVProgressHUD'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
+  pod 'GoogleSignIn'
   # Pods for Firebase Roader Demo
 
   target 'Firebase Roader DemoTests' do

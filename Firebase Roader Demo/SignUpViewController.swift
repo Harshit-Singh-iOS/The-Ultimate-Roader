@@ -11,7 +11,6 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import SVProgressHUD
-import SwiftMessageBar
 
 class SignUpViewController: UIViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate {
 
@@ -24,7 +23,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate , 
     @IBOutlet weak var user_imageV: UIImageView!
     var userImageUrl: String?
     var ref: DatabaseReference?
-    var storageRef = StorageReference()
+    var storageRef = Storage.storage().reference()
     var imagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -61,8 +60,9 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate , 
             SwiftMessageBar.showMessageWithTitle("Error", message: "Password do not match!", type: .error)
         }else {
             SVProgressHUD.show()
-            Auth.auth().createUser(withEmail: email_tf.text!, password: password_tf.text!) { (user, error) in
+            Auth.auth().createUser(withEmail: email_tf.text!, password: password_tf.text!) { (authResult, error) in
                 if error == nil {
+                    let user = authResult?.user
                     let userDict = ["FirstName": self.firstname_tf.text, "LastName":self.lastname_tf.text, "Password": self.password_tf.text,"UserId": user?.uid, "EmailID": self.email_tf.text, "City": self.city_tf.text, "userImageUrl": self.userImageUrl]
                     if let id = user?.uid {
                         self.ref?.child("Users").child(id).updateChildValues(userDict, withCompletionBlock: { (error, dataBaseRef) in
@@ -89,20 +89,26 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate , 
         guard  let img = user_imageV.image else {
             return
         }
-        let data = UIImageJPEGRepresentation(img, 0.8)
+        let data = img.jpegData(compressionQuality: 0.8)
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpeg"
         
         if let id = Auth.auth().currentUser {
             let imagename = "UserImages/\(String(describing:id.uid)).jpeg"
             storageRef = storageRef.child(imagename)
-            storageRef.putData(data!,metadata: metaData) { (storageMetaData, error) in
-                let userImageUrl = storageMetaData?.downloadURL()?.absoluteString
-                self.ref?.child("Users").child(String(describing:id.uid)).updateChildValues(["userImageUrl": userImageUrl])
-                if error != nil {
+            storageRef.putData(data!,metadata: metaData) { (_, error) in
+                if let error = error {
                     SVProgressHUD.dismiss()
-                    print(error?.localizedDescription)
+                    print(error.localizedDescription)
                     SwiftMessageBar.showMessageWithTitle("Cannot upload", message: "Something went wrong.", type: .error)
+                    return
+                }
+                self.storageRef.downloadURL { url, error in
+                    let userImageUrl = url?.absoluteString
+                    self.ref?.child("Users").child(String(describing:id.uid)).updateChildValues(["userImageUrl": userImageUrl as Any])
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
                 }
             }
             
@@ -127,8 +133,8 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate , 
         present(alertController, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let img = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let img = info[.originalImage] as? UIImage {
             user_imageV.image = img
         }
         dismiss(animated: true, completion: nil)

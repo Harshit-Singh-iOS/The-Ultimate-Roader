@@ -11,7 +11,6 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import SVProgressHUD
-import SwiftMessageBar
 
 class ResetPasswordViewController: UIViewController {
 
@@ -33,13 +32,13 @@ class ResetPasswordViewController: UIViewController {
         
         if let user = Auth.auth().currentUser
         {
-            if newpass_tf.text?.characters.count == 0 || confirmpass_tf.text?.characters.count == 0 {
+            if newpass_tf.text?.isEmpty == true || confirmpass_tf.text?.isEmpty == true {
                 SwiftMessageBar.showMessageWithTitle("Error", message: "Password is empty.", type: .error)
                 SVProgressHUD.dismiss()
             } else if newpass_tf.text == confirmpass_tf.text {
                 let credentials = EmailAuthProvider.credential(withEmail: user.email!, password: oldpass_tf.text!)
                 
-                user.reauthenticate(with: credentials, completion: { (error) in
+                user.reauthenticate(with: credentials, completion: { (_, error) in
                     if error == nil {
                         user.updatePassword(to: self.newpass_tf.text!, completion: { (error) in
                             if error == nil {

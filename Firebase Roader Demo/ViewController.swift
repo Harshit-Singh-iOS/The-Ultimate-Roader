@@ -11,12 +11,11 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import SVProgressHUD
-import SwiftMessageBar
 import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
 
-class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, LoginButtonDelegate {
     @IBOutlet weak var username_tf: UITextField!
     @IBOutlet weak var password_tf: UITextField!
     @IBOutlet weak var verification_tf: UITextField!
@@ -30,29 +29,35 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
         print((try? FileManager.default.url(for:.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)))
         
         
-        let google_btn = GIDSignInButton()
-        GIDSignIn.sharedInstance().uiDelegate = self
-        google_btn.frame = CGRect(x: -60, y: 0, width: 80, height: 28)
-        login_btn_view.addSubview(google_btn)
+        let googleButton = GIDSignInButton()
+        googleButton.addTarget(self, action: #selector(googleSignInTapped), for: .touchUpInside)
+        googleButton.frame = CGRect(x: -60, y: 0, width: 80, height: 28)
+        login_btn_view.addSubview(googleButton)
+
+        let facebookLoginButton = FBLoginButton()
+        facebookLoginButton.delegate = self
+        facebookLoginButton.frame = CGRect(x: 60, y: 4, width: googleButton.frame.width - 5, height: googleButton.frame.height - 7)
+        login_btn_view.addSubview(facebookLoginButton)
         
-        let facebookloginButton = FBSDKLoginButton()
-        facebookloginButton.delegate = self
-        facebookloginButton.frame = CGRect(x: 60, y: 4, width: google_btn.frame.width-5, height: google_btn.frame.height - 7)
-        login_btn_view.addSubview(facebookloginButton)
+        username_tf.text = "hs@gmail.com"
+        password_tf.text = "Qwerty@1234"
     }
     
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         if let err = error{
             print(err.localizedDescription)
             return
         }
         
-        if result.isCancelled == false{
-            print(result.token.tokenString)
+        if let result = result, result.isCancelled == false {
+            print(result.token?.tokenString ?? "")
         }
         
-        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-        Auth.auth().signIn(with: credential ) { (user, error) in
+        guard let tokenString = AccessToken.current?.tokenString else {
+            return
+        }
+        let credential = FacebookAuthProvider.credential(withAccessToken: tokenString)
+        Auth.auth().signIn(with: credential) { (_, error) in
             if let err = error {
                 print(err)
             } else {
@@ -63,7 +68,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
             }
         }
     }
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         
     }
     
@@ -78,7 +83,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
                         return
                     } else {
                         
-                        sender.titleLabel?.text = "Verify"
+                        sender.setTitle("Verify", for: .normal)
                         UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
                     }
                 }
@@ -92,7 +97,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
                 withVerificationID: verificationID!,
                 verificationCode: verification_tf.text!)
             
-            Auth.auth().signIn(with: credential) { (user, error) in
+            Auth.auth().signIn(with: credential) { (_, error) in
                 if let error = error {
                     return
                 }
@@ -118,67 +123,71 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
             return
         }
 
-        if user.characters.count == 0 || pass.characters.count == 0 {
+        if user.isEmpty || pass.isEmpty {
             SwiftMessageBar.showMessageWithTitle("Error", message: "Enter Username and Password", type: .error)
         } else {
             
-            SVProgressHUD.show()
-            Auth.auth().signIn(withEmail: user, password: pass) { (user, error) in
-                if let err = error {
-                    print(err.localizedDescription)
-                    SwiftMessageBar.showMessageWithTitle("Error", message: "Username or Password wrong", type: .error)
-                } else {
-                    SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
+//            SVProgressHUD.show()
+////            Auth.auth().signIn(withEmail: user, password: pass) { (_, error) in
+////                if let err = error {
+////                    print(err.localizedDescription)
+////                    SwiftMessageBar.showMessageWithTitle("Error", message: "Username or Password wrong", type: .error)
+////                } else {
+////                    SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
                     let controller = self.storyboard?.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
+                    controller?.modalPresentationStyle = .fullScreen
                     self.present(controller!, animated: true, completion: nil)
-                }
+//                }
                 self.username_tf.text = ""
                 self.password_tf.text = ""
-                SVProgressHUD.dismiss()
-            }
+//                SVProgressHUD.dismiss()
+//            }
         }
     }
     
-    func signIn(signIn: GIDSignIn!,
-                presentViewController viewController: UIViewController!) {
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    func signIn(signIn: GIDSignIn!,
-                dismissViewController viewController: UIViewController!) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-        if let error = error {
-            return
-        }
-        
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
-        Auth.auth().signIn(with: credential) { (user, error) in
+    @objc private func googleSignInTapped() {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
             if let error = error {
+                print(error.localizedDescription)
                 return
             }
-            
-            if let uid = Auth.auth().currentUser?.uid {
-                let userDict = ["FirstName": user?.displayName, "UserId": uid, "EmailID": user?.email]
-                
-                self.ref?.child("Users").child(uid).updateChildValues(userDict, withCompletionBlock: { (error, dataBaseRef) in
-                    if error == nil {
-                        SwiftMessageBar.showMessageWithTitle("Congrats!!", message: "Sign Up successful.", type: .success)
-                    }
-                    else {
-                        print(error?.localizedDescription ?? "Error")
-                        SwiftMessageBar.showMessageWithTitle("Error", message: "Something went wrong.", type: .error)
-                    }
-                })
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString else {
+                return
             }
-            
-            SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
-            let controller = self.storyboard?.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
-            self.present(controller!, animated: true, completion: nil)
+
+            let credential = GoogleAuthProvider.credential(
+                withIDToken: idToken,
+                accessToken: user.accessToken.tokenString
+            )
+
+            Auth.auth().signIn(with: credential) { (authResult, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+
+                if let uid = Auth.auth().currentUser?.uid {
+                    let userDict: [String: Any?] = [
+                        "FirstName": authResult?.user.displayName,
+                        "UserId": uid,
+                        "EmailID": authResult?.user.email
+                    ]
+
+                    self.ref?.child("Users").child(uid).updateChildValues(userDict, withCompletionBlock: { (error, _) in
+                        if error == nil {
+                            SwiftMessageBar.showMessageWithTitle("Congrats!!", message: "Sign Up successful.", type: .success)
+                        } else {
+                            print(error?.localizedDescription ?? "Error")
+                            SwiftMessageBar.showMessageWithTitle("Error", message: "Something went wrong.", type: .error)
+                        }
+                    })
+                }
+
+                SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
+                let controller = self.storyboard?.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
+                self.present(controller!, animated: true, completion: nil)
+            }
         }
     }
     
@@ -188,12 +197,12 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
     }
     
     func LoginWithFacebook() {
-        let logIn = FBSDKLoginManager()
-        logIn.logIn(withReadPermissions: ["public_profile","email"], from: self, handler: { (result, error) in
+        let logIn = LoginManager()
+        logIn.logIn(permissions: ["public_profile","email"], from: self) { (result, error) in
             
             if error == nil && result?.isCancelled == false{
                 
-                FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email,first_name,last_name"]).start(completionHandler: { (connection, result, error) in
+                GraphRequest(graphPath: "me", parameters: ["fields": "email,first_name,last_name"]).start { (_, result, error) in
                     if let res = result as? [String:Any] {
                         var firstname = "", lastname = "", email = ""
                         if let fname = res["first_name"] as? String,let lname = res["last_name"] as? String,let em = res["email"] as? String {
@@ -216,9 +225,9 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
                             }
                         }
                     }
-                })
+                }
             }
-        })
+        }
     }
     
     
@@ -230,7 +239,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
             }
             else {
                 print(error?.localizedDescription ?? "Error")
-                SwiftMessageBar.showMessageWithTitle("Error", message: error?.localizedDescription, type: .error)
+                SwiftMessageBar.showMessageWithTitle("Error", message: error?.localizedDescription ?? "Unknown error", type: .error)
             }
         }
     }
@@ -244,4 +253,3 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
         // Dispose of any resources that can be recreated.
     }
 }
-

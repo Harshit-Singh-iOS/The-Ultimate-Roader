@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import GoogleMaps
 import CoreLocation
 import SVProgressHUD
-import SwiftMessageBar
 import FirebaseDatabase
 
 enum buttonName: String {
@@ -80,7 +78,7 @@ class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, G
         
         createMarker(loc: (pathToFollow?.track.first)!, name: "starting_point")
         createMarker(loc: (pathToFollow?.track.last)!, name: "ending_point")
-        map_view.camera = GMSCameraPosition(target: (pathToFollow?.track.first?.coordinate)!, zoom: 10, bearing: 0, viewingAngle: 0)
+        map_view.gmsCamera = GMSCameraPosition(target: (pathToFollow?.track.first?.coordinate)!, zoom: 10, bearing: 0, viewingAngle: 0)
         
         for cord in (pathToFollow?.track)! {
             addRouteToPath(loc: cord)
@@ -100,9 +98,8 @@ class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, G
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last as CLLocation!
-            else{
-                return
+        guard let location = locations.last else {
+            return
         }
 
         currentLocation = location

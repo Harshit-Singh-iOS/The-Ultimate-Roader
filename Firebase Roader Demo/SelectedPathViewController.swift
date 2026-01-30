@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GoogleMaps
 import CoreLocation
 import SVProgressHUD
 import FirebaseDatabase
@@ -61,7 +60,7 @@ class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate,
     func makePath() {
         createMarker(loc: (path?.track.first)!, name: "starting_point")
         createMarker(loc: (path?.track.last)!, name: "ending_point")
-        map_view.camera = GMSCameraPosition(target: (path?.track.first?.coordinate)!, zoom: 10, bearing: 0, viewingAngle: 0)
+        map_view.gmsCamera = GMSCameraPosition(target: (path?.track.first?.coordinate)!, zoom: 10, bearing: 0, viewingAngle: 0)
         
         for cord in (path?.track)! {
             addRouteToPath(loc: cord)

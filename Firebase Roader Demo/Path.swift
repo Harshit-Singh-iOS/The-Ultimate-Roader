@@ -192,7 +192,7 @@ class ManagePath: NSObject {
     }
     
     static func uploadToFireBase(pathId: String) {
-        var storageRef = StorageReference()
+        var storageRef = Storage.storage().reference()
         guard let url = file_url else{
             return
         }
@@ -216,7 +216,7 @@ class ManagePath: NSObject {
     }
     
     static func getPathFromFile(name: String, completion: @escaping handler){
-        var storageRef = StorageReference()
+        var storageRef = Storage.storage().reference()
         var path: [CLLocation] = []
         
         let file_name = "PathFiles/\(String(describing: name)).txt"

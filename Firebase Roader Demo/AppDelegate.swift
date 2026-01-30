@@ -8,88 +8,30 @@
 
 import UIKit
 import Firebase
-import GoogleMaps
 import FBSDKCoreKit
 import GoogleSignIn
-import SwiftMessageBar
-
-let GoogleApiKey = "AIzaSyDzwDjIRPZqXxAY9hgKnbFka2WsdOvzvS0"
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        GMSServices.provideAPIKey(GoogleApiKey)
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
-    
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        if let clientID = FirebaseApp.app()?.options.clientID {
+            GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: clientID)
+        }
+
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }
-    
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            return
-        }
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
-        if (error == nil) {
-            // Perform any operations on signed in user here.
-            let userId = user.userID                  // For client-side use only!
-            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
-            let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
-            let email = user.profile.email
-            var ref: DatabaseReference?
-            print(Auth.auth().currentUser?.uid)
-            
-//            if let uid = Auth.auth().currentUser?.uid {
-//                let userDict = ["FirstName": fullName, "UserId": uid, "EmailID": email]
-//
-//                    ref?.child("Users").child(uid).updateChildValues(userDict, withCompletionBlock: { (error, dataBaseRef) in
-//                    if error == nil {
-//                        SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
-//                    }
-//                    else {
-//                        print(error?.localizedDescription ?? "Error")
-//                        SwiftMessageBar.showMessageWithTitle("Error", message: "Something went wrong.", type: .error)
-//                    }
-//                })
-//            }
-        } else {
-            print("\(error.localizedDescription)")
-        }
-    }
-    
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
-    }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        
-        let googlehandler = GIDSignIn.sharedInstance().handle(url,sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,annotation: [:])
-        
-        let facebookDidHandle = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[.sourceApplication] as! String, annotation: [:])
-        
-        return googlehandler||facebookDidHandle
-    }
-    
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        
-        do {
-            try Auth.auth().signOut()
-        }
-        catch {
-            print(error.localizedDescription)
-        }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        let googleDidHandle = GIDSignIn.sharedInstance.handle(url)
+        let facebookDidHandle = ApplicationDelegate.shared.application(app, open: url, options: options)
+        return googleDidHandle || facebookDidHandle
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -114,4 +56,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 }
-

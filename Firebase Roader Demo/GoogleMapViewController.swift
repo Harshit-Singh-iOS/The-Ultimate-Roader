@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import GoogleMaps
 import CoreLocation
 import FirebaseDatabase
 import FirebaseStorage
 import Firebase
-import SwiftMessageBar
+import FirebaseAuth
 
 class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MarkSpotProtocol, showSpotProtocol {
     
@@ -28,7 +27,7 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
     var uuid: String?
     var path: Path?
     var databaseRef: DatabaseReference?
-    var storageRef = StorageReference()
+    var storageRef = Storage.storage().reference()
     var distance: Double = 0.0
     weak var timer = Timer()
     var time = 0,length = 0.0
@@ -67,7 +66,9 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
         databaseRef = Database.database().reference().child("Paths").childByAutoId()
         path = Path()
         path?.pathID = databaseRef?.key
-        ManagePath.addInitialPath(pathID: (path?.pathID)!)
+        if let pathId = path?.pathID {
+            ManagePath.addInitialPath(pathID: pathId)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -79,7 +80,7 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
             
             if iskeepFocus && path?.track.isEmpty == false
             {
-                let cameraPosition = GMSCameraPosition.camera(withTarget: loc.coordinate, zoom: 15, bearing: getBearingBetweenTwoPoints1((path?.track.last)!, point2: loc), viewingAngle: map_view.camera.viewingAngle)
+                let cameraPosition = GMSCameraPosition.camera(withTarget: loc.coordinate, zoom: 15, bearing: getBearingBetweenTwoPoints1((path?.track.last)!, point2: loc), viewingAngle: map_view.gmsCamera.viewingAngle)
                 map_view.animate(to: cameraPosition)
             }
             
@@ -151,39 +152,56 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
         // upload spot
         
         
-        var pathDict = ["UserId":userId, "pathName" : "New path", "pathID": self.path?.pathID ?? "", "time": String(format: "%.1d", self.time/60), "distance": String(describing: self.length),"date": date] as [String:Any]
+        let pathDict = ["UserId": userId, "pathName": "New path", "pathID": self.path?.pathID ?? "", "time": String(format: "%.1d", self.time / 60), "distance": String(describing: self.length), "date": date] as [String: Any]
         
         //MARK: - NEW FUNC SPOT ADDED
         if let spList = path?.spotArray {
             for spot in spList {
                 let spotRef = Database.database().reference().child("SpotList").childByAutoId()
                 spot.id = spotRef.key
-                Database.database().reference().child("Paths").child((path?.pathID)!).child("SpotList").updateChildValues([spot.id!: "id"])
-                var spotDict = ["spotId": spot.id,"description":spot.spotDescription!]
+                if let pathId = path?.pathID, let spotId = spot.id {
+                    Database.database().reference().child("Paths").child(pathId).child("SpotList").updateChildValues([spotId: "id"])
+                }
+                var spotDict = ["spotId": spot.id as Any, "description": spot.spotDescription ?? ""]
                 if let lat = spot.location?.coordinate.latitude, let lng = spot.location?.coordinate.longitude, let cat = spot.cat {
                     spotDict["lat"] = "\(lat)"
                     spotDict["long"] = "\(lng)"
                     spotDict["category"] = cat
                 }
-                Database.database().reference().child("SpotList").child(spot.id!).updateChildValues(spotDict)
+                if let spotId = spot.id {
+                    Database.database().reference().child("SpotList").child(spotId).updateChildValues(spotDict)
+                }
                 
                 if let img = spot.spotImage {
-                    let data = UIImageJPEGRepresentation(img, 0.8)
+                    let data = img.jpegData(compressionQuality: 0.8)
                     let metaData = StorageMetadata()
                     metaData.contentType = "image/jpeg"
                     let imagename = "SpotImage/\(String(describing: spot.id)).jpeg"
                     storageRef = storageRef.child(imagename)
-                    storageRef.putData(data!,metadata: metaData) { (storageMetaData, error) in
-                        let spotImageUrl = storageMetaData?.downloadURL()?.absoluteString
-                        Database.database().reference().child("SpotList").child(spot.id!).updateChildValues(["spotImageUrl":spotImageUrl])
-                        spot.spotImageUrl = spotImageUrl
+                    storageRef.putData(data!,metadata: metaData) { (_, error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                            return
+                        }
+                        self.storageRef.downloadURL { url, error in
+                            let spotImageUrl = url?.absoluteString
+                            if let spotId = spot.id {
+                                Database.database().reference().child("SpotList").child(spotId).updateChildValues(["spotImageUrl": spotImageUrl as Any])
+                            }
+                            spot.spotImageUrl = spotImageUrl
+                            if let error = error {
+                                print(error.localizedDescription)
+                            }
+                        }
                     }
                 }
             }
         }
         
         self.databaseRef?.updateChildValues(pathDict, withCompletionBlock: { (error, ref) in
-            Database.database().reference().child("Users").child(userId).child("Paths").updateChildValues([ref.key: "id"])
+            if let key = ref.key {
+                Database.database().reference().child("Users").child(userId).child("Paths").updateChildValues([key: "id"])
+            }
             DispatchQueue.main.async {
                 let alertController = UIAlertController.init(title: "Complete Drive!", message: "Go to next.", preferredStyle: .alert)
                 let action = UIAlertAction(title: "Ok", style: .default, handler: { (alert) in

@@ -12,7 +12,6 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
-import UITextView_Placeholder
 
 protocol MarkSpotProtocol: class {
     func addSpotMarker(spot: Path.Spot)
@@ -23,7 +22,7 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
     weak var delegate: MarkSpotProtocol?
     var loc: CLLocation?
     var spot: Path.Spot?
-    var storageRef = StorageReference()
+    var storageRef = Storage.storage().reference()
     var ref = Database.database().reference()
     
     
@@ -74,8 +73,8 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
         navigationController?.popViewController(animated: true)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.originalImage] as? UIImage {
             spotImageView.image = image
         }
         dismiss(animated: true, completion: nil)
@@ -110,7 +109,7 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
             str = "General"
         }
         
-        let type = NSAttributedString.init(string: str, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        let type = NSAttributedString(string: str, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         
         return type
     }
