@@ -3,194 +3,68 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06449B00643C335261CFAF6B /* Pods_Firebase_Roader_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 151B1772B6F8EDD4F9E60289 /* Pods_Firebase_Roader_DemoTests.framework */; };
-		10D53FE6FF9A4772B6F88AF5 /* UITextView+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB7746CF28C4AB88C3C7E84 /* UITextView+Placeholder.swift */; };
-		2FFACFF488026480A046D630 /* Pods_Firebase_Roader_DemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA12302F7718CBBBFFE72B43 /* Pods_Firebase_Roader_DemoUITests.framework */; };
 		46E9AFA42F383AE300E5FD95 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46E9AFA32F383AE300E5FD95 /* GoogleService-Info.plist */; };
-		882B8349A177445C90BD5162 /* MessageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0691DEC736E746998D7CE2DF /* MessageBar.swift */; };
-		B31A23C1F5A34015B76DAF8E /* GoogleMapsShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A27FE3D094EDFB4343A87 /* GoogleMapsShim.swift */; };
-		E16173638391DEEDE19A3A12 /* Pods_Firebase_Roader_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3856E4ED2445043A31AC7826 /* Pods_Firebase_Roader_Demo.framework */; };
-		EE089C651FBCA23500159242 /* ShowSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE089C641FBCA23500159242 /* ShowSpotViewController.swift */; };
-		EE089C671FBCE30400159242 /* CornerRadius+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE089C661FBCE30300159242 /* CornerRadius+Helper.swift */; };
-		EE09234E1F9ADD7600311BD0 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE09234D1F9ADD7600311BD0 /* GoogleMapViewController.swift */; };
+		A102132435465768798A9BAD /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = C202132435465768798A9BB5 /* FacebookLogin */; };
+		A1B2C3D4E5F60718293A4B5C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C102132435465768798A9BAF /* FirebaseAnalytics */; };
+		B102132435465768798A9BAE /* SVProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = D202132435465768798A9BB6 /* SVProgressHUD */; };
+		B1C2D3E4F5061728394A5B6C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D102132435465768798A9BB0 /* FirebaseAuth */; };
+		C1D2E3F405162738495A6B7C /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E102132435465768798A9BB1 /* FirebaseDatabase */; };
+		D1E2F30415263748596A7B8C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F102132435465768798A9BB2 /* FirebaseStorage */; };
+		E1F2031425364758697A8B9C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A202132435465768798A9BB3 /* GoogleSignIn */; };
 		EE2FAA191FA196180050609C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2FAA181FA196170050609C /* Assets.xcassets */; };
-		EE30B06C1FA19A0D0029861F /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE30B06B1FA19A0D0029861F /* Weather.swift */; };
-		EE436EA31FBBB06900B77D7A /* ManageSpots.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE436EA21FBBB06900B77D7A /* ManageSpots.swift */; };
-		EE5AFE601FA01D31009B28EF /* SaveDriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5AFE5F1FA01D31009B28EF /* SaveDriveViewController.swift */; };
-		EE5AFE621FA02289009B28EF /* ModifyPathDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5AFE611FA02289009B28EF /* ModifyPathDetailsViewController.swift */; };
-		EE5AFE641FA044DC009B28EF /* PathTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5AFE631FA044DC009B28EF /* PathTableViewCell.swift */; };
-		EE6A2C251F96F6A8009F3AC6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6A2C241F96F6A8009F3AC6 /* SignUpViewController.swift */; };
-		EE6A2C2B1F970E33009F3AC6 /* ProfiletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6A2C2A1F970E33009F3AC6 /* ProfiletViewController.swift */; };
-		EE70F7241FB7751200B72334 /* MarkSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE70F7231FB7751200B72334 /* MarkSpotViewController.swift */; };
-		EE70F7261FB77E4100B72334 /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE70F7251FB77E4100B72334 /* Spot.swift */; };
-		EE7FD5231F9D08A6001B339A /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7FD5221F9D08A6001B339A /* Path.swift */; };
-		EE7FD5251F9D180C001B339A /* AllPathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7FD5241F9D180C001B339A /* AllPathViewController.swift */; };
-		EE99798E1FA146B8009812B1 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE99798D1FA146B8009812B1 /* InformationViewController.swift */; };
-		EE9ABC8D1FA2453F003F407A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9ABC8C1FA2453F003F407A /* Constants.swift */; };
-		EEAD80571FA8DD8B0002A2C6 /* FollowingUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAD80561FA8DD8B0002A2C6 /* FollowingUserViewController.swift */; };
-		EEAD80591FA8DE560002A2C6 /* FollowingUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAD80581FA8DE560002A2C6 /* FollowingUserTableViewCell.swift */; };
-		EEAE4A6B1F9E425A0066E186 /* SignedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAE4A6A1F9E425A0066E186 /* SignedInViewController.swift */; };
-		EEAFA7551F9EC0F500F2AF42 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAFA7541F9EC0F500F2AF42 /* BaseViewController.swift */; };
-		EEAFA7591F9ED0A100F2AF42 /* SelectedPathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAFA7581F9ED0A100F2AF42 /* SelectedPathViewController.swift */; };
-		EEB3F8BD1FA38BC30099A3E6 /* FTMathCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB3F8BC1FA38BC30099A3E6 /* FTMathCalculations.swift */; };
-		EEB3F8C61FA3CF750099A3E6 /* ShareLocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB3F8C51FA3CF750099A3E6 /* ShareLocViewController.swift */; };
-		EEB3F8C81FA3D5420099A3E6 /* ShareType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB3F8C71FA3D5420099A3E6 /* ShareType.swift */; };
-		EEB3F8CB1FA3DA480099A3E6 /* OverlayPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB3F8C91FA3DA480099A3E6 /* OverlayPresentationController.swift */; };
-		EEB3F8CC1FA3DA480099A3E6 /* OverlayTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB3F8CA1FA3DA480099A3E6 /* OverlayTransitionDelegate.swift */; };
-		EEC717851F9E4F5D00DFC39F /* DriveOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC717841F9E4F5D00DFC39F /* DriveOptionsViewController.swift */; };
 		EEC965C41F96A00C000544B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC965C31F96A00C000544B7 /* AppDelegate.swift */; };
-		EEC965C61F96A00C000544B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC965C51F96A00C000544B7 /* ViewController.swift */; };
 		EEC965C91F96A00C000544B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC965C71F96A00C000544B7 /* Main.storyboard */; };
 		EEC965CE1F96A00C000544B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC965CC1F96A00C000544B7 /* LaunchScreen.storyboard */; };
-		EEC965D91F96A00D000544B7 /* Firebase_Roader_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC965D81F96A00D000544B7 /* Firebase_Roader_DemoTests.swift */; };
-		EEC965E41F96A00D000544B7 /* Firebase_Roader_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC965E31F96A00D000544B7 /* Firebase_Roader_DemoUITests.swift */; };
-		EEFC31071F97C21B00CAC8A5 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFC31061F97C21B00CAC8A5 /* ResetPasswordViewController.swift */; };
-		EEFC31091F97D5A600CAC8A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFC31081F97D5A600CAC8A5 /* User.swift */; };
-		EEFD890B1FA78CA10093380C /* FollowPathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFD890A1FA78CA10093380C /* FollowPathViewController.swift */; };
+		F102132435465768798A9BAC /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = B202132435465768798A9BB4 /* FacebookCore */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		EEC965D51F96A00D000544B7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EEC965B81F96A00C000544B7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EEC965BF1F96A00C000544B7;
-			remoteInfo = "Firebase Roader Demo";
-		};
-		EEC965E01F96A00D000544B7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EEC965B81F96A00C000544B7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EEC965BF1F96A00C000544B7;
-			remoteInfo = "Firebase Roader Demo";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		0691DEC736E746998D7CE2DF /* MessageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBar.swift; sourceTree = "<group>"; };
-		151B1772B6F8EDD4F9E60289 /* Pods_Firebase_Roader_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firebase_Roader_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A256080016544ACFDEC5C43 /* Pods-Firebase Roader DemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase Roader DemoUITests.release.xcconfig"; path = "Target Support Files/Pods-Firebase Roader DemoUITests/Pods-Firebase Roader DemoUITests.release.xcconfig"; sourceTree = "<group>"; };
-		3856E4ED2445043A31AC7826 /* Pods_Firebase_Roader_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firebase_Roader_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		449B40B40FE2C13A36D38A83 /* Pods-Firebase Roader DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase Roader DemoTests.release.xcconfig"; path = "Target Support Files/Pods-Firebase Roader DemoTests/Pods-Firebase Roader DemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		46E9AFA32F383AE300E5FD95 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		77209E2B7A91861BB68EA807 /* Pods-Firebase Roader DemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase Roader DemoTests.debug.xcconfig"; path = "Target Support Files/Pods-Firebase Roader DemoTests/Pods-Firebase Roader DemoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		8E962458E46F0CDC2E5C4480 /* Pods-Firebase Roader DemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase Roader DemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-Firebase Roader DemoUITests/Pods-Firebase Roader DemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A1F251AF58861935841D44A6 /* Pods-Firebase Roader Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase Roader Demo.release.xcconfig"; path = "Target Support Files/Pods-Firebase Roader Demo/Pods-Firebase Roader Demo.release.xcconfig"; sourceTree = "<group>"; };
-		AA12302F7718CBBBFFE72B43 /* Pods_Firebase_Roader_DemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firebase_Roader_DemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABB7746CF28C4AB88C3C7E84 /* UITextView+Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Placeholder.swift"; sourceTree = "<group>"; };
-		BF7252D5D669D31E4D101EB0 /* Pods-Firebase Roader Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase Roader Demo.debug.xcconfig"; path = "Target Support Files/Pods-Firebase Roader Demo/Pods-Firebase Roader Demo.debug.xcconfig"; sourceTree = "<group>"; };
-		E78A27FE3D094EDFB4343A87 /* GoogleMapsShim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsShim.swift; sourceTree = "<group>"; };
-		EE089C641FBCA23500159242 /* ShowSpotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSpotViewController.swift; sourceTree = "<group>"; };
-		EE089C661FBCE30300159242 /* CornerRadius+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CornerRadius+Helper.swift"; sourceTree = "<group>"; };
-		EE09234D1F9ADD7600311BD0 /* GoogleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
 		EE09234F1F9ADDD900311BD0 /* Firebase Roader Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Firebase Roader Demo-Bridging-Header.h"; sourceTree = "<group>"; };
 		EE0C94CC1FAA57260051C01E /* Firebase Roader Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Firebase Roader Demo.entitlements"; sourceTree = "<group>"; };
 		EE2FAA181FA196170050609C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EE30B06B1FA19A0D0029861F /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
-		EE436EA21FBBB06900B77D7A /* ManageSpots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSpots.swift; sourceTree = "<group>"; };
-		EE5AFE5F1FA01D31009B28EF /* SaveDriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDriveViewController.swift; sourceTree = "<group>"; };
-		EE5AFE611FA02289009B28EF /* ModifyPathDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPathDetailsViewController.swift; sourceTree = "<group>"; };
-		EE5AFE631FA044DC009B28EF /* PathTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathTableViewCell.swift; sourceTree = "<group>"; };
-		EE6A2C241F96F6A8009F3AC6 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		EE6A2C2A1F970E33009F3AC6 /* ProfiletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfiletViewController.swift; sourceTree = "<group>"; };
-		EE70F7231FB7751200B72334 /* MarkSpotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkSpotViewController.swift; sourceTree = "<group>"; };
-		EE70F7251FB77E4100B72334 /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
-		EE7FD5221F9D08A6001B339A /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
-		EE7FD5241F9D180C001B339A /* AllPathViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPathViewController.swift; sourceTree = "<group>"; };
-		EE99798D1FA146B8009812B1 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
-		EE9ABC8C1FA2453F003F407A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		EEAD80561FA8DD8B0002A2C6 /* FollowingUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingUserViewController.swift; sourceTree = "<group>"; };
-		EEAD80581FA8DE560002A2C6 /* FollowingUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingUserTableViewCell.swift; sourceTree = "<group>"; };
-		EEAE4A6A1F9E425A0066E186 /* SignedInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInViewController.swift; sourceTree = "<group>"; };
-		EEAFA7541F9EC0F500F2AF42 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		EEAFA7581F9ED0A100F2AF42 /* SelectedPathViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPathViewController.swift; sourceTree = "<group>"; };
-		EEB3F8BC1FA38BC30099A3E6 /* FTMathCalculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTMathCalculations.swift; sourceTree = "<group>"; };
-		EEB3F8C51FA3CF750099A3E6 /* ShareLocViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLocViewController.swift; sourceTree = "<group>"; };
-		EEB3F8C71FA3D5420099A3E6 /* ShareType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareType.swift; sourceTree = "<group>"; };
-		EEB3F8C91FA3DA480099A3E6 /* OverlayPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPresentationController.swift; sourceTree = "<group>"; };
-		EEB3F8CA1FA3DA480099A3E6 /* OverlayTransitionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayTransitionDelegate.swift; sourceTree = "<group>"; };
-		EEC717841F9E4F5D00DFC39F /* DriveOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveOptionsViewController.swift; sourceTree = "<group>"; };
 		EEC965C01F96A00C000544B7 /* Firebase Roader Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Firebase Roader Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEC965C31F96A00C000544B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EEC965C51F96A00C000544B7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EEC965C81F96A00C000544B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EEC965CD1F96A00C000544B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EEC965CF1F96A00C000544B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EEC965D41F96A00D000544B7 /* Firebase Roader DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Firebase Roader DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EEC965D81F96A00D000544B7 /* Firebase_Roader_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase_Roader_DemoTests.swift; sourceTree = "<group>"; };
-		EEC965DA1F96A00D000544B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EEC965DF1F96A00D000544B7 /* Firebase Roader DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Firebase Roader DemoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EEC965E31F96A00D000544B7 /* Firebase_Roader_DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase_Roader_DemoUITests.swift; sourceTree = "<group>"; };
-		EEC965E51F96A00D000544B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EEFC31061F97C21B00CAC8A5 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
-		EEFC31081F97D5A600CAC8A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		EEFD890A1FA78CA10093380C /* FollowPathViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowPathViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		46E3EC7A2F394E5400F25290 /* ViewControllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewControllers; sourceTree = "<group>"; };
+		46E3EC7B2F394E9B00F25290 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		46E3EC7E2F394F2500F25290 /* Utils */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utils; sourceTree = "<group>"; };
+		46E3EC7F2F394F3500F25290 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		EEC965BD1F96A00C000544B7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E16173638391DEEDE19A3A12 /* Pods_Firebase_Roader_Demo.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EEC965D11F96A00D000544B7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				06449B00643C335261CFAF6B /* Pods_Firebase_Roader_DemoTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EEC965DC1F96A00D000544B7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2FFACFF488026480A046D630 /* Pods_Firebase_Roader_DemoUITests.framework in Frameworks */,
+				A1B2C3D4E5F60718293A4B5C /* FirebaseAnalytics in Frameworks */,
+				B1C2D3E4F5061728394A5B6C /* FirebaseAuth in Frameworks */,
+				C1D2E3F405162738495A6B7C /* FirebaseDatabase in Frameworks */,
+				D1E2F30415263748596A7B8C /* FirebaseStorage in Frameworks */,
+				E1F2031425364758697A8B9C /* GoogleSignIn in Frameworks */,
+				F102132435465768798A9BAC /* FacebookCore in Frameworks */,
+				A102132435465768798A9BAD /* FacebookLogin in Frameworks */,
+				B102132435465768798A9BAE /* SVProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7BA8AC990C33FA12CD2AA976 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3856E4ED2445043A31AC7826 /* Pods_Firebase_Roader_Demo.framework */,
-				151B1772B6F8EDD4F9E60289 /* Pods_Firebase_Roader_DemoTests.framework */,
-				AA12302F7718CBBBFFE72B43 /* Pods_Firebase_Roader_DemoUITests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DEC4D93E6C545AC88D743BF4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				BF7252D5D669D31E4D101EB0 /* Pods-Firebase Roader Demo.debug.xcconfig */,
-				A1F251AF58861935841D44A6 /* Pods-Firebase Roader Demo.release.xcconfig */,
-				77209E2B7A91861BB68EA807 /* Pods-Firebase Roader DemoTests.debug.xcconfig */,
-				449B40B40FE2C13A36D38A83 /* Pods-Firebase Roader DemoTests.release.xcconfig */,
-				8E962458E46F0CDC2E5C4480 /* Pods-Firebase Roader DemoUITests.debug.xcconfig */,
-				2A256080016544ACFDEC5C43 /* Pods-Firebase Roader DemoUITests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		EEC965B71F96A00C000544B7 = {
 			isa = PBXGroup;
 			children = (
 				EEC965C21F96A00C000544B7 /* Firebase Roader Demo */,
-				EEC965D71F96A00D000544B7 /* Firebase Roader DemoTests */,
-				EEC965E21F96A00D000544B7 /* Firebase Roader DemoUITests */,
 				EEC965C11F96A00C000544B7 /* Products */,
-				DEC4D93E6C545AC88D743BF4 /* Pods */,
-				7BA8AC990C33FA12CD2AA976 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -198,8 +72,6 @@
 			isa = PBXGroup;
 			children = (
 				EEC965C01F96A00C000544B7 /* Firebase Roader Demo.app */,
-				EEC965D41F96A00D000544B7 /* Firebase Roader DemoTests.xctest */,
-				EEC965DF1F96A00D000544B7 /* Firebase Roader DemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,68 +79,20 @@
 		EEC965C21F96A00C000544B7 /* Firebase Roader Demo */ = {
 			isa = PBXGroup;
 			children = (
+				46E3EC7F2F394F3500F25290 /* Models */,
+				46E3EC7E2F394F2500F25290 /* Utils */,
+				46E3EC7B2F394E9B00F25290 /* Views */,
+				46E3EC7A2F394E5400F25290 /* ViewControllers */,
 				46E9AFA32F383AE300E5FD95 /* GoogleService-Info.plist */,
 				EE0C94CC1FAA57260051C01E /* Firebase Roader Demo.entitlements */,
 				EEC965C31F96A00C000544B7 /* AppDelegate.swift */,
-				EEAFA7541F9EC0F500F2AF42 /* BaseViewController.swift */,
-				EE6A2C241F96F6A8009F3AC6 /* SignUpViewController.swift */,
-				EEC965C51F96A00C000544B7 /* ViewController.swift */,
-				EEAE4A6A1F9E425A0066E186 /* SignedInViewController.swift */,
-				EE6A2C2A1F970E33009F3AC6 /* ProfiletViewController.swift */,
-				EEFC31061F97C21B00CAC8A5 /* ResetPasswordViewController.swift */,
-				EEC717841F9E4F5D00DFC39F /* DriveOptionsViewController.swift */,
-				EE09234D1F9ADD7600311BD0 /* GoogleMapViewController.swift */,
-				EE5AFE5F1FA01D31009B28EF /* SaveDriveViewController.swift */,
-				EE5AFE611FA02289009B28EF /* ModifyPathDetailsViewController.swift */,
-				EE7FD5241F9D180C001B339A /* AllPathViewController.swift */,
-				EE5AFE631FA044DC009B28EF /* PathTableViewCell.swift */,
-				EEAFA7581F9ED0A100F2AF42 /* SelectedPathViewController.swift */,
-				EE99798D1FA146B8009812B1 /* InformationViewController.swift */,
-				EEB3F8C51FA3CF750099A3E6 /* ShareLocViewController.swift */,
-				EE70F7231FB7751200B72334 /* MarkSpotViewController.swift */,
-				ABB7746CF28C4AB88C3C7E84 /* UITextView+Placeholder.swift */,
-				EE089C641FBCA23500159242 /* ShowSpotViewController.swift */,
-				EEFD890A1FA78CA10093380C /* FollowPathViewController.swift */,
-				EEAD80561FA8DD8B0002A2C6 /* FollowingUserViewController.swift */,
-				EEAD80581FA8DE560002A2C6 /* FollowingUserTableViewCell.swift */,
 				EE2FAA181FA196170050609C /* Assets.xcassets */,
 				EEC965C71F96A00C000544B7 /* Main.storyboard */,
 				EEC965CC1F96A00C000544B7 /* LaunchScreen.storyboard */,
-				EE30B06B1FA19A0D0029861F /* Weather.swift */,
-				EEFC31081F97D5A600CAC8A5 /* User.swift */,
-				EE7FD5221F9D08A6001B339A /* Path.swift */,
-				EE70F7251FB77E4100B72334 /* Spot.swift */,
-				EE436EA21FBBB06900B77D7A /* ManageSpots.swift */,
-				EE089C661FBCE30300159242 /* CornerRadius+Helper.swift */,
-				EEB3F8C71FA3D5420099A3E6 /* ShareType.swift */,
-				EE9ABC8C1FA2453F003F407A /* Constants.swift */,
-				0691DEC736E746998D7CE2DF /* MessageBar.swift */,
-				E78A27FE3D094EDFB4343A87 /* GoogleMapsShim.swift */,
-				EEB3F8BC1FA38BC30099A3E6 /* FTMathCalculations.swift */,
-				EEB3F8C91FA3DA480099A3E6 /* OverlayPresentationController.swift */,
-				EEB3F8CA1FA3DA480099A3E6 /* OverlayTransitionDelegate.swift */,
 				EEC965CF1F96A00C000544B7 /* Info.plist */,
 				EE09234F1F9ADDD900311BD0 /* Firebase Roader Demo-Bridging-Header.h */,
 			);
 			path = "Firebase Roader Demo";
-			sourceTree = "<group>";
-		};
-		EEC965D71F96A00D000544B7 /* Firebase Roader DemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				EEC965D81F96A00D000544B7 /* Firebase_Roader_DemoTests.swift */,
-				EEC965DA1F96A00D000544B7 /* Info.plist */,
-			);
-			path = "Firebase Roader DemoTests";
-			sourceTree = "<group>";
-		};
-		EEC965E21F96A00D000544B7 /* Firebase Roader DemoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				EEC965E31F96A00D000544B7 /* Firebase_Roader_DemoUITests.swift */,
-				EEC965E51F96A00D000544B7 /* Info.plist */,
-			);
-			path = "Firebase Roader DemoUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,58 +102,34 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EEC965E81F96A00D000544B7 /* Build configuration list for PBXNativeTarget "Firebase Roader Demo" */;
 			buildPhases = (
-				7C6711BC9E074EA8F0EFDA74 /* [CP] Check Pods Manifest.lock */,
 				EEC965BC1F96A00C000544B7 /* Sources */,
 				EEC965BD1F96A00C000544B7 /* Frameworks */,
 				EEC965BE1F96A00C000544B7 /* Resources */,
-				3B888F8E940A39A437F88E47 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				46E3EC7A2F394E5400F25290 /* ViewControllers */,
+				46E3EC7B2F394E9B00F25290 /* Views */,
+				46E3EC7E2F394F2500F25290 /* Utils */,
+				46E3EC7F2F394F3500F25290 /* Models */,
+			);
 			name = "Firebase Roader Demo";
+			packageProductDependencies = (
+				C102132435465768798A9BAF /* FirebaseAnalytics */,
+				D102132435465768798A9BB0 /* FirebaseAuth */,
+				E102132435465768798A9BB1 /* FirebaseDatabase */,
+				F102132435465768798A9BB2 /* FirebaseStorage */,
+				A202132435465768798A9BB3 /* GoogleSignIn */,
+				B202132435465768798A9BB4 /* FacebookCore */,
+				C202132435465768798A9BB5 /* FacebookLogin */,
+				D202132435465768798A9BB6 /* SVProgressHUD */,
+			);
 			productName = "Firebase Roader Demo";
 			productReference = EEC965C01F96A00C000544B7 /* Firebase Roader Demo.app */;
 			productType = "com.apple.product-type.application";
-		};
-		EEC965D31F96A00D000544B7 /* Firebase Roader DemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EEC965EB1F96A00D000544B7 /* Build configuration list for PBXNativeTarget "Firebase Roader DemoTests" */;
-			buildPhases = (
-				CE800F8783A2DF2ACD0CEF5E /* [CP] Check Pods Manifest.lock */,
-				EEC965D01F96A00D000544B7 /* Sources */,
-				EEC965D11F96A00D000544B7 /* Frameworks */,
-				EEC965D21F96A00D000544B7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EEC965D61F96A00D000544B7 /* PBXTargetDependency */,
-			);
-			name = "Firebase Roader DemoTests";
-			productName = "Firebase Roader DemoTests";
-			productReference = EEC965D41F96A00D000544B7 /* Firebase Roader DemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		EEC965DE1F96A00D000544B7 /* Firebase Roader DemoUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EEC965EE1F96A00D000544B7 /* Build configuration list for PBXNativeTarget "Firebase Roader DemoUITests" */;
-			buildPhases = (
-				1E35DB6117FEDEC4E98C27BF /* [CP] Check Pods Manifest.lock */,
-				EEC965DB1F96A00D000544B7 /* Sources */,
-				EEC965DC1F96A00D000544B7 /* Frameworks */,
-				EEC965DD1F96A00D000544B7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EEC965E11F96A00D000544B7 /* PBXTargetDependency */,
-			);
-			name = "Firebase Roader DemoUITests";
-			productName = "Firebase Roader DemoUITests";
-			productReference = EEC965DF1F96A00D000544B7 /* Firebase Roader DemoUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -351,16 +151,6 @@
 							};
 						};
 					};
-					EEC965D31F96A00D000544B7 = {
-						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
-						TestTargetID = EEC965BF1F96A00C000544B7;
-					};
-					EEC965DE1F96A00D000544B7 = {
-						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
-						TestTargetID = EEC965BF1F96A00C000544B7;
-					};
 				};
 			};
 			buildConfigurationList = EEC965BB1F96A00C000544B7 /* Build configuration list for PBXProject "Firebase Roader Demo" */;
@@ -372,13 +162,17 @@
 				Base,
 			);
 			mainGroup = EEC965B71F96A00C000544B7;
+			packageReferences = (
+				E202132435465768798A9BB7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				F202132435465768798A9BB8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				A302132435465768798A9BB9 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				B302132435465768798A9BBA /* XCRemoteSwiftPackageReference "SVProgressHUD" */,
+			);
 			productRefGroup = EEC965C11F96A00C000544B7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				EEC965BF1F96A00C000544B7 /* Firebase Roader Demo */,
-				EEC965D31F96A00D000544B7 /* Firebase Roader DemoTests */,
-				EEC965DE1F96A00D000544B7 /* Firebase Roader DemoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -395,230 +189,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EEC965D21F96A00D000544B7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EEC965DD1F96A00D000544B7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		1E35DB6117FEDEC4E98C27BF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Firebase Roader DemoUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3B888F8E940A39A437F88E47 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Firebase Roader Demo/Pods-Firebase Roader Demo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
-				"${BUILT_PRODUCTS_DIR}/AppCheckCore/AppCheckCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseAppCheckInterop/FirebaseAppCheckInterop.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseAuthInterop/FirebaseAuthInterop.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreExtension/FirebaseCoreExtension.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseDatabase/FirebaseDatabase.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseSharedSwift/FirebaseSharedSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseStorage/FirebaseStorage.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMAppAuth/GTMAppAuth.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleSignIn/GoogleSignIn.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/RecaptchaInterop/RecaptchaInterop.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBAEMKit/FBAEMKit.framework/FBAEMKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework/FBSDKCoreKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKCoreKit_Basics/FBSDKCoreKit_Basics.framework/FBSDKCoreKit_Basics",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework/FBSDKLoginKit",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppCheckCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseAppCheckInterop.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseAuth.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseAuthInterop.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseDatabase.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseSharedSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseStorage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMAppAuth.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleSignIn.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RecaptchaInterop.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBAEMKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit_Basics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Firebase Roader Demo/Pods-Firebase Roader Demo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7C6711BC9E074EA8F0EFDA74 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Firebase Roader Demo-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CE800F8783A2DF2ACD0CEF5E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Firebase Roader DemoTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EEC965BC1F96A00C000544B7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEFD890B1FA78CA10093380C /* FollowPathViewController.swift in Sources */,
-				EE089C651FBCA23500159242 /* ShowSpotViewController.swift in Sources */,
-				EE6A2C251F96F6A8009F3AC6 /* SignUpViewController.swift in Sources */,
-				EE5AFE621FA02289009B28EF /* ModifyPathDetailsViewController.swift in Sources */,
-				EE5AFE641FA044DC009B28EF /* PathTableViewCell.swift in Sources */,
-				EEB3F8C81FA3D5420099A3E6 /* ShareType.swift in Sources */,
-				EE7FD5251F9D180C001B339A /* AllPathViewController.swift in Sources */,
-				EE30B06C1FA19A0D0029861F /* Weather.swift in Sources */,
-				EEB3F8BD1FA38BC30099A3E6 /* FTMathCalculations.swift in Sources */,
-				EEC965C61F96A00C000544B7 /* ViewController.swift in Sources */,
-				EEAE4A6B1F9E425A0066E186 /* SignedInViewController.swift in Sources */,
-				EE5AFE601FA01D31009B28EF /* SaveDriveViewController.swift in Sources */,
-				EE70F7241FB7751200B72334 /* MarkSpotViewController.swift in Sources */,
-				10D53FE6FF9A4772B6F88AF5 /* UITextView+Placeholder.swift in Sources */,
-				EEB3F8CC1FA3DA480099A3E6 /* OverlayTransitionDelegate.swift in Sources */,
-				EE9ABC8D1FA2453F003F407A /* Constants.swift in Sources */,
-				882B8349A177445C90BD5162 /* MessageBar.swift in Sources */,
-				B31A23C1F5A34015B76DAF8E /* GoogleMapsShim.swift in Sources */,
-				EEAD80571FA8DD8B0002A2C6 /* FollowingUserViewController.swift in Sources */,
-				EE089C671FBCE30400159242 /* CornerRadius+Helper.swift in Sources */,
-				EE7FD5231F9D08A6001B339A /* Path.swift in Sources */,
-				EEAFA7551F9EC0F500F2AF42 /* BaseViewController.swift in Sources */,
-				EEAFA7591F9ED0A100F2AF42 /* SelectedPathViewController.swift in Sources */,
-				EE70F7261FB77E4100B72334 /* Spot.swift in Sources */,
-				EE09234E1F9ADD7600311BD0 /* GoogleMapViewController.swift in Sources */,
-				EEC717851F9E4F5D00DFC39F /* DriveOptionsViewController.swift in Sources */,
-				EEB3F8CB1FA3DA480099A3E6 /* OverlayPresentationController.swift in Sources */,
-				EEFC31071F97C21B00CAC8A5 /* ResetPasswordViewController.swift in Sources */,
-				EE6A2C2B1F970E33009F3AC6 /* ProfiletViewController.swift in Sources */,
-				EE436EA31FBBB06900B77D7A /* ManageSpots.swift in Sources */,
-				EEB3F8C61FA3CF750099A3E6 /* ShareLocViewController.swift in Sources */,
 				EEC965C41F96A00C000544B7 /* AppDelegate.swift in Sources */,
-				EEFC31091F97D5A600CAC8A5 /* User.swift in Sources */,
-				EE99798E1FA146B8009812B1 /* InformationViewController.swift in Sources */,
-				EEAD80591FA8DE560002A2C6 /* FollowingUserTableViewCell.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EEC965D01F96A00D000544B7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EEC965D91F96A00D000544B7 /* Firebase_Roader_DemoTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EEC965DB1F96A00D000544B7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EEC965E41F96A00D000544B7 /* Firebase_Roader_DemoUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		EEC965D61F96A00D000544B7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EEC965BF1F96A00C000544B7 /* Firebase Roader Demo */;
-			targetProxy = EEC965D51F96A00D000544B7 /* PBXContainerItemProxy */;
-		};
-		EEC965E11F96A00D000544B7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EEC965BF1F96A00C000544B7 /* Firebase Roader Demo */;
-			targetProxy = EEC965E01F96A00D000544B7 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EEC965C71F96A00C000544B7 /* Main.storyboard */ = {
@@ -688,7 +270,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -739,25 +321,28 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		EEC965E91F96A00D000544B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF7252D5D669D31E4D101EB0 /* Pods-Firebase Roader Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8DT27W9UTB;
 				INFOPLIST_FILE = "Firebase Roader Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "RJT.Firebase-Roader-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -773,15 +358,17 @@
 		};
 		EEC965EA1F96A00D000544B7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1F251AF58861935841D44A6 /* Pods-Firebase Roader Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8DT27W9UTB;
 				INFOPLIST_FILE = "Firebase Roader Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "RJT.Firebase-Roader-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -791,72 +378,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Firebase Roader Demo/Firebase Roader Demo-Bridging-Header.h";
 				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		EEC965EC1F96A00D000544B7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77209E2B7A91861BB68EA807 /* Pods-Firebase Roader DemoTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Firebase Roader DemoTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "RJT.Firebase-Roader-DemoTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.9;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Firebase Roader Demo.app/Firebase Roader Demo";
-			};
-			name = Debug;
-		};
-		EEC965ED1F96A00D000544B7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 449B40B40FE2C13A36D38A83 /* Pods-Firebase Roader DemoTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Firebase Roader DemoTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "RJT.Firebase-Roader-DemoTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.9;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Firebase Roader Demo.app/Firebase Roader Demo";
-			};
-			name = Release;
-		};
-		EEC965EF1F96A00D000544B7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E962458E46F0CDC2E5C4480 /* Pods-Firebase Roader DemoUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Firebase Roader DemoUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "RJT.Firebase-Roader-DemoUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.9;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Firebase Roader Demo";
-			};
-			name = Debug;
-		};
-		EEC965F01F96A00D000544B7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A256080016544ACFDEC5C43 /* Pods-Firebase Roader DemoUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Firebase Roader DemoUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "RJT.Firebase-Roader-DemoUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.9;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Firebase Roader Demo";
 			};
 			name = Release;
 		};
@@ -881,25 +402,85 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EEC965EB1F96A00D000544B7 /* Build configuration list for PBXNativeTarget "Firebase Roader DemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EEC965EC1F96A00D000544B7 /* Debug */,
-				EEC965ED1F96A00D000544B7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EEC965EE1F96A00D000544B7 /* Build configuration list for PBXNativeTarget "Firebase Roader DemoUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EEC965EF1F96A00D000544B7 /* Debug */,
-				EEC965F01F96A00D000544B7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A302132435465768798A9BB9 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 18.0.0;
+			};
+		};
+		B302132435465768798A9BBA /* XCRemoteSwiftPackageReference "SVProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SVProgressHUD/SVProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.0;
+			};
+		};
+		E202132435465768798A9BB7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
+		F202132435465768798A9BB8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A202132435465768798A9BB3 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F202132435465768798A9BB8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		B202132435465768798A9BB4 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A302132435465768798A9BB9 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		C102132435465768798A9BAF /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E202132435465768798A9BB7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		C202132435465768798A9BB5 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A302132435465768798A9BB9 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+		D102132435465768798A9BB0 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E202132435465768798A9BB7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		D202132435465768798A9BB6 /* SVProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B302132435465768798A9BBA /* XCRemoteSwiftPackageReference "SVProgressHUD" */;
+			productName = SVProgressHUD;
+		};
+		E102132435465768798A9BB1 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E202132435465768798A9BB7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		F102132435465768798A9BB2 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E202132435465768798A9BB7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EEC965B81F96A00C000544B7 /* Project object */;
 }

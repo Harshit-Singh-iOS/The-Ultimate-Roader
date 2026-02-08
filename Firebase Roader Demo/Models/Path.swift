@@ -11,6 +11,7 @@ import CoreLocation
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class Path: NSObject {
     

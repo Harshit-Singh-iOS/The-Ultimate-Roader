@@ -11,8 +11,8 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import SVProgressHUD
-import FBSDKCoreKit
-import FBSDKLoginKit
+import FacebookCore
+import FacebookLogin
 import GoogleSignIn
 
 class ViewController: UIViewController, UITextFieldDelegate, LoginButtonDelegate {

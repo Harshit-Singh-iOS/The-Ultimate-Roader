@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 import SVProgressHUD
 
 class SignUpViewController: UIViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate {

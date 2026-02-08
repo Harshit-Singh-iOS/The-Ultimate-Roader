@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-import FBSDKCoreKit
+import FacebookCore
 import GoogleSignIn
 
 @UIApplicationMain
