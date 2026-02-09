@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		46E3EC832F39614000F25290 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46E3EC822F39614000F25290 /* GoogleService-Info.plist */; };
-		A102132435465768798A9BAD /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = C202132435465768798A9BB5 /* FacebookLogin */; };
 		A1B2C3D4E5F60718293A4B5C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C102132435465768798A9BAF /* FirebaseAnalytics */; };
 		B102132435465768798A9BAE /* SVProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = D202132435465768798A9BB6 /* SVProgressHUD */; };
 		B1C2D3E4F5061728394A5B6C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D102132435465768798A9BB0 /* FirebaseAuth */; };
@@ -19,7 +18,6 @@
 		EEC965C41F96A00C000544B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC965C31F96A00C000544B7 /* AppDelegate.swift */; };
 		EEC965C91F96A00C000544B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC965C71F96A00C000544B7 /* Main.storyboard */; };
 		EEC965CE1F96A00C000544B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC965CC1F96A00C000544B7 /* LaunchScreen.storyboard */; };
-		F102132435465768798A9BAC /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = B202132435465768798A9BB4 /* FacebookCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,8 +49,6 @@
 				C1D2E3F405162738495A6B7C /* FirebaseDatabase in Frameworks */,
 				D1E2F30415263748596A7B8C /* FirebaseStorage in Frameworks */,
 				E1F2031425364758697A8B9C /* GoogleSignIn in Frameworks */,
-				F102132435465768798A9BAC /* FacebookCore in Frameworks */,
-				A102132435465768798A9BAD /* FacebookLogin in Frameworks */,
 				B102132435465768798A9BAE /* SVProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,8 +119,6 @@
 				E102132435465768798A9BB1 /* FirebaseDatabase */,
 				F102132435465768798A9BB2 /* FirebaseStorage */,
 				A202132435465768798A9BB3 /* GoogleSignIn */,
-				B202132435465768798A9BB4 /* FacebookCore */,
-				C202132435465768798A9BB5 /* FacebookLogin */,
 				D202132435465768798A9BB6 /* SVProgressHUD */,
 			);
 			productName = "Firebase Roader Demo";
@@ -165,7 +159,6 @@
 			packageReferences = (
 				E202132435465768798A9BB7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F202132435465768798A9BB8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
-				A302132435465768798A9BB9 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				B302132435465768798A9BBA /* XCRemoteSwiftPackageReference "SVProgressHUD" */,
 			);
 			productRefGroup = EEC965C11F96A00C000544B7 /* Products */;
@@ -407,14 +400,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A302132435465768798A9BB9 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 18.0.0;
-			};
-		};
 		B302132435465768798A9BBA /* XCRemoteSwiftPackageReference "SVProgressHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SVProgressHUD/SVProgressHUD";
@@ -447,20 +432,10 @@
 			package = F202132435465768798A9BB8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
 		};
-		B202132435465768798A9BB4 /* FacebookCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A302132435465768798A9BB9 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookCore;
-		};
 		C102132435465768798A9BAF /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E202132435465768798A9BB7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
-		};
-		C202132435465768798A9BB5 /* FacebookLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A302132435465768798A9BB9 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookLogin;
 		};
 		D102132435465768798A9BB0 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

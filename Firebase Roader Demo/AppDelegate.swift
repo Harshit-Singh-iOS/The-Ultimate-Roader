@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FacebookCore
 import GoogleSignIn
 
 @UIApplicationMain
@@ -22,16 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         if let clientID = FirebaseApp.app()?.options.clientID {
             GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: clientID)
+        } else {
+            GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: Constants.kGoogleClientId)
         }
 
-        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        let googleDidHandle = GIDSignIn.sharedInstance.handle(url)
-        let facebookDidHandle = ApplicationDelegate.shared.application(app, open: url, options: options)
-        return googleDidHandle || facebookDidHandle
+        return GIDSignIn.sharedInstance.handle(url)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

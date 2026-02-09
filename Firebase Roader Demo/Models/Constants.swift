@@ -24,6 +24,7 @@ struct LoginConstants {
 
 struct Constants {
     static let kWEATHERAPIKEY = "b27b1cfe499c89d6e8db7f668d48275f"
+    static let kGoogleClientId = "315488888774-6d2q9kvf1phj511pmnskptu441n9e0a9.apps.googleusercontent.com"
 }
 
 

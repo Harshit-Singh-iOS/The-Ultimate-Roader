@@ -11,11 +11,9 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import SVProgressHUD
-import FacebookCore
-import FacebookLogin
 import GoogleSignIn
 
-class ViewController: UIViewController, UITextFieldDelegate, LoginButtonDelegate {
+class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var username_tf: UITextField!
     @IBOutlet weak var password_tf: UITextField!
     @IBOutlet weak var verification_tf: UITextField!
@@ -25,51 +23,15 @@ class ViewController: UIViewController, UITextFieldDelegate, LoginButtonDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        SwiftMessageBar.setSharedConfig(barConfig)
-        print((try? FileManager.default.url(for:.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)))
-        
+        SwiftMessageBar.setSharedConfig(barConfig)        
         
         let googleButton = GIDSignInButton()
         googleButton.addTarget(self, action: #selector(googleSignInTapped), for: .touchUpInside)
-        googleButton.frame = CGRect(x: -60, y: 0, width: 80, height: 28)
+        googleButton.frame = CGRect(x: 0, y: 0, width: 80, height: 28)
         login_btn_view.addSubview(googleButton)
-
-        let facebookLoginButton = FBLoginButton()
-        facebookLoginButton.delegate = self
-        facebookLoginButton.frame = CGRect(x: 60, y: 4, width: googleButton.frame.width - 5, height: googleButton.frame.height - 7)
-        login_btn_view.addSubview(facebookLoginButton)
         
         username_tf.text = LoginConstants.em
         password_tf.text = LoginConstants.pass
-    }
-    
-    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        if let err = error{
-            print(err.localizedDescription)
-            return
-        }
-        
-        if let result = result, result.isCancelled == false {
-            print(result.token?.tokenString ?? "")
-        }
-        
-        guard let tokenString = AccessToken.current?.tokenString else {
-            return
-        }
-        let credential = FacebookAuthProvider.credential(withAccessToken: tokenString)
-        Auth.auth().signIn(with: credential) { (_, error) in
-            if let err = error {
-                print(err)
-            } else {
-                self.LoginWithFacebook()
-                SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
-                let controller = self.storyboard?.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
-                self.present(controller!, animated: true, completion: nil)
-            }
-        }
-    }
-    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        
     }
     
     @IBAction func phonesigninAction(_ sender: UIButton) {
@@ -195,41 +157,6 @@ class ViewController: UIViewController, UITextFieldDelegate, LoginButtonDelegate
         let controller = storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
         present(controller!, animated: true, completion: nil)
     }
-    
-    func LoginWithFacebook() {
-        let logIn = LoginManager()
-        logIn.logIn(permissions: ["public_profile","email"], from: self) { (result, error) in
-            
-            if error == nil && result?.isCancelled == false{
-                
-                GraphRequest(graphPath: "me", parameters: ["fields": "email,first_name,last_name"]).start { (_, result, error) in
-                    if let res = result as? [String:Any] {
-                        var firstname = "", lastname = "", email = ""
-                        if let fname = res["first_name"] as? String,let lname = res["last_name"] as? String,let em = res["email"] as? String {
-                            firstname = fname
-                            lastname = lname
-                            email = em
-                        
-                            if let uid = Auth.auth().currentUser?.uid {
-                            let userDict = ["FirstName": fname, "LastName":lname, "UserId": uid, "EmailID": email]
-                            
-                                self.ref?.child("Users").child(uid).updateChildValues(userDict, withCompletionBlock: { (error, dataBaseRef) in
-                                    if error == nil {
-                                        SwiftMessageBar.showMessageWithTitle("Congrats!!", message: "Sign Up successful.", type: .success)
-                                    }
-                                    else {
-                                        print(error?.localizedDescription ?? "Error")
-                                        SwiftMessageBar.showMessageWithTitle("Error", message: "Something went wrong.", type: .error)
-                                    }
-                                })
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
     
     @IBAction func reset_password(_ sender: UIButton) {
         Auth.auth().sendPasswordReset(withEmail: "harshitsingh0401@gmail.com") { (error) in
