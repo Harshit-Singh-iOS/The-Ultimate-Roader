@@ -17,6 +17,11 @@ var barConfig = MessageBarConfig.Builder()
     .withInfoColor(.gray)
     .build()
 
+struct LoginConstants {
+    static let em = "hs@gmail.com"
+    static let pass = "Qwerty@1234"
+}
+
 struct Constants {
     static let kWEATHERAPIKEY = "b27b1cfe499c89d6e8db7f668d48275f"
 }

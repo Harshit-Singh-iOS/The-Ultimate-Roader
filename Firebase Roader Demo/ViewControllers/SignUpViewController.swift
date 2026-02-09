@@ -34,6 +34,16 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate , 
         storageRef = Storage.storage().reference()
         SwiftMessageBar.setSharedConfig(barConfig)
         setupImageSize()
+        prepTestUI()
+    }
+    
+    func prepTestUI() {
+        firstname_tf.text = "Harry"
+        lastname_tf.text = "S"
+        email_tf.text = LoginConstants.em
+        password_tf.text = LoginConstants.pass
+        confirmpass_tf.text = LoginConstants.pass
+        city_tf.text = "IND"
     }
     
     func setupImageSize() {
@@ -61,28 +71,35 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate , 
             SwiftMessageBar.showMessageWithTitle("Error", message: "Password do not match!", type: .error)
         }else {
             SVProgressHUD.show()
-            Auth.auth().createUser(withEmail: email_tf.text!, password: password_tf.text!) { (authResult, error) in
-                if error == nil {
-                    let user = authResult?.user
-                    let userDict = ["FirstName": self.firstname_tf.text, "LastName":self.lastname_tf.text, "Password": self.password_tf.text,"UserId": user?.uid, "EmailID": self.email_tf.text, "City": self.city_tf.text, "userImageUrl": self.userImageUrl]
-                    if let id = user?.uid {
-                        self.ref?.child("Users").child(id).updateChildValues(userDict, withCompletionBlock: { (error, dataBaseRef) in
-                            if error == nil {
-                                self.uploadingImage()
-                                SwiftMessageBar.showMessageWithTitle("Congrats!!", message: "Sign Up successful.", type: .success)
-                            }
-                            else {
-                                print(error?.localizedDescription ?? "Error")
-                                SwiftMessageBar.showMessageWithTitle("Error", message: "Something went wrong.", type: .error)
-                            }
-                        })
-                    }
-                    SVProgressHUD.dismiss()
-                }else{
-                    print(error?.localizedDescription ?? "Error")
-                }
-                self.dismiss(animated: true, completion: nil)
+            Auth.auth().createUser(withEmail: email_tf.text!, password: password_tf.text!) { data, error in
+                
+                
+                print(data, error)
+                SVProgressHUD.dismiss()
+                
             }
+//            Auth.auth().createUser(withEmail: email_tf.text!, password: password_tf.text!) { (authResult, error) in
+//                if error == nil {
+//                    let user = authResult?.user
+//                    let userDict = ["FirstName": self.firstname_tf.text, "LastName":self.lastname_tf.text, "Password": self.password_tf.text,"UserId": user?.uid, "EmailID": self.email_tf.text, "City": self.city_tf.text, "userImageUrl": self.userImageUrl]
+//                    if let id = user?.uid {
+//                        self.ref?.child("Users").child(id).updateChildValues(userDict, withCompletionBlock: { (error, dataBaseRef) in
+//                            if error == nil {
+//                                self.uploadingImage()
+//                                SwiftMessageBar.showMessageWithTitle("Congrats!!", message: "Sign Up successful.", type: .success)
+//                            }
+//                            else {
+//                                print(error?.localizedDescription ?? "Error")
+//                                SwiftMessageBar.showMessageWithTitle("Error", message: "Something went wrong.", type: .error)
+//                            }
+//                        })
+//                    }
+//                    SVProgressHUD.dismiss()
+//                }else{
+//                    print(error?.localizedDescription ?? "Error")
+//                }
+//                self.dismiss(animated: true, completion: nil)
+//            }
         }
     }
     

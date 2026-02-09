@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		46E9AFA42F383AE300E5FD95 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46E9AFA32F383AE300E5FD95 /* GoogleService-Info.plist */; };
+		46E3EC832F39614000F25290 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46E3EC822F39614000F25290 /* GoogleService-Info.plist */; };
 		A102132435465768798A9BAD /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = C202132435465768798A9BB5 /* FacebookLogin */; };
 		A1B2C3D4E5F60718293A4B5C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C102132435465768798A9BAF /* FirebaseAnalytics */; };
 		B102132435465768798A9BAE /* SVProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = D202132435465768798A9BB6 /* SVProgressHUD */; };
@@ -23,7 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		46E9AFA32F383AE300E5FD95 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		46E3EC822F39614000F25290 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE09234F1F9ADDD900311BD0 /* Firebase Roader Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Firebase Roader Demo-Bridging-Header.h"; sourceTree = "<group>"; };
 		EE0C94CC1FAA57260051C01E /* Firebase Roader Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Firebase Roader Demo.entitlements"; sourceTree = "<group>"; };
 		EE2FAA181FA196170050609C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,10 +83,10 @@
 				46E3EC7E2F394F2500F25290 /* Utils */,
 				46E3EC7B2F394E9B00F25290 /* Views */,
 				46E3EC7A2F394E5400F25290 /* ViewControllers */,
-				46E9AFA32F383AE300E5FD95 /* GoogleService-Info.plist */,
 				EE0C94CC1FAA57260051C01E /* Firebase Roader Demo.entitlements */,
 				EEC965C31F96A00C000544B7 /* AppDelegate.swift */,
 				EE2FAA181FA196170050609C /* Assets.xcassets */,
+				46E3EC822F39614000F25290 /* GoogleService-Info.plist */,
 				EEC965C71F96A00C000544B7 /* Main.storyboard */,
 				EEC965CC1F96A00C000544B7 /* LaunchScreen.storyboard */,
 				EEC965CF1F96A00C000544B7 /* Info.plist */,
@@ -183,7 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEC965CE1F96A00C000544B7 /* LaunchScreen.storyboard in Resources */,
-				46E9AFA42F383AE300E5FD95 /* GoogleService-Info.plist in Resources */,
+				46E3EC832F39614000F25290 /* GoogleService-Info.plist in Resources */,
 				EE2FAA191FA196180050609C /* Assets.xcassets in Resources */,
 				EEC965C91F96A00C000544B7 /* Main.storyboard in Resources */,
 			);
@@ -338,12 +338,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8DT27W9UTB;
 				INFOPLIST_FILE = "Firebase Roader Demo/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ultimate Roader";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "RJT.Firebase-Roader-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = harshit.ultimateRoader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -364,12 +365,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8DT27W9UTB;
 				INFOPLIST_FILE = "Firebase Roader Demo/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ultimate Roader";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "RJT.Firebase-Roader-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = harshit.ultimateRoader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

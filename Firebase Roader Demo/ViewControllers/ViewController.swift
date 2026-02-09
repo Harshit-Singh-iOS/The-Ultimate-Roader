@@ -39,8 +39,8 @@ class ViewController: UIViewController, UITextFieldDelegate, LoginButtonDelegate
         facebookLoginButton.frame = CGRect(x: 60, y: 4, width: googleButton.frame.width - 5, height: googleButton.frame.height - 7)
         login_btn_view.addSubview(facebookLoginButton)
         
-        username_tf.text = "hs@gmail.com"
-        password_tf.text = "Qwerty@1234"
+        username_tf.text = LoginConstants.em
+        password_tf.text = LoginConstants.pass
     }
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
@@ -127,21 +127,21 @@ class ViewController: UIViewController, UITextFieldDelegate, LoginButtonDelegate
             SwiftMessageBar.showMessageWithTitle("Error", message: "Enter Username and Password", type: .error)
         } else {
             
-//            SVProgressHUD.show()
-////            Auth.auth().signIn(withEmail: user, password: pass) { (_, error) in
-////                if let err = error {
-////                    print(err.localizedDescription)
-////                    SwiftMessageBar.showMessageWithTitle("Error", message: "Username or Password wrong", type: .error)
-////                } else {
-////                    SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
+            SVProgressHUD.show()
+            Auth.auth().signIn(withEmail: user, password: pass) { (_, error) in
+                if let err = error {
+                    print(err.localizedDescription)
+                    SwiftMessageBar.showMessageWithTitle("Error", message: "Username or Password wrong", type: .error)
+                } else {
+                    SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
                     let controller = self.storyboard?.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
                     controller?.modalPresentationStyle = .fullScreen
                     self.present(controller!, animated: true, completion: nil)
-//                }
+                }
                 self.username_tf.text = ""
                 self.password_tf.text = ""
-//                SVProgressHUD.dismiss()
-//            }
+                SVProgressHUD.dismiss()
+            }
         }
     }
     
@@ -232,7 +232,7 @@ class ViewController: UIViewController, UITextFieldDelegate, LoginButtonDelegate
     
     
     @IBAction func reset_password(_ sender: UIButton) {
-        Auth.auth().sendPasswordReset(withEmail: "hrshtsngh98@gmail.com") { (error) in
+        Auth.auth().sendPasswordReset(withEmail: "harshitsingh0401@gmail.com") { (error) in
             
             if error == nil {
                 SwiftMessageBar.showMessageWithTitle("Success", message: "Mail Sent", type: .success)
@@ -246,10 +246,5 @@ class ViewController: UIViewController, UITextFieldDelegate, LoginButtonDelegate
     
     override func viewWillDisappear(_ animated: Bool) {
         SVProgressHUD.dismiss()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

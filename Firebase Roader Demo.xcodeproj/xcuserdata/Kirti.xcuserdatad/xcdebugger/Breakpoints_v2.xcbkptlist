@@ -3,4 +3,52 @@
    uuid = "6B49F179-7C60-4C9C-ABE6-61A88FA9320C"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E5E50AE-9F83-4881-B5C2-3459F4058E72"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Firebase Roader Demo/ViewControllers/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "signInwithUserandPass()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5E5E50AE-9F83-4881-B5C2-3459F4058E72 - 52ffbd7543805dc9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Firebase_Roader_Demo.ViewController.signInwithUserandPass() -&gt; ()"
+                  moduleName = "Firebase Roader Demo.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Kirti/Desktop/git/The-Ultimate-Roader/Firebase%20Roader%20Demo/ViewControllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132">
+               </Location>
+               <Location
+                  uuid = "5E5E50AE-9F83-4881-B5C2-3459F4058E72 - 52ffbd7543805dc9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FirebaseAuth.AuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Firebase_Roader_Demo.ViewController.signInwithUserandPass() -&gt; ()"
+                  moduleName = "Firebase Roader Demo.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Kirti/Desktop/git/The-Ultimate-Roader/Firebase%20Roader%20Demo/ViewControllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
