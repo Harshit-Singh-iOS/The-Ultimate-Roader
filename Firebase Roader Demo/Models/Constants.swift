@@ -16,3 +16,9 @@ var barConfig = MessageBarConfig.Builder()
     .withSuccessColor(theme_color)
     .withInfoColor(.gray)
     .build()
+
+struct Constants {
+    static let kWEATHERAPIKEY = "b27b1cfe499c89d6e8db7f668d48275f"
+}
+
+

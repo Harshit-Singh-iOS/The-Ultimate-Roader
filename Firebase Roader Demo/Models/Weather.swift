@@ -72,7 +72,7 @@ class Weather: NSObject {
         case Clear_sky    =  "clear sky"
         case Few_clouds    =  "few clouds"
         case Scattered_clouds    =   "scattered clouds"
-        case Broken_clouds    =   "broken clouds "
+        case Broken_clouds    =   "broken clouds"
         case Overcast_clouds    =   "overcast clouds"
         case Cloud = "clouds"
         case Rain = "rain"
@@ -138,28 +138,35 @@ class Weather: NSObject {
             case .Tornado:   title = "tornado"
             case .Rain:   title = "rain"
             }
-            return title!
+            return title ?? "No title"
         }
     }
 
     func get_weather(latitude: String, longitude: String, completion: @escaping completionHandler) {
-        let url = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=b9ce58574dec9c61f4dc00348fb55fa7"
+        let url = "https://api.openweathermap.org/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&appid=\(Constants.kWEATHERAPIKEY)"
             var temperature, description: String?
             URLSession.shared.dataTask(with: URL(string: url)!) { (data, response, error) in
                 if error == nil{
                     do{
                         if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String, Any>
                         {
-                            let name = json["name"]
-                            var weathers = json["weather"] as? [Dictionary<String,Any>]
-                            var detail_conditions = json["main"] as? Dictionary<String,Any>
+                            let name: String = (json["city"] as? Dictionary<String, Any>)?["name"] as? String ?? "No name"
+                            
+                            let weathers = (json["list"] as? [Dictionary<String,Any>])
+                            let main = weathers?.first?["main"] as? Dictionary<String,Any>
+                            let weather = weathers?.first?["weather"] as? [Dictionary<String,Any>]
 
-                            if let d = weathers![0]["description"] as? String {
-                                description = d
+                            if let desc = weather?.first?["description"] as? String {
+                                description = desc
+                            } else {
+                                description = "No desc"
                             }
                             
-                            if let t = detail_conditions!["temp"] as? Double {
+                            if let t = main?["temp"] as? Double {
                                 temperature = "\(Int(t-273.15))"
+                                completion((temperature,description,name))
+                            } else {
+                                temperature = "No temp"
                                 completion((temperature,description,name))
                             }
                         }
