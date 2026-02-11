@@ -64,8 +64,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
+                let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController") as? UINavigationController
                 controller?.modalPresentationStyle = .fullScreen
                 self.present(controller!, animated: true, completion: nil)
             }
@@ -98,8 +98,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     SwiftMessageBar.showMessageWithTitle("Error", message: "Username or Password wrong", type: .error)
                 } else {
                     SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let controller = storyboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
+            let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController") as? UINavigationController
                     controller?.modalPresentationStyle = .fullScreen
                     self.present(controller!, animated: true, completion: nil)
                 }
@@ -150,8 +150,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                 }
 
                 SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
+                let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController") as? UINavigationController
                 controller?.modalPresentationStyle = .fullScreen
                 self.present(controller!, animated: true, completion: nil)
             }

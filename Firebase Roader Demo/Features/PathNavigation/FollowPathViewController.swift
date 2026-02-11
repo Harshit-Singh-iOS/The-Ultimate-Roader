@@ -147,7 +147,7 @@ class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, G
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "PathNavigationMore", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "ShowSpotViewController") as? ShowSpotViewController {
             controller.spot = pathToFollow?.spotArray[Int(marker.title!)!]
             controller.spotIndex = Int(marker.title!)

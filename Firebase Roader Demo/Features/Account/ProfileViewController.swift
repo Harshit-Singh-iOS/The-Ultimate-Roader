@@ -33,11 +33,16 @@ class ProfileViewController: BaseViewController, UIImagePickerControllerDelegate
         ref = Database.database().reference()
         storageRef = Storage.storage().reference()
         SwiftMessageBar.setSharedConfig(barConfig)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewTapGesture)))
         view_info()
     }
 
     func setupImageSize() {
         user_imageV.layer.cornerRadius = user_imageV.frame.height/2
+    }
+    
+    @objc func viewTapGesture() {
+        view.endEditing(true)
     }
     
     func view_info() {

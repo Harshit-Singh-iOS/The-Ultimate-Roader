@@ -31,7 +31,8 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		46B0F3CF2F3C277600071372 /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (46B0F3D02F3C278A00071372 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
-		46E3EC7A2F394E5400F25290 /* ViewControllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewControllers; sourceTree = "<group>"; };
+		46B0F3D32F3CC5B600071372 /* Dependencies */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Dependencies; sourceTree = "<group>"; };
+		46E3EC7A2F394E5400F25290 /* Features */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Features; sourceTree = "<group>"; };
 		46E3EC7B2F394E9B00F25290 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
 		46E3EC7E2F394F2500F25290 /* Utils */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utils; sourceTree = "<group>"; };
 		46E3EC7F2F394F3500F25290 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
@@ -73,11 +74,12 @@
 		EEC965C21F96A00C000544B7 /* Firebase Roader Demo */ = {
 			isa = PBXGroup;
 			children = (
+				46B0F3D32F3CC5B600071372 /* Dependencies */,
 				46B0F3CF2F3C277600071372 /* Resources */,
 				46E3EC7F2F394F3500F25290 /* Models */,
 				46E3EC7E2F394F2500F25290 /* Utils */,
 				46E3EC7B2F394E9B00F25290 /* Views */,
-				46E3EC7A2F394E5400F25290 /* ViewControllers */,
+				46E3EC7A2F394E5400F25290 /* Features */,
 			);
 			path = "Firebase Roader Demo";
 			sourceTree = "<group>";
@@ -99,7 +101,8 @@
 			);
 			fileSystemSynchronizedGroups = (
 				46B0F3CF2F3C277600071372 /* Resources */,
-				46E3EC7A2F394E5400F25290 /* ViewControllers */,
+				46B0F3D32F3CC5B600071372 /* Dependencies */,
+				46E3EC7A2F394E5400F25290 /* Features */,
 				46E3EC7B2F394E9B00F25290 /* Views */,
 				46E3EC7E2F394F2500F25290 /* Utils */,
 				46E3EC7F2F394F3500F25290 /* Models */,

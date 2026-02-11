@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import SVProgressHUD
 import FirebaseDatabase
+
 class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate, showSpotProtocol {
 
     var locationManager = CLLocationManager()
@@ -68,7 +69,7 @@ class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate,
     }
     
     @IBAction func follow_path_action(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "PathNavigation", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "FollowPathViewController") as? FollowPathViewController {
             controller.pathToFollow = path
             navigationController?.pushViewController(controller, animated: true)
@@ -116,7 +117,7 @@ class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate,
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "PathNavigationMore", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "ShowSpotViewController") as? ShowSpotViewController {
             controller.spot = path?.spotArray[Int(marker.title!)!]
             controller.spotIndex = Int(marker.title!)

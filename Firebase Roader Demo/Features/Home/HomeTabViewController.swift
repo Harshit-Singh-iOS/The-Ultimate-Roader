@@ -28,14 +28,14 @@ class HomeTabViewController: BaseViewController {
     }
     
     @IBAction func drive_option_action(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "DriveOptionsViewController") as? DriveOptionsViewController {
             navigationController?.pushViewController(controller, animated: true)
         }
     }
     
     @IBAction func information_btn_action(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "InformationViewController") as? InformationViewController {
             navigationController?.pushViewController(controller, animated: true)
         }

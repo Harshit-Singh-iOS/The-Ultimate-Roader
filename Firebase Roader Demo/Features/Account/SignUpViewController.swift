@@ -33,8 +33,13 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate , 
         ref = Database.database().reference()
         storageRef = Storage.storage().reference()
         SwiftMessageBar.setSharedConfig(barConfig)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewTapGesture)))
         setupImageSize()
         prepTestUI()
+    }
+    
+    @objc func viewTapGesture() {
+        view.endEditing(true)
     }
     
     func prepTestUI() {
@@ -49,6 +54,8 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate , 
     func setupImageSize() {
         user_imageV.layer.cornerRadius = user_imageV.frame.height/2
     }
+    
+    
 
     @IBAction func sign_up_action(_ sender: UIButton) {
         if firstname_tf.text?.count == 0 {
