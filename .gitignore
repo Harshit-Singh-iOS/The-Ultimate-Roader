@@ -3,3 +3,4 @@
 /Pods
 *.plist
 */Breakpoints_v2.xcbkptlist
+.DS_Store

@@ -16,7 +16,7 @@ enum buttonName: String {
     case StopTrip = "stop"
 }
 
-class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate, showSpotProtocol {
+class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate, ShowSpotVCDelegate {
 
     var FollowPathDistanceDelta: CLLocationDistance = 5 //meters
     @IBOutlet weak var map_view: GMSMapView!
@@ -162,7 +162,7 @@ class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, G
         return true
     }
     
-    func removeSpotMarker(index: Int) {
+    func didPressRemoveSpotAt(index: Int) {
         let spot = pathToFollow?.spotArray[index]
         pathToFollow?.spotArray.remove(at: index)
         let ref = Database.database().reference()

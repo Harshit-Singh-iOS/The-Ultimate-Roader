@@ -11,7 +11,7 @@ import CoreLocation
 import SVProgressHUD
 import FirebaseDatabase
 
-class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate, showSpotProtocol {
+class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate, ShowSpotVCDelegate {
 
     var locationManager = CLLocationManager()
     var polyline = GMSPolyline()
@@ -132,7 +132,7 @@ class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate,
         return true
     }
     
-    func removeSpotMarker(index: Int) {
+    func didPressRemoveSpotAt(index: Int) {
         let spot = path?.spotArray[index]
         path?.spotArray.remove(at: index)
         let ref = Database.database().reference()

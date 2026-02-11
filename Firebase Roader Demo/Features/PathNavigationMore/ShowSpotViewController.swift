@@ -9,8 +9,8 @@
 import UIKit
 import FirebaseAuth
 
-protocol showSpotProtocol: class{
-    func removeSpotMarker(index: Int)
+protocol ShowSpotVCDelegate {
+    func didPressRemoveSpotAt(index: Int)
 }
 
 class ShowSpotViewController: UIViewController {
@@ -19,7 +19,7 @@ class ShowSpotViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var spotImageView: UIImageView!
     @IBOutlet weak var deleteBtn: UIButton!
-    var delegate: showSpotProtocol?
+    var delegate: ShowSpotVCDelegate?
     var spot: Path.Spot?
     var spotIndex: Int?
     var userId: String?
@@ -34,7 +34,7 @@ class ShowSpotViewController: UIViewController {
     
     @IBAction func deleteAction(_ sender: UIButton) {
         if userId == Auth.auth().currentUser?.uid {
-            delegate?.removeSpotMarker(index: spotIndex!)
+            delegate?.didPressRemoveSpotAt(index: spotIndex!)
             dismiss(animated: true, completion: nil)
         } else {
             let alertCont = UIAlertController(title: "Not Allowed", message: "Cannot delete someone else's path.", preferredStyle: .alert)

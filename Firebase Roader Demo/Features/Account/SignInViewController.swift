@@ -16,7 +16,6 @@ import GoogleSignIn
 class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var username_tf: UITextField!
     @IBOutlet weak var password_tf: UITextField!
-    @IBOutlet weak var verification_tf: UITextField!
     
     @IBOutlet weak var login_btn_view: UIView!
     var ref: DatabaseReference?
@@ -32,47 +31,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         username_tf.text = LoginConstants.em
         password_tf.text = LoginConstants.pass
-    }
-    
-    @IBAction func phonesigninAction(_ sender: UIButton) {
-        
-        if sender.titleLabel?.text == "Send Code" {
-            if let phone_num = username_tf.text {
-                PhoneAuthProvider.provider().verifyPhoneNumber(phone_num, uiDelegate: nil) { (verificationID, error) in
-                    Auth.auth().languageCode = "en"
-                    if let error = error {
-                        SwiftMessageBar.showMessageWithTitle("Error", message: error.localizedDescription, type: .error)
-                        return
-                    } else {
-                        
-                        sender.setTitle("Verify", for: .normal)
-                        UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                    }
-                }
-            } else {
-                SwiftMessageBar.showMessageWithTitle("Enter phone number", message: "", type: .error)
-            }
-            
-        } else if sender.titleLabel?.text == "Verify" {
-            let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
-            let credential = PhoneAuthProvider.provider().credential(
-                withVerificationID: verificationID!,
-                verificationCode: verification_tf.text!)
-            
-            Auth.auth().signIn(with: credential) { (_, error) in
-                if let error = error {
-                    return
-                }
-                SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
-                let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController") as? UINavigationController
-                controller?.modalPresentationStyle = .fullScreen
-                self.present(controller!, animated: true, completion: nil)
-            }
-        }
-        
-    }
-    
+    }    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         signInwithUserandPass()

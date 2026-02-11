@@ -13,7 +13,7 @@ import FirebaseStorage
 import Firebase
 import FirebaseAuth
 
-class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MarkSpotProtocol, showSpotProtocol {
+class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MarkSpotProtocol, ShowSpotVCDelegate {
     
     @IBOutlet weak var distance_label: UILabel!
     @IBOutlet weak var time_label: UILabel!
@@ -341,7 +341,7 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
         mapBackgroundOverlayer3.map = self.map_view
     }
     
-    func removeSpotMarker(index: Int) {
+    func didPressRemoveSpotAt(index: Int) {
         let spot = path?.spotArray[index]
         path?.spotArray.remove(at: index)
         let ref = Database.database().reference()
