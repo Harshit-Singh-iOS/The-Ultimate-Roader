@@ -45,7 +45,7 @@ class SaveDriveViewController: UIViewController {
     func createMarker(loc: CLLocation, name: String) {
         let marker = GMSMarker()
         marker.position = loc.coordinate
-        marker.title = "Hello"
+        marker.title = name.contains("start") ? "Start" : "Finish"
         marker.map = map_view
         marker.isDraggable = true
         marker.icon = UIImage(named: name)

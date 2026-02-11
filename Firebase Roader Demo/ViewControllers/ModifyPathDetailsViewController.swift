@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ModifyPathDetailsViewController: UIViewController, UITextFieldDelegate {
+class ModifyPathDetailsViewController: UIViewController {
 
     var path: Path?
     @IBOutlet weak var pathname_tf: UITextField!
@@ -69,10 +69,14 @@ class ModifyPathDetailsViewController: UIViewController, UITextFieldDelegate {
         public_btn.backgroundColor = theme_color
         private_btn.backgroundColor = UIColor.darkGray
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
+}
+
+extension ModifyPathDetailsViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersInRanges ranges: [NSValue], replacementString string: String) -> Bool {
+        if textField == pathname_tf {
+            path?.pathName = pathname_tf.text
+        }
+        return true
+    }
 }

@@ -510,11 +510,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMM-x0-Pqo" customClass="GMSMapView" customModule="Firebase_Roader_Demo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="430" height="864"/>
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="838.66666666666663"/>
                                 <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDb-Mi-LsW">
-                                <rect key="frame" x="0.0" y="770.66666666666663" width="430" height="93.333333333333371"/>
+                                <rect key="frame" x="0.0" y="838.66666666666663" width="430" height="93.333333333333371"/>
                                 <color key="backgroundColor" red="0.72933533029999997" green="0.21148539180000001" blue="0.2957657595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="FOLLOW THIS PATH">
@@ -528,11 +528,11 @@
                         <viewLayoutGuide key="safeArea" id="eff-qV-GlS"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="eff-qV-GlS" firstAttribute="bottom" secondItem="hDb-Mi-LsW" secondAttribute="bottom" id="2vT-RL-WbG"/>
+                            <constraint firstAttribute="bottom" secondItem="hDb-Mi-LsW" secondAttribute="bottom" id="2vT-RL-WbG"/>
                             <constraint firstItem="CMM-x0-Pqo" firstAttribute="top" secondItem="zxv-8v-8bP" secondAttribute="top" id="HNr-6Z-rvn"/>
                             <constraint firstItem="eff-qV-GlS" firstAttribute="trailing" secondItem="CMM-x0-Pqo" secondAttribute="trailing" id="Lah-Ae-7or"/>
                             <constraint firstItem="hDb-Mi-LsW" firstAttribute="leading" secondItem="eff-qV-GlS" secondAttribute="leading" id="MvL-sk-7eN"/>
-                            <constraint firstItem="eff-qV-GlS" firstAttribute="bottom" secondItem="CMM-x0-Pqo" secondAttribute="bottom" id="Ss0-3D-dIS"/>
+                            <constraint firstItem="hDb-Mi-LsW" firstAttribute="top" secondItem="CMM-x0-Pqo" secondAttribute="bottom" id="UQm-T0-vKJ"/>
                             <constraint firstItem="CMM-x0-Pqo" firstAttribute="leading" secondItem="eff-qV-GlS" secondAttribute="leading" id="edh-GZ-FGj"/>
                             <constraint firstItem="hDb-Mi-LsW" firstAttribute="trailing" secondItem="eff-qV-GlS" secondAttribute="trailing" id="gke-DZ-m0g"/>
                             <constraint firstItem="hDb-Mi-LsW" firstAttribute="height" secondItem="zxv-8v-8bP" secondAttribute="height" multiplier="0.1" id="oLZ-sR-6je"/>
@@ -544,7 +544,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gg5-A3-rRd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3184" y="-624"/>
+            <point key="canvasLocation" x="3182.7906976744184" y="-624.4635193133048"/>
         </scene>
         <!--Follow Path View Controller-->
         <scene sceneID="bzR-fZ-AuT">
@@ -555,11 +555,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3AS-vF-ZhC" customClass="GMSMapView" customModule="Firebase_Roader_Demo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="430" height="864"/>
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="838.66666666666663"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9w-c5-7q9">
-                                <rect key="frame" x="0.0" y="770.66666666666663" width="430" height="93.333333333333371"/>
+                                <rect key="frame" x="0.0" y="838.66666666666663" width="430" height="93.333333333333371"/>
                                 <color key="backgroundColor" red="0.72933533029999997" green="0.21148539180000001" blue="0.2957657595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="START FOLLOWING">
@@ -574,9 +574,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WZl-w9-ygw" firstAttribute="trailing" secondItem="L9w-c5-7q9" secondAttribute="trailing" id="1Fp-oP-wOc"/>
-                            <constraint firstItem="WZl-w9-ygw" firstAttribute="bottom" secondItem="L9w-c5-7q9" secondAttribute="bottom" id="JvH-RQ-bNK"/>
+                            <constraint firstAttribute="bottom" secondItem="L9w-c5-7q9" secondAttribute="bottom" id="JvH-RQ-bNK"/>
+                            <constraint firstItem="L9w-c5-7q9" firstAttribute="top" secondItem="3AS-vF-ZhC" secondAttribute="bottom" id="ST0-bQ-LZi"/>
                             <constraint firstItem="L9w-c5-7q9" firstAttribute="height" secondItem="Sd2-4d-Kp6" secondAttribute="height" multiplier="0.1" id="avj-g3-Kmd"/>
-                            <constraint firstItem="WZl-w9-ygw" firstAttribute="bottom" secondItem="3AS-vF-ZhC" secondAttribute="bottom" id="dIT-CT-k5P"/>
                             <constraint firstItem="WZl-w9-ygw" firstAttribute="trailing" secondItem="3AS-vF-ZhC" secondAttribute="trailing" id="nJI-k1-cvM"/>
                             <constraint firstItem="L9w-c5-7q9" firstAttribute="leading" secondItem="WZl-w9-ygw" secondAttribute="leading" id="pnG-us-58T"/>
                             <constraint firstItem="3AS-vF-ZhC" firstAttribute="top" secondItem="Sd2-4d-Kp6" secondAttribute="top" id="x6a-iT-HAD"/>
@@ -590,7 +590,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wyp-vS-Api" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3952.5" y="-621.12676056338034"/>
+            <point key="canvasLocation" x="3951.6279069767443" y="-621.24463519313304"/>
         </scene>
         <!--Drive Options View Controller-->
         <scene sceneID="puB-8r-PIG">
@@ -666,7 +666,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcj-Gk-Tja" customClass="GMSMapView" customModule="Firebase_Roader_Demo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="430" height="864"/>
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="838.66666666666663"/>
                                 <color key="backgroundColor" systemColor="scrollViewTexturedBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVj-rr-NuF">
@@ -704,7 +704,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYL-sT-5U1">
-                                <rect key="frame" x="365" y="705.66666666666663" width="50" height="50"/>
+                                <rect key="frame" x="365" y="773.66666666666663" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8hE-dM-PyG"/>
@@ -716,7 +716,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQ0-xh-v03">
-                                <rect key="frame" x="15" y="705.66666666666663" width="50" height="50"/>
+                                <rect key="frame" x="15" y="773.66666666666663" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="mapViewButtonActive"/>
                                 <state key="disabled" image="satelites"/>
@@ -727,14 +727,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pul-Py-SKD">
-                                <rect key="frame" x="190" y="705.66666666666663" width="50" height="50"/>
+                                <rect key="frame" x="190" y="773.66666666666663" width="50" height="50"/>
                                 <state key="normal" backgroundImage="coordinates"/>
                                 <connections>
                                     <action selector="share_cordinates_action:" destination="SId-jG-UUW" eventType="touchUpInside" id="60G-SL-lLb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dy7-fd-JgI">
-                                <rect key="frame" x="0.0" y="770.66666666666663" width="430" height="93.333333333333371"/>
+                                <rect key="frame" x="0.0" y="838.66666666666663" width="430" height="93.333333333333371"/>
                                 <color key="backgroundColor" red="0.72933533029999997" green="0.21322097123001549" blue="0.30247301374204377" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="FINISH">
@@ -752,13 +752,12 @@
                             <constraint firstItem="Pul-Py-SKD" firstAttribute="width" secondItem="EQ0-xh-v03" secondAttribute="width" id="2LN-E0-esB"/>
                             <constraint firstItem="qcj-Gk-Tja" firstAttribute="leading" secondItem="h1f-DR-8eU" secondAttribute="leading" id="3kQ-iH-mCs"/>
                             <constraint firstItem="h1f-DR-8eU" firstAttribute="trailing" secondItem="bYL-sT-5U1" secondAttribute="trailing" constant="15" id="42H-Y9-Fea"/>
-                            <constraint firstItem="qcj-Gk-Tja" firstAttribute="bottom" secondItem="h1f-DR-8eU" secondAttribute="bottom" id="4FG-Ak-kzg"/>
                             <constraint firstItem="Dy7-fd-JgI" firstAttribute="leading" secondItem="h1f-DR-8eU" secondAttribute="leading" id="8F7-Fm-D0l"/>
                             <constraint firstItem="Dy7-fd-JgI" firstAttribute="height" secondItem="or8-FL-s1R" secondAttribute="height" multiplier="0.1" id="AM3-pi-2dR"/>
                             <constraint firstItem="jHX-TJ-WAY" firstAttribute="centerX" secondItem="Szy-DH-eOH" secondAttribute="centerX" id="DrU-t5-0Pf"/>
                             <constraint firstItem="XVj-rr-NuF" firstAttribute="top" secondItem="Ki8-VZ-6zE" secondAttribute="bottom" id="EP1-N4-wVy"/>
                             <constraint firstItem="qcj-Gk-Tja" firstAttribute="top" secondItem="or8-FL-s1R" secondAttribute="top" id="NXx-oV-Y0f"/>
-                            <constraint firstItem="Dy7-fd-JgI" firstAttribute="bottom" secondItem="h1f-DR-8eU" secondAttribute="bottom" id="UPI-ee-Q2f"/>
+                            <constraint firstItem="Dy7-fd-JgI" firstAttribute="bottom" secondItem="or8-FL-s1R" secondAttribute="bottom" id="UPI-ee-Q2f"/>
                             <constraint firstItem="Pul-Py-SKD" firstAttribute="height" secondItem="EQ0-xh-v03" secondAttribute="height" id="YHS-ch-ETw"/>
                             <constraint firstItem="Ki8-VZ-6zE" firstAttribute="leading" secondItem="h1f-DR-8eU" secondAttribute="leading" constant="80" id="cUv-wG-WYj"/>
                             <constraint firstItem="Szy-DH-eOH" firstAttribute="leading" secondItem="Ki8-VZ-6zE" secondAttribute="trailing" constant="34.5" id="cYr-Xr-7fW"/>
@@ -774,6 +773,7 @@
                             <constraint firstItem="jHX-TJ-WAY" firstAttribute="top" secondItem="Szy-DH-eOH" secondAttribute="bottom" id="rTw-Xz-qqF"/>
                             <constraint firstItem="h1f-DR-8eU" firstAttribute="trailing" secondItem="Phs-3x-MIW" secondAttribute="trailing" constant="10" id="rWd-iH-7dP"/>
                             <constraint firstItem="qcj-Gk-Tja" firstAttribute="trailing" secondItem="h1f-DR-8eU" secondAttribute="trailing" id="tJL-mp-xvh"/>
+                            <constraint firstItem="Dy7-fd-JgI" firstAttribute="top" secondItem="qcj-Gk-Tja" secondAttribute="bottom" id="tgT-ly-QhM"/>
                             <constraint firstItem="Ki8-VZ-6zE" firstAttribute="top" secondItem="h1f-DR-8eU" secondAttribute="top" id="tvz-0P-BUr"/>
                             <constraint firstItem="Pul-Py-SKD" firstAttribute="centerX" secondItem="h1f-DR-8eU" secondAttribute="centerX" id="vb9-Oa-7wI"/>
                         </constraints>
@@ -786,7 +786,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XPM-2S-OUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2092" y="227.13643178410797"/>
+            <point key="canvasLocation" x="2091.6279069767443" y="226.60944206008585"/>
         </scene>
         <!--Share Loc View Controller-->
         <scene sceneID="K1v-lf-a6i">
@@ -893,7 +893,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdK-0v-r3S">
-                                <rect key="frame" x="0.0" y="770.66666666666663" width="430" height="93.333333333333371"/>
+                                <rect key="frame" x="0.0" y="838.66666666666663" width="430" height="93.333333333333371"/>
                                 <color key="backgroundColor" red="0.72933533029999997" green="0.2132209712" blue="0.30247301370000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="ADD SPOT">
@@ -904,10 +904,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRB-0B-jKk">
-                                <rect key="frame" x="170" y="366" width="90" height="30"/>
+                                <rect key="frame" x="165" y="366" width="100" height="30"/>
                                 <color key="backgroundColor" red="0.72933533029999997" green="0.2132209712" blue="0.30247301370000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="AFk-EW-Zs7"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="YWx-IO-oCr"/>
                                 </constraints>
                                 <state key="normal" title="Pick Image">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -958,7 +958,7 @@
                             <constraint firstItem="4FW-Ly-oTb" firstAttribute="centerX" secondItem="Pr7-r6-4tJ" secondAttribute="centerX" id="kGH-Fo-NsC"/>
                             <constraint firstItem="gcb-2F-hZE" firstAttribute="leading" secondItem="aJc-Y7-w3j" secondAttribute="leading" id="lQR-Gu-jJp"/>
                             <constraint firstItem="gcb-2F-hZE" firstAttribute="trailing" secondItem="aJc-Y7-w3j" secondAttribute="trailing" id="nCd-5n-yOt"/>
-                            <constraint firstItem="aJc-Y7-w3j" firstAttribute="bottom" secondItem="rdK-0v-r3S" secondAttribute="bottom" id="pU2-MK-PBN"/>
+                            <constraint firstAttribute="bottom" secondItem="rdK-0v-r3S" secondAttribute="bottom" id="pU2-MK-PBN"/>
                             <constraint firstItem="l3k-J4-obb" firstAttribute="centerY" secondItem="Pr7-r6-4tJ" secondAttribute="centerY" constant="100" id="sm9-dv-FWJ"/>
                             <constraint firstItem="fRB-0B-jKk" firstAttribute="centerX" secondItem="Pr7-r6-4tJ" secondAttribute="centerX" id="vin-Tc-1ZB"/>
                             <constraint firstItem="5KX-27-YdL" firstAttribute="centerX" secondItem="aJc-Y7-w3j" secondAttribute="centerX" id="wvE-dD-4Oi"/>
@@ -1001,11 +1001,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zUq-Ym-OHx" customClass="GMSMapView" customModule="Firebase_Roader_Demo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="430" height="423"/>
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="491"/>
                                 <color key="backgroundColor" systemColor="scrollViewTexturedBackgroundColor"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSd-ax-IdL">
-                                <rect key="frame" x="0.0" y="770.66666666666663" width="430" height="93.333333333333371"/>
+                                <rect key="frame" x="0.0" y="838.66666666666663" width="430" height="93.333333333333371"/>
                                 <color key="backgroundColor" red="0.72933533029999997" green="0.21148539180000001" blue="0.2957657595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="SAVE">
@@ -1016,7 +1016,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEO-aj-Cus">
-                                <rect key="frame" x="0.0" y="398" width="430" height="372.66666666666674"/>
+                                <rect key="frame" x="0.0" y="466" width="430" height="372.66666666666674"/>
                                 <connections>
                                     <segue destination="U0G-20-b29" kind="embed" id="RWK-3d-4mF"/>
                                 </connections>
@@ -1031,7 +1031,7 @@
                             <constraint firstItem="zUq-Ym-OHx" firstAttribute="top" secondItem="KMf-uT-KoP" secondAttribute="top" id="NbI-5m-EjA"/>
                             <constraint firstItem="sSd-ax-IdL" firstAttribute="leading" secondItem="F5U-mh-q39" secondAttribute="leading" id="aFf-bI-Qml"/>
                             <constraint firstItem="zEO-aj-Cus" firstAttribute="top" secondItem="zUq-Ym-OHx" secondAttribute="bottom" constant="-25" id="bB0-cn-Ekn"/>
-                            <constraint firstItem="sSd-ax-IdL" firstAttribute="bottom" secondItem="F5U-mh-q39" secondAttribute="bottom" id="bSH-RT-jgm"/>
+                            <constraint firstItem="sSd-ax-IdL" firstAttribute="bottom" secondItem="KMf-uT-KoP" secondAttribute="bottom" id="bSH-RT-jgm"/>
                             <constraint firstItem="sSd-ax-IdL" firstAttribute="trailing" secondItem="F5U-mh-q39" secondAttribute="trailing" id="hrk-dW-SB2"/>
                             <constraint firstItem="zUq-Ym-OHx" firstAttribute="trailing" secondItem="F5U-mh-q39" secondAttribute="trailing" id="nk6-SE-yE7"/>
                             <constraint firstItem="sSd-ax-IdL" firstAttribute="top" secondItem="zEO-aj-Cus" secondAttribute="bottom" id="tRm-4G-8HA"/>
