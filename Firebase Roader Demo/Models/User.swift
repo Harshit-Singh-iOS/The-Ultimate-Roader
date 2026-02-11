@@ -109,13 +109,13 @@ class ManipulateUser: NSObject {
             }
         }
 
-//        for user in userlist.keys {
-//            ref.child("Users").child(user).observeSingleEvent(of: .value, with: { (snapshot) in
-//                userObjlist.append(User(withsnap: snapshot))
-//                if userObjlist.count == userlist.keys.count {
-//                    completion(userObjlist)
-//                }
-//            })
-//        }
+        for user in userlist.keys {
+            ref.child("Users").child(user).observeSingleEvent(of: .value, with: { (snapshot) in
+                userObjlist.append(User(withsnap: snapshot))
+                if userObjlist.count == userlist.keys.count {
+                    completion(userObjlist)
+                }
+            })
+        }
     }
 }

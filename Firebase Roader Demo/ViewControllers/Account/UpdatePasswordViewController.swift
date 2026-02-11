@@ -1,5 +1,5 @@
 //
-//  ResetPasswordViewController.swift
+//  UpdatePasswordViewController.swift
 //  Firebase Roader Demo
 //
 //  Created by Harshit Singh on 10/18/17.
@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import SVProgressHUD
 
-class ResetPasswordViewController: UIViewController {
+class UpdatePasswordViewController: UIViewController {
 
 
     var ref: DatabaseReference?

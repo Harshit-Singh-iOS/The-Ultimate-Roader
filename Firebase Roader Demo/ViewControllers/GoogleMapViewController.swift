@@ -50,7 +50,7 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
     }
     
     func setUpLocationServices(){
-        map_view.mapType = .satellite
+        map_view.mapType = .standard
         locationManager.delegate = self
         map_view.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -96,11 +96,11 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
     }
     
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
-        if gesture == true {
-            iskeepFocus = false
-        }
+//        if gesture == true {
+//            iskeepFocus = false
+//        }
     }
-    
+        
     @IBAction func keep_focus_btn(_ sender: UIButton) {
         iskeepFocus = true
     }
@@ -205,7 +205,8 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
             DispatchQueue.main.async {
                 let alertController = UIAlertController.init(title: "Complete Drive!", message: "Go to next.", preferredStyle: .alert)
                 let action = UIAlertAction(title: "Ok", style: .default, handler: { (alert) in
-                    if let controller = self.storyboard?.instantiateViewController(withIdentifier: "SaveDriveViewController") as? SaveDriveViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    if let controller = storyboard.instantiateViewController(withIdentifier: "SaveDriveViewController") as? SaveDriveViewController {
                         controller.path = self.path
                         self.navigationController?.pushViewController(controller, animated: true)
                     }
@@ -217,7 +218,8 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
     }
     
     @IBAction func share_cordinates_action(_ sender: UIButton) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "ShareLocViewController") as? ShareLocViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "ShareLocViewController") as? ShareLocViewController {
             if let lat = path?.track.last?.coordinate.latitude, let lng = path?.track.last?.coordinate.longitude {
                 controller.cord_val = "(\(String(format: "%.04f", lat)), \(String(format: "%.04f", lng)))"
             }
@@ -236,12 +238,13 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
             map_view.mapType = .none
         } else {
             clearMapViewBackground()
-            map_view.mapType = .hybrid
+            map_view.mapType = .standard
         }
     }
     
     @IBAction func markCurrentSpot(_ sender: UIButton) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "MarkSpotViewController") as? MarkSpotViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "MarkSpotViewController") as? MarkSpotViewController {
             controller.loc = path?.track.last
             controller.delegate = self
             navigationController?.pushViewController(controller, animated: true)
@@ -259,7 +262,8 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "ShowSpotViewController") as? ShowSpotViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "ShowSpotViewController") as? ShowSpotViewController {
             controller.spot = path?.spotArray[Int(marker.title!)!]
             controller.spotIndex = Int(marker.title!)
             controller.userId = path?.userId

@@ -20,13 +20,15 @@ class DriveOptionsViewController: BaseViewController {
     }
     
     @IBAction func driven_list_action(_ sender: UIButton) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "AllPathViewController") as? AllPathViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "AllPathViewController") as? AllPathViewController {
             navigationController?.pushViewController(controller, animated: true)
         }
     }
     
     @IBAction func drive_action(_ sender: UIButton) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "GoogleMapViewController") as? GoogleMapViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "GoogleMapViewController") as? GoogleMapViewController
         {
             SwiftMessageBar.showMessageWithTitle("See Map", message: "Start Driving.", type: .info)
             navigationController?.pushViewController(controller, animated: true)

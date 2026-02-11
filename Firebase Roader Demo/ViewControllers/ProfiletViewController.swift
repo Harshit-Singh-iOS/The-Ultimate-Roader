@@ -1,5 +1,5 @@
 //
-//  ProfiletViewController.swift
+//  ProfileViewController.swift
 //  Firebase Roader Demo
 //
 //  Created by Harshit Singh on 10/17/17.
@@ -13,7 +13,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import SVProgressHUD
 
-class ProfiletViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var firstname_tf: UITextField!
     @IBOutlet weak var lastname_tf: UITextField!
@@ -140,7 +140,8 @@ class ProfiletViewController: BaseViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func change_password(_ sender: UIButton) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "ResetPasswordViewController") as?  ResetPasswordViewController {
+        let storyboard = UIStoryboard(name: "Account", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "UpdatePasswordViewController") as?  UpdatePasswordViewController {
             navigationController?.pushViewController(controller, animated: true)
         }
     }

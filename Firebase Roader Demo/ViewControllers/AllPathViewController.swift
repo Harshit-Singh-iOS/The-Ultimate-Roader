@@ -86,7 +86,8 @@ class AllPathViewController: BaseViewController, UITableViewDataSource, UITableV
     }
     
     @objc func openFollowerList(sender: UIButton) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "FollowingUserViewController") as? FollowingUserViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "FollowingUserViewController") as? FollowingUserViewController {
             controller.path = path_list[sender.tag]
             navigationController?.pushViewController(controller, animated: true)
         }
@@ -99,7 +100,8 @@ class AllPathViewController: BaseViewController, UITableViewDataSource, UITableV
             return
         }
         
-        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "SelectedPathViewController") as? SelectedPathViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "SelectedPathViewController") as? SelectedPathViewController {
             controller.path = new_path
             controller.file_name = fileName
             controller.name = new_path.pathName!

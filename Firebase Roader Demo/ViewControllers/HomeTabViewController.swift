@@ -1,5 +1,5 @@
 //
-//  SignedInViewController.swift
+//  HomeTabViewController.swift
 //  Firebase Roader Demo
 //
 //  Created by Harshit Singh on 10/23/17.
@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import SVProgressHUD
 
-class SignedInViewController: BaseViewController {
+class HomeTabViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,19 +21,22 @@ class SignedInViewController: BaseViewController {
     }
 
     @IBAction func setting_action(_ sender: UIButton) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfiletViewController {
+        let storyboard = UIStoryboard(name: "Account", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
             navigationController?.pushViewController(controller, animated: true)
         }
     }
     
     @IBAction func drive_option_action(_ sender: UIButton) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "DriveOptionsViewController") as? DriveOptionsViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "DriveOptionsViewController") as? DriveOptionsViewController {
             navigationController?.pushViewController(controller, animated: true)
         }
     }
     
     @IBAction func information_btn_action(_ sender: UIButton) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "InformationViewController") as? InformationViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "InformationViewController") as? InformationViewController {
             navigationController?.pushViewController(controller, animated: true)
         }
     }

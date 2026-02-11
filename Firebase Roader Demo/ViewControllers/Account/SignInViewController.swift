@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SignInViewController.swift
 //  Firebase Roader Demo
 //
 //  Created by Harshit Singh on 10/17/17.
@@ -13,7 +13,7 @@ import FirebaseDatabase
 import SVProgressHUD
 import GoogleSignIn
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var username_tf: UITextField!
     @IBOutlet weak var password_tf: UITextField!
     @IBOutlet weak var verification_tf: UITextField!
@@ -64,7 +64,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
-                let controller = self.storyboard?.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
+                controller?.modalPresentationStyle = .fullScreen
                 self.present(controller!, animated: true, completion: nil)
             }
         }
@@ -92,11 +94,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             SVProgressHUD.show()
             Auth.auth().signIn(withEmail: user, password: pass) { (_, error) in
                 if let err = error {
-                    print(err.localizedDescription)
+                    print(err)
                     SwiftMessageBar.showMessageWithTitle("Error", message: "Username or Password wrong", type: .error)
                 } else {
                     SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
-                    let controller = self.storyboard?.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
                     controller?.modalPresentationStyle = .fullScreen
                     self.present(controller!, animated: true, completion: nil)
                 }
@@ -125,7 +128,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
             Auth.auth().signIn(with: credential) { (authResult, error) in
                 if let error = error {
-                    print(error.localizedDescription)
+                    print(error)
                     return
                 }
 
@@ -147,19 +150,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
 
                 SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
-                let controller = self.storyboard?.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController
+                controller?.modalPresentationStyle = .fullScreen
                 self.present(controller!, animated: true, completion: nil)
             }
         }
     }
     
     @IBAction func sign_up_action(_ sender: UIButton) {
-        let controller = storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
+        let storyboard = UIStoryboard(name: "Account", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
+        controller?.modalPresentationStyle = .fullScreen
         present(controller!, animated: true, completion: nil)
     }
     
     @IBAction func reset_password(_ sender: UIButton) {
-        Auth.auth().sendPasswordReset(withEmail: "harshitsingh0401@gmail.com") { (error) in
+        Auth.auth().sendPasswordReset(withEmail: "abc@gmail.com") { (error) in
             
             if error == nil {
                 SwiftMessageBar.showMessageWithTitle("Success", message: "Mail Sent", type: .success)

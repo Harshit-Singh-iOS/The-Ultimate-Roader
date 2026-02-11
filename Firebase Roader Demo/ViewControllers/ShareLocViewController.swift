@@ -39,7 +39,7 @@ class ShareLocViewController: UIViewController, UITableViewDataSource, UITableVi
             if (MFMessageComposeViewController.canSendText()) {
                 let controller = MFMessageComposeViewController()
                 controller.body = "Hey, my loacation is "+cord_val
-                //controller.recipients = ["+13125360197"]
+                controller.recipients = ["+16506053410"]
                 controller.messageComposeDelegate = self
                 self.present(controller, animated: true, completion: nil)
             } else {

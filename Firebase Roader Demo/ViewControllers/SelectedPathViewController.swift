@@ -68,7 +68,8 @@ class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate,
     }
     
     @IBAction func follow_path_action(_ sender: UIButton) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "FollowPathViewController") as? FollowPathViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "FollowPathViewController") as? FollowPathViewController {
             controller.pathToFollow = path
             navigationController?.pushViewController(controller, animated: true)
         }
@@ -115,7 +116,8 @@ class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate,
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "ShowSpotViewController") as? ShowSpotViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "ShowSpotViewController") as? ShowSpotViewController {
             controller.spot = path?.spotArray[Int(marker.title!)!]
             controller.spotIndex = Int(marker.title!)
             controller.delegate = self

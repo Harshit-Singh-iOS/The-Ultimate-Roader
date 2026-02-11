@@ -7,32 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		46E3EC832F39614000F25290 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46E3EC822F39614000F25290 /* GoogleService-Info.plist */; };
 		A1B2C3D4E5F60718293A4B5C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C102132435465768798A9BAF /* FirebaseAnalytics */; };
 		B102132435465768798A9BAE /* SVProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = D202132435465768798A9BB6 /* SVProgressHUD */; };
 		B1C2D3E4F5061728394A5B6C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D102132435465768798A9BB0 /* FirebaseAuth */; };
 		C1D2E3F405162738495A6B7C /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E102132435465768798A9BB1 /* FirebaseDatabase */; };
 		D1E2F30415263748596A7B8C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F102132435465768798A9BB2 /* FirebaseStorage */; };
 		E1F2031425364758697A8B9C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A202132435465768798A9BB3 /* GoogleSignIn */; };
-		EE2FAA191FA196180050609C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2FAA181FA196170050609C /* Assets.xcassets */; };
-		EEC965C41F96A00C000544B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC965C31F96A00C000544B7 /* AppDelegate.swift */; };
-		EEC965C91F96A00C000544B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC965C71F96A00C000544B7 /* Main.storyboard */; };
-		EEC965CE1F96A00C000544B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC965CC1F96A00C000544B7 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		46E3EC822F39614000F25290 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		EE09234F1F9ADDD900311BD0 /* Firebase Roader Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Firebase Roader Demo-Bridging-Header.h"; sourceTree = "<group>"; };
-		EE0C94CC1FAA57260051C01E /* Firebase Roader Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Firebase Roader Demo.entitlements"; sourceTree = "<group>"; };
-		EE2FAA181FA196170050609C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EEC965C01F96A00C000544B7 /* Firebase Roader Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Firebase Roader Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EEC965C31F96A00C000544B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EEC965C81F96A00C000544B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EEC965CD1F96A00C000544B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EEC965CF1F96A00C000544B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		46B0F3D02F3C278A00071372 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = EEC965BF1F96A00C000544B7 /* Firebase Roader Demo */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		46B0F3CF2F3C277600071372 /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (46B0F3D02F3C278A00071372 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
 		46E3EC7A2F394E5400F25290 /* ViewControllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewControllers; sourceTree = "<group>"; };
 		46E3EC7B2F394E9B00F25290 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
 		46E3EC7E2F394F2500F25290 /* Utils */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utils; sourceTree = "<group>"; };
@@ -75,18 +73,11 @@
 		EEC965C21F96A00C000544B7 /* Firebase Roader Demo */ = {
 			isa = PBXGroup;
 			children = (
+				46B0F3CF2F3C277600071372 /* Resources */,
 				46E3EC7F2F394F3500F25290 /* Models */,
 				46E3EC7E2F394F2500F25290 /* Utils */,
 				46E3EC7B2F394E9B00F25290 /* Views */,
 				46E3EC7A2F394E5400F25290 /* ViewControllers */,
-				EE0C94CC1FAA57260051C01E /* Firebase Roader Demo.entitlements */,
-				EEC965C31F96A00C000544B7 /* AppDelegate.swift */,
-				EE2FAA181FA196170050609C /* Assets.xcassets */,
-				46E3EC822F39614000F25290 /* GoogleService-Info.plist */,
-				EEC965C71F96A00C000544B7 /* Main.storyboard */,
-				EEC965CC1F96A00C000544B7 /* LaunchScreen.storyboard */,
-				EEC965CF1F96A00C000544B7 /* Info.plist */,
-				EE09234F1F9ADDD900311BD0 /* Firebase Roader Demo-Bridging-Header.h */,
 			);
 			path = "Firebase Roader Demo";
 			sourceTree = "<group>";
@@ -107,6 +98,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				46B0F3CF2F3C277600071372 /* Resources */,
 				46E3EC7A2F394E5400F25290 /* ViewControllers */,
 				46E3EC7B2F394E9B00F25290 /* Views */,
 				46E3EC7E2F394F2500F25290 /* Utils */,
@@ -131,8 +123,9 @@
 		EEC965B81F96A00C000544B7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 2620;
 				ORGANIZATIONNAME = RJT;
 				TargetAttributes = {
 					EEC965BF1F96A00C000544B7 = {
@@ -175,10 +168,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEC965CE1F96A00C000544B7 /* LaunchScreen.storyboard in Resources */,
-				46E3EC832F39614000F25290 /* GoogleService-Info.plist in Resources */,
-				EE2FAA191FA196180050609C /* Assets.xcassets in Resources */,
-				EEC965C91F96A00C000544B7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,36 +178,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEC965C41F96A00C000544B7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		EEC965C71F96A00C000544B7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EEC965C81F96A00C000544B7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		EEC965CC1F96A00C000544B7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EEC965CD1F96A00C000544B7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		EEC965E61F96A00D000544B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -229,6 +199,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -236,8 +207,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -247,8 +220,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8DT27W9UTB;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -267,6 +242,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -276,6 +252,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -286,6 +263,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -293,8 +271,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -304,8 +284,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8DT27W9UTB;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -317,6 +299,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -329,8 +312,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8DT27W9UTB;
-				INFOPLIST_FILE = "Firebase Roader Demo/Info.plist";
+				INFOPLIST_FILE = "Firebase Roader Demo/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ultimate Roader";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -343,7 +325,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "Firebase Roader Demo/Firebase Roader Demo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Firebase Roader Demo/Resources/Firebase Roader Demo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -356,8 +338,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8DT27W9UTB;
-				INFOPLIST_FILE = "Firebase Roader Demo/Info.plist";
+				INFOPLIST_FILE = "Firebase Roader Demo/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ultimate Roader";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -370,7 +351,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "Firebase Roader Demo/Firebase Roader Demo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Firebase Roader Demo/Resources/Firebase Roader Demo-Bridging-Header.h";
 				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
