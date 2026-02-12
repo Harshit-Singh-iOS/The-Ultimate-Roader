@@ -62,7 +62,7 @@ class ManipulateUser: NSObject {
         let u = Auth.auth().currentUser
         
         ref.child("Users").child((u?.uid)!).observeSingleEvent(of: .value) { (snapshot) in
-            if let data = snapshot  as? DataSnapshot {
+            if let data = snapshot as? DataSnapshot {
                 user = User(withsnap: data)
                 completion(user)
             }

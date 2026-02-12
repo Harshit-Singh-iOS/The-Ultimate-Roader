@@ -13,7 +13,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-protocol MarkSpotProtocol: class {
+protocol MarkSpotProtocol: AnyObject {
     func addSpotMarker(spot: Path.Spot)
 }
 

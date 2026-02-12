@@ -83,9 +83,4 @@ class ShareLocViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBAction func cancel_action(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 }

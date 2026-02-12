@@ -90,7 +90,8 @@ final class SwiftMessageBar {
             NSLayoutConstraint.activate([
                 barView.leadingAnchor.constraint(equalTo: window.leadingAnchor, constant: 16),
                 barView.trailingAnchor.constraint(equalTo: window.trailingAnchor, constant: -16),
-                barView.topAnchor.constraint(equalTo: window.safeAreaLayoutGuide.topAnchor, constant: 12),
+//                barView.topAnchor.constraint(equalTo: window.safeAreaLayoutGuide.topAnchor, constant: 12),
+                barView.bottomAnchor.constraint(equalTo: window.safeAreaLayoutGuide.bottomAnchor, constant: -68),
 
                 stack.leadingAnchor.constraint(equalTo: barView.leadingAnchor, constant: 12),
                 stack.trailingAnchor.constraint(equalTo: barView.trailingAnchor, constant: -12),

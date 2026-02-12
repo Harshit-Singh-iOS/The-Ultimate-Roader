@@ -19,90 +19,100 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="hrO-PZ-VkJ">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8z-rq-4H7">
-                                <rect key="frame" x="78.666666666666671" y="368.66666666666669" width="235.66666666666663" height="59.666666666666686"/>
-                                <color key="backgroundColor" red="0.72457901550000003" green="0.18983260639999999" blue="0.28357254119999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="SETTINGS">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonCornor">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="setting_action:" destination="UWc-Q1-Taf" eventType="touchUpInside" id="wIM-Fb-MUy"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eym-i4-AKh">
-                                <rect key="frame" x="78.666666666666671" y="448.33333333333331" width="235.66666666666663" height="59.333333333333314"/>
-                                <color key="backgroundColor" red="0.72457901550000003" green="0.21010620299999999" blue="0.29383694160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="DRIVE OPTIONS">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonCornor">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="drive_option_action:" destination="UWc-Q1-Taf" eventType="touchUpInside" id="inH-e6-AJb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFX-Oa-DDN">
-                                <rect key="frame" x="78.666666666666671" y="527.66666666666663" width="235.66666666666663" height="59.666666666666629"/>
-                                <color key="backgroundColor" red="0.72933533029999997" green="0.21148539180000001" blue="0.2957657595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="SIGNOUT">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonCornor">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="Signout_action:" destination="UWc-Q1-Taf" eventType="touchUpInside" id="seo-lH-UkE"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrG-a2-lEK">
-                                <rect key="frame" x="78.666666666666671" y="283" width="235.66666666666663" height="59.666666666666686"/>
-                                <color key="backgroundColor" red="0.72933533029999997" green="0.21148539180000001" blue="0.2957657595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="INFORMATION">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonCornor">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="information_btn_action:" destination="UWc-Q1-Taf" eventType="touchUpInside" id="5pt-yv-nKx"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="fCo-x5-IWF">
+                                <rect key="frame" x="59" y="310" width="275" height="336"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrG-a2-lEK">
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="48"/>
+                                        <color key="backgroundColor" red="0.72933533029999997" green="0.21148539180000001" blue="0.2957657595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="hKL-SA-wnC"/>
+                                        </constraints>
+                                        <state key="normal" title="Information">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="buttonCornor">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="information_btn_action:" destination="UWc-Q1-Taf" eventType="touchUpInside" id="5pt-yv-nKx"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8z-rq-4H7">
+                                        <rect key="frame" x="0.0" y="72" width="275" height="48"/>
+                                        <color key="backgroundColor" red="0.72457901550000003" green="0.18983260639999999" blue="0.28357254119999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Settings">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="buttonCornor">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="setting_action:" destination="UWc-Q1-Taf" eventType="touchUpInside" id="wIM-Fb-MUy"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eym-i4-AKh">
+                                        <rect key="frame" x="0.0" y="144" width="275" height="48"/>
+                                        <color key="backgroundColor" red="0.72457901550000003" green="0.21010620299999999" blue="0.29383694160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="All Drives">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="buttonCornor">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="allDrivesAction:" destination="UWc-Q1-Taf" eventType="touchUpInside" id="lnM-NB-wB0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDM-u6-THN" userLabel="Start Drive">
+                                        <rect key="frame" x="0.0" y="216" width="275" height="48"/>
+                                        <color key="backgroundColor" red="0.72457901550000003" green="0.21010620299999999" blue="0.29383694160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Start Drive">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="buttonCornor">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="startDriveAction:" destination="UWc-Q1-Taf" eventType="touchUpInside" id="pdE-P1-3pH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFX-Oa-DDN">
+                                        <rect key="frame" x="0.0" y="288" width="275" height="48"/>
+                                        <color key="backgroundColor" red="0.72933533029999997" green="0.21148539180000001" blue="0.2957657595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Sign out">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="buttonCornor">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Signout_action:" destination="UWc-Q1-Taf" eventType="touchUpInside" id="seo-lH-UkE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wdR-QY-jSM"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="tFX-Oa-DDN" firstAttribute="width" secondItem="Eym-i4-AKh" secondAttribute="width" id="2to-Kr-rHP"/>
-                            <constraint firstItem="tFX-Oa-DDN" firstAttribute="centerX" secondItem="wdR-QY-jSM" secondAttribute="centerX" id="4Er-Jh-uhz"/>
-                            <constraint firstItem="Eym-i4-AKh" firstAttribute="centerY" secondItem="wdR-QY-jSM" secondAttribute="centerY" id="7eu-ET-4Nd"/>
                             <constraint firstItem="hrO-PZ-VkJ" firstAttribute="leading" secondItem="wdR-QY-jSM" secondAttribute="leading" id="A4j-jD-FWW"/>
-                            <constraint firstItem="Eym-i4-AKh" firstAttribute="width" secondItem="e8z-rq-4H7" secondAttribute="width" id="EeR-tj-FnI"/>
-                            <constraint firstItem="tFX-Oa-DDN" firstAttribute="height" secondItem="Eym-i4-AKh" secondAttribute="height" id="FwW-HW-qN6"/>
-                            <constraint firstItem="DrG-a2-lEK" firstAttribute="width" secondItem="e8z-rq-4H7" secondAttribute="width" id="LqF-VJ-xLZ"/>
-                            <constraint firstItem="tFX-Oa-DDN" firstAttribute="top" secondItem="Eym-i4-AKh" secondAttribute="bottom" constant="20" id="WOp-Xs-prT"/>
-                            <constraint firstItem="e8z-rq-4H7" firstAttribute="top" secondItem="DrG-a2-lEK" secondAttribute="bottom" constant="26" id="agx-VO-l5P"/>
+                            <constraint firstItem="fCo-x5-IWF" firstAttribute="centerY" secondItem="wdR-QY-jSM" secondAttribute="centerY" id="WKg-pY-1Xq"/>
                             <constraint firstAttribute="bottom" secondItem="hrO-PZ-VkJ" secondAttribute="bottom" id="beU-5f-xtW"/>
-                            <constraint firstItem="DrG-a2-lEK" firstAttribute="centerX" secondItem="wdR-QY-jSM" secondAttribute="centerX" id="d7Y-rP-K5K"/>
                             <constraint firstItem="hrO-PZ-VkJ" firstAttribute="top" secondItem="3uy-4e-u07" secondAttribute="top" id="drL-Ih-BjB"/>
-                            <constraint firstItem="Eym-i4-AKh" firstAttribute="centerX" secondItem="wdR-QY-jSM" secondAttribute="centerX" id="efy-qJ-clY"/>
+                            <constraint firstItem="fCo-x5-IWF" firstAttribute="width" secondItem="3uy-4e-u07" secondAttribute="width" multiplier="0.7" id="dxf-El-wkJ"/>
                             <constraint firstItem="hrO-PZ-VkJ" firstAttribute="trailing" secondItem="wdR-QY-jSM" secondAttribute="trailing" id="fFK-2b-NgV"/>
-                            <constraint firstItem="DrG-a2-lEK" firstAttribute="height" secondItem="e8z-rq-4H7" secondAttribute="height" id="gHa-CN-zvs"/>
-                            <constraint firstItem="e8z-rq-4H7" firstAttribute="centerX" secondItem="wdR-QY-jSM" secondAttribute="centerX" id="hzu-pS-Yw6"/>
-                            <constraint firstItem="Eym-i4-AKh" firstAttribute="height" secondItem="e8z-rq-4H7" secondAttribute="height" id="izb-CK-e34"/>
-                            <constraint firstItem="e8z-rq-4H7" firstAttribute="width" secondItem="3uy-4e-u07" secondAttribute="width" multiplier="0.6" id="joK-Uz-CdK"/>
-                            <constraint firstItem="Eym-i4-AKh" firstAttribute="top" secondItem="e8z-rq-4H7" secondAttribute="bottom" constant="20" id="s2o-nJ-jvS"/>
-                            <constraint firstItem="e8z-rq-4H7" firstAttribute="height" secondItem="3uy-4e-u07" secondAttribute="height" multiplier="0.07" id="tpL-pC-xMR"/>
+                            <constraint firstItem="fCo-x5-IWF" firstAttribute="centerX" secondItem="wdR-QY-jSM" secondAttribute="centerX" id="vKC-Zh-DuT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fcg-Gl-XNx"/>
@@ -217,74 +227,9 @@
             </objects>
             <point key="canvasLocation" x="648" y="-213"/>
         </scene>
-        <!--Drive Options View Controller-->
-        <scene sceneID="ngO-rK-nGo">
-            <objects>
-                <viewController storyboardIdentifier="DriveOptionsViewController" id="nha-3T-lf0" customClass="DriveOptionsViewController" customModule="Firebase_Roader_Demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Fna-Ou-MpB">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="HHO-IE-fSp">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                            </imageView>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEs-hS-S5G">
-                                <rect key="frame" x="118" y="347.33333333333331" width="157" height="157.33333333333331"/>
-                                <color key="backgroundColor" red="0.72933533029999997" green="0.21148539180000001" blue="0.2957657595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="GEs-hS-S5G" secondAttribute="height" multiplier="1:1" id="mLB-yM-aTE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <state key="normal" title="DRIVE">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="drive_action:" destination="nha-3T-lf0" eventType="touchUpInside" id="Vjx-uh-6qU"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3n2-xz-7tB">
-                                <rect key="frame" x="78.666666666666671" y="245.66666666666666" width="235.66666666666663" height="59.666666666666657"/>
-                                <color key="backgroundColor" red="0.72933533029999997" green="0.21148539180000001" blue="0.2957657595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="ALL PATHS">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonCornor">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="driven_list_action:" destination="nha-3T-lf0" eventType="touchUpInside" id="eQJ-5u-KHd"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="sb4-Ax-OoN"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="HHO-IE-fSp" firstAttribute="top" secondItem="Fna-Ou-MpB" secondAttribute="top" id="77X-2f-PA7"/>
-                            <constraint firstItem="3n2-xz-7tB" firstAttribute="width" secondItem="Fna-Ou-MpB" secondAttribute="width" multiplier="0.6" id="ASb-VT-Chp"/>
-                            <constraint firstItem="GEs-hS-S5G" firstAttribute="top" secondItem="3n2-xz-7tB" secondAttribute="bottom" constant="42" id="B5x-Ra-O7e"/>
-                            <constraint firstItem="HHO-IE-fSp" firstAttribute="leading" secondItem="sb4-Ax-OoN" secondAttribute="leading" id="EFP-7T-0NT"/>
-                            <constraint firstItem="sb4-Ax-OoN" firstAttribute="trailing" secondItem="HHO-IE-fSp" secondAttribute="trailing" id="MO4-P7-UOB"/>
-                            <constraint firstItem="GEs-hS-S5G" firstAttribute="centerX" secondItem="HHO-IE-fSp" secondAttribute="centerX" id="SCh-Gz-wa7"/>
-                            <constraint firstItem="3n2-xz-7tB" firstAttribute="height" secondItem="Fna-Ou-MpB" secondAttribute="height" multiplier="0.07" id="fBv-02-rK1"/>
-                            <constraint firstItem="GEs-hS-S5G" firstAttribute="centerY" secondItem="HHO-IE-fSp" secondAttribute="centerY" id="gmS-3f-OzZ"/>
-                            <constraint firstItem="3n2-xz-7tB" firstAttribute="centerX" secondItem="HHO-IE-fSp" secondAttribute="centerX" id="jSD-zG-Ovh"/>
-                            <constraint firstAttribute="bottom" secondItem="HHO-IE-fSp" secondAttribute="bottom" id="poz-vm-cRV"/>
-                            <constraint firstItem="GEs-hS-S5G" firstAttribute="width" secondItem="Fna-Ou-MpB" secondAttribute="width" multiplier="0.4" id="qDJ-fK-xV8"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="drive_btn" destination="GEs-hS-S5G" id="yyd-iL-j0H"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NEF-vL-u8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1352" y="-213"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="background" width="375" height="667"/>
+        <image name="background" width="750" height="1334"/>
         <image name="clouds" width="170.66667175292969" height="170.66667175292969"/>
         <image name="compassCircle" width="325.33334350585938" height="325.66665649414062"/>
         <image name="compassNeedleNorth" width="325.33334350585938" height="325.66665649414062"/>

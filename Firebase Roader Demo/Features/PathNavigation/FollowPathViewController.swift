@@ -182,8 +182,8 @@ class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, G
     func addRouteToPath(loc: CLLocation) {
         gmsFollowPath.add(loc.coordinate)
         polylineFollow.path = gmsFollowPath
-        polylineFollow.strokeColor = path_color
-        polylineFollow.strokeWidth = 5
+        polylineFollow.strokeColor = Theme.path_color
+        polylineFollow.strokeWidth = Theme.pathWidth
         polylineFollow.zIndex = 10
         CATransaction.begin()
         CATransaction.setAnimationDuration(2.0)
@@ -195,7 +195,7 @@ class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, G
         gmsPath.add(loc.coordinate)
         polyline.path = gmsPath
         polyline.strokeColor = UIColor.red
-        polyline.strokeWidth = 5
+        polyline.strokeWidth = Theme.pathWidth
         polyline.zIndex = 10
         CATransaction.begin()
         CATransaction.setAnimationDuration(2.0)
@@ -224,7 +224,7 @@ class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, G
         let alert = UIAlertController(title: "Trip complete!!", message: "You have reach destination.", preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default) { (act) in
             for controller in (self.navigationController?.viewControllers)! {
-                if controller.isKind(of: DriveOptionsViewController.self)  {
+                if controller.isKind(of: HomeTabViewController.self)  {
                     self.locationManager.stopUpdatingLocation()
                     DispatchQueue.main.async {
                         self.navigationController?.popToViewController(controller, animated: true)

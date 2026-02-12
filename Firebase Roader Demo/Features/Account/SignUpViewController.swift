@@ -32,7 +32,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate , 
         imagePickerController.delegate = self
         ref = Database.database().reference()
         storageRef = Storage.storage().reference()
-        SwiftMessageBar.setSharedConfig(barConfig)
+        SwiftMessageBar.setSharedConfig(Theme.barConfig)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewTapGesture)))
         setupImageSize()
         prepTestUI()

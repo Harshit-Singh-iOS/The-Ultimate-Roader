@@ -53,8 +53,7 @@ class InformationViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    func getWeather(lat: String, long: String)
-    {
+    func getWeather(lat: String, long: String) {
         Weather.sharedInstance.get_weather(latitude: lat, longitude: long) { (temp_desc) in
             if let t_d = temp_desc as? (String,String,String) {
                 if let name = Weather.Condition(rawValue: t_d.1)?.title{
@@ -74,21 +73,4 @@ class InformationViewController: UIViewController, CLLocationManagerDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         SVProgressHUD.dismiss()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -22,7 +22,7 @@ class UpdatePasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        SwiftMessageBar.setSharedConfig(barConfig)
+        SwiftMessageBar.setSharedConfig(Theme.barConfig)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewTapGesture)))
         title = "CHANGE PASSWORD"
         // Do any additional setup after loading the view.

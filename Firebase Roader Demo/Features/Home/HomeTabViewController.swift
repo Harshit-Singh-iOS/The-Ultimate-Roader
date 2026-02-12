@@ -16,20 +16,13 @@ class HomeTabViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "HOME"
-        SwiftMessageBar.setSharedConfig(barConfig)
+        SwiftMessageBar.setSharedConfig(Theme.barConfig)
         // Do any additional setup after loading the view.
     }
 
     @IBAction func setting_action(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Account", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
-            navigationController?.pushViewController(controller, animated: true)
-        }
-    }
-    
-    @IBAction func drive_option_action(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "DriveOptionsViewController") as? DriveOptionsViewController {
             navigationController?.pushViewController(controller, animated: true)
         }
     }
@@ -41,12 +34,27 @@ class HomeTabViewController: BaseViewController {
         }
     }
     
+    @IBAction func allDrivesAction(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "PathNavigationMore", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "AllPathViewController") as? AllPathViewController {
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
+    @IBAction func startDriveAction(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "PathNavigation", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "GoogleMapViewController") as? GoogleMapViewController
+        {
+            SwiftMessageBar.showMessageWithTitle("See Map", message: "Start Driving.", type: .info)
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
     @IBAction func Signout_action(_ sender: UIButton) {
         SVProgressHUD.show()
         do {
             try Auth.auth().signOut()
             SwiftMessageBar.showMessageWithTitle("Sign Out", message: "Sign out successful.", type: .success)
-            dismiss(animated: true, completion: nil)
         }
         catch {
             SwiftMessageBar.showMessageWithTitle("Problem!!", message: "Something went wrong.", type: .error)
@@ -57,9 +65,5 @@ class HomeTabViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         SVProgressHUD.dismiss()
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

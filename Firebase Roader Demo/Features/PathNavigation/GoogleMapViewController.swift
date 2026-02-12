@@ -29,8 +29,8 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
     var databaseRef: DatabaseReference?
     var storageRef = Storage.storage().reference()
     var distance: Double = 0.0
-    weak var timer = Timer()
-    var time = 0,length = 0.0
+    var timer = Timer()
+    var time = 0, length = 0.0
     var color: UIColor?
     var i = 0
     var mapBackgroundOverlayer1 = GMSGroundOverlay()
@@ -42,7 +42,7 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
         super.viewDidLoad()
         title = "You are driving."
         setUpLocationServices()
-        SwiftMessageBar.setSharedConfig(barConfig)
+        SwiftMessageBar.setSharedConfig(Theme.barConfig)
         databaseRef = Database.database().reference()
         start_trip()
         animationImage()
@@ -96,11 +96,11 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
     }
     
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
-//        if gesture == true {
-//            iskeepFocus = false
-//        }
+        //        if gesture == true {
+        //            iskeepFocus = false
+        //        }
     }
-        
+    
     @IBAction func keep_focus_btn(_ sender: UIButton) {
         iskeepFocus = true
     }
@@ -117,8 +117,8 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
     func addRouteToPath(loc: CLLocation) {
         gmsPath.add(loc.coordinate)
         polyline.path = gmsPath
-        polyline.strokeColor = path_color
-        polyline.strokeWidth = 5
+        polyline.strokeColor = Theme.path_color
+        polyline.strokeWidth = Theme.pathWidth
         polyline.zIndex = 10
         CATransaction.begin()
         CATransaction.setAnimationDuration(2.0)
@@ -129,7 +129,7 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
     @IBAction func finish_trip_action(_ sender: UIButton) {
         
         if time > 59 || length > 0.1 {
-            timer?.invalidate()
+            timer.invalidate()
             locationManager.stopUpdatingLocation()
             animated_marker.icon = nil
             animated_marker.map = nil
@@ -205,7 +205,7 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
             DispatchQueue.main.async {
                 let alertController = UIAlertController.init(title: "Complete Drive!", message: "Go to next.", preferredStyle: .alert)
                 let action = UIAlertAction(title: "Ok", style: .default, handler: { (alert) in
-        let storyboard = UIStoryboard(name: "PathNavigation", bundle: nil)
+                    let storyboard = UIStoryboard(name: "PathNavigation", bundle: nil)
                     if let controller = storyboard.instantiateViewController(withIdentifier: "SaveDriveViewController") as? SaveDriveViewController {
                         controller.path = self.path
                         self.navigationController?.pushViewController(controller, animated: true)
@@ -294,12 +294,16 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
     }
     
     @objc func update_label() {
-        time += 1
-        var hour = 0, minute = 0
-        minute = time/60
-        hour = time/3600
+        self.time += 1
+        
+        let hours = self.time / 3600
+        let minutes = self.time / 60
+        let seconds = self.time % 60
+        
         DispatchQueue.main.async {
-            self.time_label.text = String(format: "%02d", hour)+":"+String(format: "%02d", minute)
+            self.time_label.text = String(format: "%02d", hours) + ":"
+            + String(format: "%02d", minutes) + ":"
+            + String(format: "%02d", seconds)
         }
     }
     

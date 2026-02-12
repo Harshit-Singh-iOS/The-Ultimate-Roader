@@ -182,7 +182,7 @@ final class GMSMutablePath {
 final class GMSPolyline {
     var path: GMSMutablePath?
     var strokeColor: UIColor = .systemBlue
-    var strokeWidth: CGFloat = 4
+    var strokeWidth: CGFloat = Theme.pathWidth
     var zIndex: Int32 = 0
 
     private var overlay: MKPolyline?

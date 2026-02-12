@@ -48,8 +48,4 @@ class ShowSpotViewController: UIViewController {
     @IBAction func closeAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }

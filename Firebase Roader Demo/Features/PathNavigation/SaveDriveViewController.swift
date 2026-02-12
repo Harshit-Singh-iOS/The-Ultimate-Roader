@@ -27,7 +27,7 @@ class SaveDriveViewController: UIViewController {
         title = "FINISH PATH"
         map_view.mapType = .satellite
         databaseRef = Database.database().reference()
-        SwiftMessageBar.setSharedConfig(barConfig)
+        SwiftMessageBar.setSharedConfig(Theme.barConfig)
         // Do any additional setup after loading the view.
     }
 
@@ -60,8 +60,8 @@ class SaveDriveViewController: UIViewController {
     func addRouteToPath(loc: CLLocation) {
         gmsPath.add(loc.coordinate)
         polyline.path = gmsPath
-        polyline.strokeColor = path_color
-        polyline.strokeWidth = 5
+        polyline.strokeColor = Theme.path_color
+        polyline.strokeWidth = Theme.pathWidth
         CATransaction.begin()
         CATransaction.setAnimationDuration(2.0)
         polyline.map = map_view
@@ -70,23 +70,17 @@ class SaveDriveViewController: UIViewController {
     
     @IBAction func save_btn_action(_ sender: UIButton) {
         if path?.pathName?.isEmpty == false {
-            databaseRef?.child("Paths").child((path?.pathID)!).updateChildValues(["pathName": path?.pathName ?? "New Path", "pathType": path?.pathType.rawValue ?? "public", "difficulty": path?.difficulty.rawValue ?? "easy"])
+            databaseRef?.child("Paths").child((path?.pathID)!).updateChildValues(["pathName": path?.pathName ?? "New drive", "pathType": path?.pathType.rawValue ?? "public", "difficulty": path?.difficulty.rawValue ?? "easy"])
         
-            SwiftMessageBar.showMessageWithTitle("Success", message: "Path saved successfully.", type: .success)
+            SwiftMessageBar.showMessageWithTitle("Success", message: "Drive saved successfully.", type: .success)
             for controller in (navigationController?.viewControllers)! {
-                if controller.isKind(of: DriveOptionsViewController.self)  {
+                if controller.isKind(of: HomeTabViewController.self)  {
                     navigationController?.popToViewController(controller, animated: true)
                 }
             }
         } else {
-            SwiftMessageBar.showMessageWithTitle("Path name empty.", message: "Enter path name.", type: .error)
+            SwiftMessageBar.showMessageWithTitle("Drive name empty.", message: "Enter drive name.", type: .error)
         }
-    }
-
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -7,7 +7,17 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class AuthenticatedSessionManager {
+    var authStateHandle: AuthStateDidChangeListenerHandle?
+    var authStateDidChange: ((Bool) -> Void)?
     
+    func registerAuthStateListener() {
+        
+        authStateHandle = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+            self?.authStateDidChange?(user != nil)
+        }
+        
+    }
 }

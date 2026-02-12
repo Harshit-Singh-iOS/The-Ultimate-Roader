@@ -14,105 +14,65 @@ import SVProgressHUD
 import GoogleSignIn
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
+    var viewModel = SignInViewModel()
+    
     @IBOutlet weak var username_tf: UITextField!
     @IBOutlet weak var password_tf: UITextField!
-    
     @IBOutlet weak var login_btn_view: UIView!
-    var ref: DatabaseReference?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database().reference()
-        SwiftMessageBar.setSharedConfig(barConfig)        
+        setupUI()
+    }
+    
+    private func setupUI() {
+        username_tf.text = LoginConstants.em
+        password_tf.text = LoginConstants.pass
+        
+        SwiftMessageBar.setSharedConfig(Theme.barConfig)
         
         let googleButton = GIDSignInButton()
         googleButton.addTarget(self, action: #selector(googleSignInTapped), for: .touchUpInside)
         googleButton.frame = CGRect(x: 0, y: 0, width: 80, height: 28)
         login_btn_view.addSubview(googleButton)
-        
-        username_tf.text = LoginConstants.em
-        password_tf.text = LoginConstants.pass
-    }    
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        signInwithUserandPass()
-        return true
     }
+    
     @IBAction func sign_in_action(_ sender: UIButton) {
-        signInwithUserandPass()
-    }
-    
-    func signInwithUserandPass() {
-        guard let user = username_tf.text, let pass = password_tf.text else {
+        guard let email = username_tf.text, let pass = password_tf.text,
+        !email.isEmpty || !pass.isEmpty else {
+            SwiftMessageBar.showMessageWithTitle("Error", message: "Enter Email and Password", type: .error)
             return
         }
 
-        if user.isEmpty || pass.isEmpty {
-            SwiftMessageBar.showMessageWithTitle("Error", message: "Enter Username and Password", type: .error)
-        } else {
-            
+        Task { @MainActor [weak self] in
             SVProgressHUD.show()
-            Auth.auth().signIn(withEmail: user, password: pass) { (_, error) in
-                if let err = error {
-                    print(err)
-                    SwiftMessageBar.showMessageWithTitle("Error", message: "Username or Password wrong", type: .error)
-                } else {
-                    SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
-            let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                    let controller = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController") as? UINavigationController
-                    controller?.modalPresentationStyle = .fullScreen
-                    self.present(controller!, animated: true, completion: nil)
-                }
-                self.username_tf.text = ""
-                self.password_tf.text = ""
-                SVProgressHUD.dismiss()
+            
+            let result = await self?.viewModel.signInWith(email: email, password: pass)
+            
+            await SVProgressHUD.dismiss()
+            
+            switch result {
+            case .success, .none:
+                SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
+                self?.username_tf.text = ""
+                self?.password_tf.text = ""
+            case .failure(let error):
+                SwiftMessageBar.showMessageWithTitle("Error", message: error.localizedDescription, type: .error)
             }
         }
     }
     
     @objc private func googleSignInTapped() {
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            guard let user = result?.user,
-                  let idToken = user.idToken?.tokenString else {
-                return
-            }
-
-            let credential = GoogleAuthProvider.credential(
-                withIDToken: idToken,
-                accessToken: user.accessToken.tokenString
-            )
-
-            Auth.auth().signIn(with: credential) { (authResult, error) in
-                if let error = error {
-                    print(error)
-                    return
-                }
-
-                if let uid = Auth.auth().currentUser?.uid {
-                    let userDict: [String: Any?] = [
-                        "FirstName": authResult?.user.displayName,
-                        "UserId": uid,
-                        "EmailID": authResult?.user.email
-                    ]
-
-                    self.ref?.child("Users").child(uid).updateChildValues(userDict, withCompletionBlock: { (error, _) in
-                        if error == nil {
-                            SwiftMessageBar.showMessageWithTitle("Congrats!!", message: "Sign Up successful.", type: .success)
-                        } else {
-                            print(error?.localizedDescription ?? "Error")
-                            SwiftMessageBar.showMessageWithTitle("Error", message: "Something went wrong.", type: .error)
-                        }
-                    })
-                }
-
+        Task { @MainActor [weak self] in
+            let result = await self?.viewModel.googleSignIn(controller: self)
+            
+            switch result {
+            case .success:
                 SwiftMessageBar.showMessageWithTitle("Success", message: "Login Successful", type: .success)
-                let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController") as? UINavigationController
-                controller?.modalPresentationStyle = .fullScreen
-                self.present(controller!, animated: true, completion: nil)
+            case .failure(let error):
+                SwiftMessageBar.showMessageWithTitle("Error", message: error.localizedDescription, type: .error)
+            default:
+                break
             }
         }
     }
@@ -125,19 +85,20 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func reset_password(_ sender: UIButton) {
-        Auth.auth().sendPasswordReset(withEmail: "abc@gmail.com") { (error) in
+        guard let email = username_tf.text, !email.isEmpty else {
+            SwiftMessageBar.showMessageWithTitle("Error", message: "Enter Email.", type: .error)
+            return
+        }
+        
+        Task { @MainActor in
+            let error = await viewModel.resetPassword(email: email)
             
             if error == nil {
                 SwiftMessageBar.showMessageWithTitle("Success", message: "Mail Sent", type: .success)
-            }
-            else {
+            } else {
                 print(error?.localizedDescription ?? "Error")
                 SwiftMessageBar.showMessageWithTitle("Error", message: error?.localizedDescription ?? "Unknown error", type: .error)
             }
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        SVProgressHUD.dismiss()
     }
 }

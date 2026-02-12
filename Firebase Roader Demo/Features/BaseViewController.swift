@@ -28,9 +28,4 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = color
         
     }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
