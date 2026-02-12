@@ -18,6 +18,7 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
     @IBOutlet weak var distance_label: UILabel!
     @IBOutlet weak var time_label: UILabel!
     @IBOutlet weak var map_view: GMSMapView!
+    @IBOutlet weak var mapModeButton: UIButton!
     
     var locationManager = CLLocationManager()
     var iskeepFocus: Bool = true
@@ -50,7 +51,7 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
     }
     
     func setUpLocationServices(){
-        map_view.mapType = .standard
+        changemapModeAction(mapModeButton)
         locationManager.delegate = self
         map_view.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -78,8 +79,7 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
             }
             animated_marker.position = loc.coordinate
             
-            if iskeepFocus && path?.track.isEmpty == false
-            {
+            if iskeepFocus && path?.track.isEmpty == false {
                 let cameraPosition = GMSCameraPosition.camera(withTarget: loc.coordinate, zoom: 15, bearing: getBearingBetweenTwoPoints1((path?.track.last)!, point2: loc), viewingAngle: map_view.gmsCamera.viewingAngle)
                 map_view.animate(to: cameraPosition)
             }
@@ -155,7 +155,7 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
         let pathDict = ["UserId": userId, "pathName": "New path", "pathID": self.path?.pathID ?? "", "time": String(format: "%.1d", self.time / 60), "distance": String(describing: self.length), "date": date] as [String: Any]
         
         //MARK: - NEW FUNC SPOT ADDED
-        if let spList = path?.spotArray {
+        if let spList = path?.spotArray, !spList.isEmpty {
             for spot in spList {
                 let spotRef = Database.database().reference().child("SpotList").childByAutoId()
                 spot.id = spotRef.key
@@ -234,11 +234,11 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
     @IBAction func changemapModeAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
-            showDarkBackgroudOnMap()
-            map_view.mapType = .none
-        } else {
             clearMapViewBackground()
             map_view.mapType = .standard
+        } else {
+            showDarkBackgroudOnMap()
+            map_view.mapType = .hybrid
         }
     }
     

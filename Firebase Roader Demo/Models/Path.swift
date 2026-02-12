@@ -94,7 +94,7 @@ class ManagePath: NSObject {
     
     static var doc_url: URL?
     static var file_url: URL?
-    static var flag = true
+    static var first = true
     static let fileManager = FileManager.default
     static var fileHandle: FileHandle?
     
@@ -102,16 +102,16 @@ class ManagePath: NSObject {
     static var sharedinstance = ManagePath()
     
     static func addInitialPath(pathID: String) {
-        flag = true
+        first = true
         do {
             doc_url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                file_url = doc_url?.appendingPathComponent("\(pathID).json")
-                let initial = ("{\"path\":[" as NSString).data(using: String.Encoding.utf8.rawValue)
-                if let url = file_url {
-                    if fileManager.fileExists(atPath: (url.path)) {
-                        fileHandle = FileHandle(forUpdatingAtPath: (url.path))
-                    } else if fileManager.createFile(atPath: (url.path), contents: initial, attributes: nil) {
-                        fileHandle = FileHandle(forWritingAtPath: (url.path))
+            file_url = doc_url?.appendingPathComponent("\(pathID).json")
+            let initial = ("{\"path\":[" as NSString).data(using: String.Encoding.utf8.rawValue)
+            if let url = file_url {
+                if fileManager.fileExists(atPath: (url.path)) {
+                    fileHandle = FileHandle(forUpdatingAtPath: (url.path))
+                } else if fileManager.createFile(atPath: (url.path), contents: initial, attributes: nil) {
+                    fileHandle = FileHandle(forWritingAtPath: (url.path))
                 }
             }
         }
@@ -130,18 +130,17 @@ class ManagePath: NSObject {
         fileHandle?.seekToEndOfFile()
         fileHandle?.write("]}".data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!)
         
-        uploadToFireBase(pathId: pathId)
+        //uploadToFireBase(pathId: pathId)
     }
     
     static func addCordinateTopath(latidude: Double, longitude: Double) {
         
         fileHandle?.seekToEndOfFile()
-        if flag{
+        if first {
             let data = "{\"latitude\":\"\(latidude)\", \"longitude\":\"\(longitude)\"}"
             fileHandle?.write(data.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!)
-            flag = false
-        }
-        else {
+            first = false
+        } else {
             let data = ",{\"latitude\":\"\(latidude)\", \"longitude\":\"\(longitude)\"}"
             fileHandle?.write(data.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!)
         }
@@ -192,63 +191,86 @@ class ManagePath: NSObject {
         }
     }
     
-    static func uploadToFireBase(pathId: String) {
-        var storageRef = Storage.storage().reference()
-        guard let url = file_url else{
-            return
-        }
-        do{
-            let data: Data = try Data(contentsOf: url)
-            let metaData = StorageMetadata()
-            metaData.contentType = "text"
-            
-            let file_name = "PathFiles/\(String(describing: pathId)).txt"
-            storageRef = storageRef.child(file_name)
-            
-            storageRef.putData(data,metadata: metaData) { (data, error) in
-                if error != nil {
-                    print(error?.localizedDescription ?? "Error")
-                }
-            }
-        }
-        catch {
-            print(error.localizedDescription)
-        }
-    }
+    //    static func uploadToFireBase(pathId: String) {
+    //        var storageRef = Storage.storage().reference()
+    //        guard let url = file_url else{
+    //            return
+    //        }
+    //        do{
+    //            let data: Data = try Data(contentsOf: url)
+    //            let metaData = StorageMetadata()
+    //            metaData.contentType = "text"
+    //
+    //            let file_name = "PathFiles/\(String(describing: pathId)).txt"
+    //            storageRef = storageRef.child(file_name)
+    //
+    //            storageRef.putData(data,metadata: metaData) { (data, error) in
+    //                if error != nil {
+    //                    print(error?.localizedDescription ?? "Error")
+    //                }
+    //            }
+    //        }
+    //        catch {
+    //            print(error.localizedDescription)
+    //        }
+    //    }
     
     static func getPathFromFile(name: String, completion: @escaping handler){
         var storageRef = Storage.storage().reference()
         var path: [CLLocation] = []
         
         let file_name = "PathFiles/\(String(describing: name)).txt"
-        storageRef = storageRef.child(file_name)
-        storageRef.getData(maxSize: 1024*1024*1024) { (data, error) in
-            if error != nil {
-                print(error?.localizedDescription ?? "Error")
+        //        storageRef = storageRef.child(file_name)
+        //        storageRef.getData(maxSize: 1024*1024*1024) { (data, error) in
+        //            if error != nil {
+        //                print(error?.localizedDescription ?? "Error")
+        //            }
+        //            else {
+        //                guard let path_data = data else {
+        //                    return
+        //                    }
+        //                do {
+        //                    if let path_json = try JSONSerialization.jsonObject(with: path_data, options: []) as? Dictionary<String,Any> {
+        //                        if let new_path = path_json["path"] as? [Dictionary<String,String>] {
+        //                            for cord in new_path {
+        //
+        //                                let lat = Double(cord["latitude"]!)
+        //                                let long = Double(cord["longitude"]!)
+        //                                let c = CLLocation(latitude: lat!, longitude: long!)
+        //                                path.append(c)
+        //
+        //                            }
+        //                            completion(path)
+        //                        }
+        //                    }
+        //                }
+        //                catch {
+        //                    print(error.localizedDescription)
+        //                }
+        //            }
+        //        }
+        
+        do {
+            doc_url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            guard let newFileURL = doc_url?.appendingPathComponent("\(name).json") else {
+                return
             }
-            else {
-                guard let path_data = data else {
-                    return
+            let jsonData = try Data(contentsOf: newFileURL)
+            if let path_json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? Dictionary<String,Any> {
+                if let new_path = path_json["path"] as? [Dictionary<String,String>] {
+                    for cord in new_path {
+                        
+                        let lat = Double(cord["latitude"]!)
+                        let long = Double(cord["longitude"]!)
+                        let c = CLLocation(latitude: lat!, longitude: long!)
+                        path.append(c)
+                        
                     }
-                do {
-                    if let path_json = try JSONSerialization.jsonObject(with: path_data, options: []) as? Dictionary<String,Any> {
-                        if let new_path = path_json["path"] as? [Dictionary<String,String>] {
-                            for cord in new_path {
-                                
-                                let lat = Double(cord["latitude"]!)
-                                let long = Double(cord["longitude"]!)
-                                let c = CLLocation(latitude: lat!, longitude: long!)
-                                path.append(c)
-                                
-                            }
-                            completion(path)
-                        }
-                    }
-                }
-                catch {
-                    print(error.localizedDescription)
+                    completion(path)
                 }
             }
+        } catch {
+            print(error)
         }
     }
     

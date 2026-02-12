@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -54,7 +55,7 @@
                                     <action selector="markCurrentSpot:" destination="ced-bd-RLB" eventType="touchUpInside" id="OGu-pB-T0h"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSf-0c-uKN">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSf-0c-uKN" userLabel="RecenterButton">
                                 <rect key="frame" x="328" y="701.66666666666663" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -66,7 +67,7 @@
                                     <action selector="keep_focus_btn:" destination="ced-bd-RLB" eventType="touchUpInside" id="cVO-eA-TJV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qn-Rg-OuS">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qn-Rg-OuS" userLabel="MapModeButton">
                                 <rect key="frame" x="15" y="701.66666666666663" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="mapViewButtonActive"/>
@@ -77,9 +78,12 @@
                                     <action selector="keep_focus_btn:" destination="ced-bd-RLB" eventType="touchUpInside" id="RkF-0k-9pX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mko-TI-kyG">
-                                <rect key="frame" x="171.66666666666666" y="701.66666666666663" width="50" height="50"/>
-                                <state key="normal" backgroundImage="coordinates"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mko-TI-kyG" userLabel="ShareButton">
+                                <rect key="frame" x="171.66666666666666" y="702" width="50" height="54.333333333333371"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <imageReference key="backgroundImage" image="iphone.badge.location" catalog="system" symbolScale="default"/>
+                                </state>
                                 <connections>
                                     <action selector="share_cordinates_action:" destination="ced-bd-RLB" eventType="touchUpInside" id="zB2-ni-qzW"/>
                                 </connections>
@@ -131,6 +135,7 @@
                     </view>
                     <connections>
                         <outlet property="distance_label" destination="Qd8-Hm-bgZ" id="ahQ-CE-ibF"/>
+                        <outlet property="mapModeButton" destination="1qn-Rg-OuS" id="ijC-nF-ZD3"/>
                         <outlet property="map_view" destination="pAD-KR-9AJ" id="IVW-Ks-V7h"/>
                         <outlet property="time_label" destination="Y3I-BM-uFh" id="pxk-xb-Fem"/>
                     </connections>
@@ -447,8 +452,8 @@
         <image name="EasyPathModeIcon" width="55" height="46"/>
         <image name="HardPathmodeIcon" width="55" height="46"/>
         <image name="MediumPathModeIcon" width="55" height="46"/>
-        <image name="background" width="375" height="667"/>
-        <image name="coordinates" width="29.666666030883789" height="29.666666030883789"/>
+        <image name="background" width="750" height="1334"/>
+        <image name="iphone.badge.location" catalog="system" width="89" height="128"/>
         <image name="mapViewButtonActive" width="32.5" height="31.5"/>
         <image name="navigation" width="30" height="30"/>
         <image name="satelites" width="30" height="30"/>
