@@ -25,7 +25,7 @@ class SaveDriveViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "FINISH PATH"
-        map_view.mapType = .satellite
+        map_view.mapType = .standard
         databaseRef = Database.database().reference()
         SwiftMessageBar.setSharedConfig(Theme.barConfig)
         // Do any additional setup after loading the view.

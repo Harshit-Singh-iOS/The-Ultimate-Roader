@@ -43,7 +43,7 @@ class HomeTabViewController: BaseViewController {
     
     @IBAction func startDriveAction(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "PathNavigation", bundle: nil)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "GoogleMapViewController") as? GoogleMapViewController
+        if let controller = storyboard.instantiateViewController(withIdentifier: "StartDrivingViewController") as? StartDrivingViewController
         {
             SwiftMessageBar.showMessageWithTitle("See Map", message: "Start Driving.", type: .info)
             navigationController?.pushViewController(controller, animated: true)

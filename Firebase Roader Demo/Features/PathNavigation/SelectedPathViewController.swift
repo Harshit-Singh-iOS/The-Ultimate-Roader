@@ -31,7 +31,7 @@ class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate,
     }
 
     func setUpLocationServices(){
-        map_view.mapType = .satellite
+        map_view.mapType = .standard
         locationManager.delegate = self
         map_view.delegate = self
     }
@@ -124,7 +124,7 @@ class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate,
             controller.delegate = self
             controller.userId = path?.userId
             controller.transitioningDelegate = self.overlayTransitioningDelegate
-            controller.modalPresentationStyle = .currentContext
+            controller.sheetPresentationController?.detents = [.medium()]
             DispatchQueue.main.async {
                 self.present(controller, animated: true, completion: nil)
             }

@@ -25,7 +25,6 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
     var storageRef = Storage.storage().reference()
     var ref = Database.database().reference()
     
-    
     @IBOutlet weak var typePickerView: UIPickerView!
     @IBOutlet weak var spotDescriptionTf: UITextView!
     @IBOutlet weak var spotImageView: UIImageView!
@@ -37,14 +36,29 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
         imagePickerCont.delegate = self
         typePickerView.delegate = self
         spot = Path.Spot()
-        spot?.cat = "General"
+        spot?.cat = Path.Spot.Category.allCases[0].rawValue
         spot?.category = .General
         spot?.location = loc
+        
+        setupUI()
+    }
+    
+    private func setupUI() {
         typePickerView.layer.borderColor = UIColor.white.cgColor
-        typePickerView.layer.borderWidth = 2
-        typePickerView.layer.cornerRadius = 10
+        typePickerView.layer.borderWidth = 1
+        
         spotDescriptionTf.placeholder = "Description"
         spotDescriptionTf.placeholderColor = UIColor.white
+        
+        if #available(iOS 26.0, *) {
+            spotDescriptionTf.cornerConfiguration = .corners(radius: .containerConcentric(minimum: 24))
+            typePickerView.cornerConfiguration = .corners(radius: .containerConcentric(minimum: 8))
+            spotImageView.cornerConfiguration = .corners(radius: .containerConcentric(minimum: 24))
+        } else {
+            spotDescriptionTf.layer.cornerRadius = 24
+            typePickerView.layer.cornerRadius = 8
+            spotImageView.layer.cornerRadius = 24
+        }
     }
     
 
@@ -70,7 +84,7 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
             spot?.spotImage = image
         }
         delegate?.addSpotMarker(spot: spot!)
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -85,29 +99,15 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 3
+        return Path.Spot.Category.allCases.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        if row == 1 {
-            return "Warning"
-        } else if row == 2 {
-            return "Recommendation"
-        } else {
-            return "General"
-        }
+        Path.Spot.Category.allCases[row].rawValue
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        var str = ""
-        if row == 1 {
-            str = "Warning"
-        } else if row == 2 {
-            str = "Recommendation"
-        } else {
-            str = "General"
-        }
+        var str = Path.Spot.Category.allCases[row].rawValue
         
         let type = NSAttributedString(string: str, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         
@@ -115,13 +115,8 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        spot?.category = Path.Spot.Category.allValues[row]
+        spot?.category = Path.Spot.Category.allCases[row]
         spot?.cat = spot?.category.rawValue
         title = "Add " + (spot?.cat)! + " note."
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

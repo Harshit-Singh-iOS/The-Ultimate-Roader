@@ -22,15 +22,17 @@ enum Icon {
 
 extension Path {
     class Spot: NSObject {
-        
-        enum Category: String {
-            case General = "general"
-            case Warning = "warning"
-            case Recommendation = "recommendation"
+
+        enum Category: String, CaseIterable {
+            case Scenic
+            case Lake
+            case Hill
+            case Mountain
+            case Beach
+            case Gyser
+            case Water
+            case General
             case Icon = "icon"
-            static var allValues = [General, Warning, Recommendation]
-            // Returns category icon with specified version. Ex: reccomendation_small.
-            func icon(_ version: Icon.Version) -> UIImage? { return UIImage(named: "\(self.rawValue)_\(version.rawValue)") }
         }
         
         var id: String?

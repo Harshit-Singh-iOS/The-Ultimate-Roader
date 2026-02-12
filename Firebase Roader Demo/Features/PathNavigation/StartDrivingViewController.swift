@@ -13,7 +13,7 @@ import FirebaseStorage
 import Firebase
 import FirebaseAuth
 
-class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MarkSpotProtocol, ShowSpotVCDelegate {
+class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MarkSpotProtocol, ShowSpotVCDelegate {
     
     @IBOutlet weak var distance_label: UILabel!
     @IBOutlet weak var time_label: UILabel!
@@ -247,7 +247,8 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
         if let controller = storyboard.instantiateViewController(withIdentifier: "MarkSpotViewController") as? MarkSpotViewController {
             controller.loc = path?.track.last
             controller.delegate = self
-            navigationController?.pushViewController(controller, animated: true)
+            controller.sheetPresentationController?.detents = [.medium()]
+            self.present(controller, animated: true)
         }
     }
     
@@ -269,7 +270,7 @@ class GoogleMapViewController: BaseViewController, CLLocationManagerDelegate, GM
             controller.userId = path?.userId
             controller.delegate = self
             controller.transitioningDelegate = self.overlayTransitioningDelegate
-            controller.modalPresentationStyle = .formSheet
+            controller.sheetPresentationController?.detents = [.medium()]
             DispatchQueue.main.async {
                 self.present(controller, animated: true, completion: nil)
             }

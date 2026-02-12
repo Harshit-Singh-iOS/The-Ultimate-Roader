@@ -60,7 +60,7 @@ class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, G
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Following Path"
-        map_view.mapType = .satellite
+        map_view.mapType = .standard
         locationManager.delegate = self
         map_view.delegate = self
         locationManager.startUpdatingLocation()
@@ -154,7 +154,7 @@ class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, G
             controller.delegate = self
             controller.userId = pathToFollow?.userId
             controller.transitioningDelegate = self.overlayTransitioningDelegate
-            controller.modalPresentationStyle = .formSheet
+            controller.sheetPresentationController?.detents = [.medium()]
             DispatchQueue.main.async {
                 self.present(controller, animated: true, completion: nil)
             }

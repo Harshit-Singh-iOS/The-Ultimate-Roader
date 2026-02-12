@@ -317,7 +317,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Firebase Roader Demo/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ultimate Roader";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -343,7 +343,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Firebase Roader Demo/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Ultimate Roader";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
