@@ -42,7 +42,7 @@ class StartDrivingViewController: BaseViewController, MarkSpotProtocol {
         
         animated_marker.icon = UIImage.animatedImage(with: Constants.animationImage, duration: 3.0)
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-            self?.update_label()
+            self?.updateLabel()
         }
     }
     
@@ -53,7 +53,6 @@ class StartDrivingViewController: BaseViewController, MarkSpotProtocol {
     
     deinit {
         stopTrackingPath()
-        print("************* deinit drive controller")
     }
     
     func setUpLocationServices() {
@@ -185,7 +184,7 @@ class StartDrivingViewController: BaseViewController, MarkSpotProtocol {
         mapView.setMinZoom(self.mapView.minZoom, maxZoom: self.mapView.maxZoom)
     }
     
-    @objc func update_label() {
+    @objc func updateLabel() {
         self.vm.time += 1
         
         let hours = self.vm.time / 3600

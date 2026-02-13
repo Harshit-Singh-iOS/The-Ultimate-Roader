@@ -58,7 +58,6 @@ class HomeTabViewController: BaseViewController {
         }
         catch {
             SwiftMessageBar.showMessageWithTitle("Problem!!", message: "Something went wrong.", type: .error)
-            print(error.localizedDescription)
         }
         SVProgressHUD.dismiss()
     }

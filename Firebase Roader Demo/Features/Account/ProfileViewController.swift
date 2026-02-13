@@ -115,7 +115,6 @@ class ProfileViewController: BaseViewController, UIImagePickerControllerDelegate
         storageRef.putData(data!,metadata: metaData) { (_, error) in
             if let error = error {
                 SVProgressHUD.dismiss()
-                print(error.localizedDescription)
                 SwiftMessageBar.showMessageWithTitle("Cannot upload", message: "Something went wrong.", type: .error)
                 return
             }

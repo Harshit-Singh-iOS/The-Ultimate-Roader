@@ -89,7 +89,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate , 
                                 SwiftMessageBar.showMessageWithTitle("Congrats!!", message: "Sign Up successful.", type: .success)
                             }
                             else {
-                                print(error?.localizedDescription ?? "Error")
                                 SwiftMessageBar.showMessageWithTitle("Error", message: "Something went wrong.", type: .error)
                             }
                         })
@@ -117,7 +116,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate , 
             storageRef.putData(data!,metadata: metaData) { (_, error) in
                 if let error = error {
                     SVProgressHUD.dismiss()
-                    print(error.localizedDescription)
                     SwiftMessageBar.showMessageWithTitle("Cannot upload", message: "Something went wrong.", type: .error)
                     return
                 }
