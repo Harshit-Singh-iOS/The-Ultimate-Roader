@@ -46,14 +46,10 @@ class ManagePathManager: NSObject {
     }
     
     func addEndpath(pathId: String) {
-        
-        guard let url = file_url else{
-            return
-        }
-        let fileHandle = FileHandle(forWritingAtPath: (url.path))
         fileHandle?.seekToEndOfFile()
         fileHandle?.write("]}".data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!)
-        
+        try? fileHandle?.close()
+        fileHandle = nil
         uploadToFireBase(pathId: pathId)
     }
     
