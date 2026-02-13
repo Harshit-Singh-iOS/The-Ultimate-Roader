@@ -28,7 +28,7 @@ class AllPathViewController: BaseViewController, UITableViewDataSource, UITableV
     
     func getUsersPaths() {
         SVProgressHUD.show()
-        ManagePath.getUsersPaths { (all_path) in
+        ManagePathManager.sharedinstance.getUsersPaths { (all_path) in
             if let paths = all_path as? [Path] {
                 self.path_list = paths
                 self.permanent_path_list = paths
@@ -45,7 +45,7 @@ class AllPathViewController: BaseViewController, UITableViewDataSource, UITableV
     
     func getAllPublicPaths() {
         SVProgressHUD.show()
-        ManagePath.getAllPublicPaths{ (all_path) in
+        ManagePathManager.sharedinstance.getAllPublicPaths{ (all_path) in
             if let paths = all_path as? [Path] {
                 self.path_list = paths
                 self.permanent_path_list = paths

@@ -37,7 +37,7 @@ class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate,
     
     func setUpPath() {
         SVProgressHUD.show()
-        ManagePath.getPathFromFile(name: file_name!) { (track) in
+        ManagePathManager.sharedinstance.getPathFromFile(name: file_name!) { (track) in
             if let cord_list = track as? [CLLocation] {
                 self.path?.track = cord_list
             }

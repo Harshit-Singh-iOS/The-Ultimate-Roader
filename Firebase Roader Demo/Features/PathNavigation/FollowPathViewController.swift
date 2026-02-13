@@ -218,7 +218,7 @@ class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, G
     }
     
     func popUpForPathComplete() {
-        ManagePath.addFollowedUser(path: pathToFollow!)
+        ManagePathManager.sharedinstance.addFollowedUser(path: pathToFollow!)
         let alert = UIAlertController(title: "Trip complete!!", message: "You have reach destination.", preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default) { (act) in
             for controller in (self.navigationController?.viewControllers)! {

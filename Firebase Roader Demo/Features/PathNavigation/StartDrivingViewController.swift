@@ -74,7 +74,7 @@ class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate,
         path = Path()
         path?.pathID = databaseRef?.key
         if let pathId = path?.pathID {
-            ManagePath.addInitialPath(pathID: pathId)
+            ManagePathManager.sharedinstance.addInitialPath(pathID: pathId)
         }
     }
     
@@ -92,7 +92,7 @@ class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate,
             
             path?.track.append(loc)
             addRouteToPath(loc: loc)
-            ManagePath.addCordinateTopath(latidude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
+            ManagePathManager.sharedinstance.addCordinateTopath(latidude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
             distance = gmsPath.length(of: .geodesic)
             length = distance / 1000
             DispatchQueue.main.async { [unowned self] in
@@ -141,7 +141,7 @@ class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate,
             animated_marker.map = nil
             setMapBounds()
             createMarker(loc: (path?.track.last)!, name: "ending_point")
-            ManagePath.addEndpath(pathId: (path?.pathID)!)
+            ManagePathManager.sharedinstance.addEndpath(pathId: (path?.pathID)!)
             SwiftMessageBar.showMessageWithTitle("Trip Complete!!", message: "Fill information.", type: .success)
             createPathTableInFire()
         } else {
