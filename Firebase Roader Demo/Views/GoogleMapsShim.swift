@@ -25,7 +25,7 @@ final class GMSMapView: MKMapView, MKMapViewDelegate {
     private(set) var minZoom: Float = 0
     private(set) var maxZoom: Float = 20
 
-    override var delegate: MKMapViewDelegate? {
+    override weak var delegate: MKMapViewDelegate? {
         get { gmsDelegate }
         set {
             gmsDelegate = newValue as? GMSMapViewDelegate
@@ -66,7 +66,7 @@ final class GMSMapView: MKMapView, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         gmsDelegate?.mapView(self, willMove: true)
     }
-
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation as? GMSMarkerAnnotation {
             _ = gmsDelegate?.mapView(self, didTap: annotation.marker)

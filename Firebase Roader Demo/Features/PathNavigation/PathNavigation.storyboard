@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -96,7 +95,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="finish_trip_action:" destination="ced-bd-RLB" eventType="touchUpInside" id="BVh-iw-6lz"/>
+                                    <action selector="finishTripAction:" destination="ced-bd-RLB" eventType="touchUpInside" id="BVh-iw-6lz"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -134,10 +133,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="distance_label" destination="Qd8-Hm-bgZ" id="ahQ-CE-ibF"/>
+                        <outlet property="distanceLabel" destination="Qd8-Hm-bgZ" id="ahQ-CE-ibF"/>
                         <outlet property="mapModeButton" destination="1qn-Rg-OuS" id="ijC-nF-ZD3"/>
-                        <outlet property="map_view" destination="pAD-KR-9AJ" id="IVW-Ks-V7h"/>
-                        <outlet property="time_label" destination="Y3I-BM-uFh" id="pxk-xb-Fem"/>
+                        <outlet property="mapView" destination="pAD-KR-9AJ" id="IVW-Ks-V7h"/>
+                        <outlet property="timeLabel" destination="Y3I-BM-uFh" id="pxk-xb-Fem"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IKY-IW-f9n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -205,7 +204,7 @@
             <objects>
                 <viewController storyboardIdentifier="ModifyPathDetailsViewController" id="ltN-4X-mbv" customClass="ModifyPathDetailsViewController" customModule="Firebase_Roader_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6os-AU-Geu">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="340.66666666666669"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="340.66666666666674"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="b6I-UK-VXu">
