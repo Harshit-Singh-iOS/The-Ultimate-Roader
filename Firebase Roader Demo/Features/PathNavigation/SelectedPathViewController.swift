@@ -19,7 +19,6 @@ class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate,
     var path: Path?
     var name = ""
     var file_name: String?
-    let overlayTransitioningDelegate = OverlayTransitionDelegate()
     
     @IBOutlet weak var map_view: GMSMapView!
     
@@ -123,7 +122,6 @@ class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate,
             controller.spotIndex = Int(marker.title!)
             controller.delegate = self
             controller.userId = path?.userId
-            controller.transitioningDelegate = self.overlayTransitioningDelegate
             controller.sheetPresentationController?.detents = [.medium()]
             DispatchQueue.main.async {
                 self.present(controller, animated: true, completion: nil)

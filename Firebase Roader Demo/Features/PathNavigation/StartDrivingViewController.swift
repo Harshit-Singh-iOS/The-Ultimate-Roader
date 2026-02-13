@@ -37,7 +37,6 @@ class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate,
     var mapBackgroundOverlayer1 = GMSGroundOverlay()
     var mapBackgroundOverlayer2 = GMSGroundOverlay()
     var mapBackgroundOverlayer3 = GMSGroundOverlay()
-    let overlayTransitioningDelegate = OverlayTransitionDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +46,9 @@ class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate,
         databaseRef = Database.database().reference()
         start_trip()
         animationImage()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update_label), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            self?.update_label()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -228,8 +229,7 @@ class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate,
             if let lat = path?.track.last?.coordinate.latitude, let lng = path?.track.last?.coordinate.longitude {
                 controller.cord_val = "(\(String(format: "%.04f", lat)), \(String(format: "%.04f", lng)))"
             }
-            controller.transitioningDelegate = self.overlayTransitioningDelegate
-            controller.modalPresentationStyle = .custom
+            controller.sheetPresentationController?.detents = [.medium()]
             DispatchQueue.main.async {
                 self.present(controller, animated: true, completion: nil)
             }
@@ -274,7 +274,6 @@ class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate,
             controller.spotIndex = Int(marker.title!)
             controller.userId = path?.userId
             controller.delegate = self
-            controller.transitioningDelegate = self.overlayTransitioningDelegate
             controller.sheetPresentationController?.detents = [.medium()]
             DispatchQueue.main.async {
                 self.present(controller, animated: true, completion: nil)

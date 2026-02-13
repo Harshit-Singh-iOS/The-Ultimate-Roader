@@ -33,7 +33,6 @@ class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, G
     var location: CLLocation?
     var start_following: Bool = false
     var follow_btn_case: buttonName = .StartTrip
-    let overlayTransitioningDelegate = OverlayTransitionDelegate()
     
     var currentLocation : CLLocation? {
         didSet {
@@ -153,7 +152,6 @@ class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, G
             controller.spotIndex = Int(marker.title!)
             controller.delegate = self
             controller.userId = pathToFollow?.userId
-            controller.transitioningDelegate = self.overlayTransitioningDelegate
             controller.sheetPresentationController?.detents = [.medium()]
             DispatchQueue.main.async {
                 self.present(controller, animated: true, completion: nil)
