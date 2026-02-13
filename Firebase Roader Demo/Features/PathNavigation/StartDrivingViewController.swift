@@ -50,7 +50,12 @@ class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate,
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update_label), userInfo: nil, repeats: true)
     }
     
-    func setUpLocationServices(){
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer.invalidate()
+    }
+    
+    func setUpLocationServices() {
         changemapModeAction(mapModeButton)
         locationManager.delegate = self
         map_view.delegate = self
@@ -88,8 +93,8 @@ class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate,
             addRouteToPath(loc: loc)
             ManagePath.addCordinateTopath(latidude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
             distance = gmsPath.length(of: .geodesic)
-            length = distance/1000
-            DispatchQueue.main.async {
+            length = distance / 1000
+            DispatchQueue.main.async { [unowned self] in
                 self.distance_label.text = String(format: "%.01f", self.length)+" km"
             }
         }
@@ -172,18 +177,18 @@ class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate,
                     Database.database().reference().child("SpotList").child(spotId).updateChildValues(spotDict)
                 }
                 
-                if let img = spot.spotImage {
+                if let img = spot.spotImage, let spotId = spot.id {
                     let data = img.jpegData(compressionQuality: 0.8)
                     let metaData = StorageMetadata()
                     metaData.contentType = "image/jpeg"
-                    let imagename = "SpotImage/\(String(describing: spot.id)).jpeg"
+                    let imagename = "SpotImage/\(spotId).jpeg"
                     storageRef = storageRef.child(imagename)
-                    storageRef.putData(data!,metadata: metaData) { (_, error) in
+                    storageRef.putData(data!,metadata: metaData) { [weak self] (_, error) in
                         if let error = error {
                             print(error.localizedDescription)
                             return
                         }
-                        self.storageRef.downloadURL { url, error in
+                        self?.storageRef.downloadURL { url, error in
                             let spotImageUrl = url?.absoluteString
                             if let spotId = spot.id {
                                 Database.database().reference().child("SpotList").child(spotId).updateChildValues(["spotImageUrl": spotImageUrl as Any])
@@ -198,21 +203,21 @@ class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate,
             }
         }
         
-        self.databaseRef?.updateChildValues(pathDict, withCompletionBlock: { (error, ref) in
+        self.databaseRef?.updateChildValues(pathDict, withCompletionBlock: { [weak self](error, ref) in
             if let key = ref.key {
                 Database.database().reference().child("Users").child(userId).child("Paths").updateChildValues([key: "id"])
             }
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 let alertController = UIAlertController.init(title: "Complete Drive!", message: "Go to next.", preferredStyle: .alert)
                 let action = UIAlertAction(title: "Ok", style: .default, handler: { (alert) in
                     let storyboard = UIStoryboard(name: "PathNavigation", bundle: nil)
                     if let controller = storyboard.instantiateViewController(withIdentifier: "SaveDriveViewController") as? SaveDriveViewController {
-                        controller.path = self.path
-                        self.navigationController?.pushViewController(controller, animated: true)
+                        controller.path = self?.path
+                        self?.navigationController?.pushViewController(controller, animated: true)
                     }
                 })
                 alertController.addAction(action)
-                self.present(alertController, animated: true, completion: nil)
+                self?.present(alertController, animated: true, completion: nil)
             }
         })
     }
@@ -301,7 +306,7 @@ class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate,
         let minutes = self.time / 60
         let seconds = self.time % 60
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
             self.time_label.text = String(format: "%02d", hours) + ":"
             + String(format: "%02d", minutes) + ":"
             + String(format: "%02d", seconds)
@@ -359,9 +364,5 @@ class StartDrivingViewController: BaseViewController, CLLocationManagerDelegate,
         self.mapBackgroundOverlayer2.map = nil
         self.mapBackgroundOverlayer3.map = nil
         map_view.mapType = .hybrid
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }

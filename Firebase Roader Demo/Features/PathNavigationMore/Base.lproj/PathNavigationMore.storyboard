@@ -410,7 +410,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="gcb-2F-hZE">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="473"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5KX-27-YdL">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7R6-G9-7tb" userLabel="PlaceHolderImage">
+                                <rect key="frame" x="20" y="21.666666666666657" width="175" height="172"/>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="68H-Tq-Vor"/>
+                                    <constraint firstAttribute="width" constant="175" id="LMX-DF-iTW"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5KX-27-YdL">
                                 <rect key="frame" x="20" y="20" width="175" height="175"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="175" id="9Jt-0r-oeR"/>
@@ -435,24 +443,6 @@
                                     <action selector="pickImageAction:" destination="JsP-vd-NRY" eventType="touchUpInside" id="iMj-ng-Qev"/>
                                 </connections>
                             </button>
-                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4FW-Ly-oTb">
-                                <rect key="frame" x="20" y="319" width="390" height="140"/>
-                                <color key="backgroundColor" red="0.22580901015228427" green="0.22580901015228427" blue="0.22580901015228427" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="VbY-go-4rX"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
-                            </textView>
-                            <pickerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l3k-J4-obb">
-                                <rect key="frame" x="215" y="107" width="195" height="88"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="88" id="ih5-yu-kmR"/>
-                                </constraints>
-                            </pickerView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaE-rw-uI5">
                                 <rect key="frame" x="350" y="20" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.72933533029999997" green="0.21546187325570468" blue="0.30455867780394091" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -478,15 +468,35 @@
                                     <action selector="pickImageAction:" destination="JsP-vd-NRY" eventType="touchUpInside" id="Nbh-nB-69f"/>
                                 </connections>
                             </button>
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4FW-Ly-oTb">
+                                <rect key="frame" x="20" y="319" width="390" height="140"/>
+                                <color key="backgroundColor" red="0.22580901015228427" green="0.22580901015228427" blue="0.22580901015228427" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="VbY-go-4rX"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                            </textView>
+                            <pickerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l3k-J4-obb">
+                                <rect key="frame" x="215" y="107" width="195" height="88"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="ih5-yu-kmR"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aJc-Y7-w3j"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="7R6-G9-7tb" firstAttribute="leading" secondItem="5KX-27-YdL" secondAttribute="leading" id="0Jd-Cd-emb"/>
                             <constraint firstAttribute="trailing" secondItem="SaE-rw-uI5" secondAttribute="trailing" constant="20" id="1pl-Ic-RSl"/>
                             <constraint firstItem="4FW-Ly-oTb" firstAttribute="leading" secondItem="5KX-27-YdL" secondAttribute="leading" id="23Y-47-lI8"/>
                             <constraint firstItem="fRB-0B-jKk" firstAttribute="width" secondItem="5KX-27-YdL" secondAttribute="width" multiplier="0.571429" id="3B8-kc-WdC"/>
                             <constraint firstItem="l3k-J4-obb" firstAttribute="leading" secondItem="5KX-27-YdL" secondAttribute="trailing" constant="20" id="6P1-R0-mAS"/>
                             <constraint firstItem="fRB-0B-jKk" firstAttribute="top" secondItem="5KX-27-YdL" secondAttribute="bottom" constant="16" id="AMG-zh-6le"/>
+                            <constraint firstItem="7R6-G9-7tb" firstAttribute="trailing" secondItem="5KX-27-YdL" secondAttribute="trailing" id="HjR-id-sW6"/>
                             <constraint firstItem="fRB-0B-jKk" firstAttribute="centerX" secondItem="5KX-27-YdL" secondAttribute="centerX" id="NYi-6E-whx"/>
                             <constraint firstItem="aJc-Y7-w3j" firstAttribute="trailing" secondItem="4FW-Ly-oTb" secondAttribute="trailing" constant="20" id="SXN-ef-tTO"/>
                             <constraint firstItem="gcb-2F-hZE" firstAttribute="top" secondItem="Pr7-r6-4tJ" secondAttribute="top" id="d7C-C9-dF1"/>
@@ -494,9 +504,11 @@
                             <constraint firstItem="5KX-27-YdL" firstAttribute="leading" secondItem="aJc-Y7-w3j" secondAttribute="leading" constant="20" id="hxq-rZ-awI"/>
                             <constraint firstItem="gcb-2F-hZE" firstAttribute="trailing" secondItem="aJc-Y7-w3j" secondAttribute="trailing" id="iLD-RB-nP0"/>
                             <constraint firstAttribute="bottom" secondItem="gcb-2F-hZE" secondAttribute="bottom" id="lxE-xj-jKY"/>
+                            <constraint firstItem="7R6-G9-7tb" firstAttribute="top" secondItem="5KX-27-YdL" secondAttribute="top" id="mY3-Uq-PYB"/>
                             <constraint firstItem="SaE-rw-uI5" firstAttribute="top" secondItem="Pr7-r6-4tJ" secondAttribute="top" constant="20" id="pxr-Ga-PSA"/>
                             <constraint firstItem="aJc-Y7-w3j" firstAttribute="trailing" secondItem="l3k-J4-obb" secondAttribute="trailing" constant="20" id="r2n-sh-11e"/>
                             <constraint firstItem="gcb-2F-hZE" firstAttribute="leading" secondItem="aJc-Y7-w3j" secondAttribute="leading" id="tVq-JE-2CA"/>
+                            <constraint firstItem="7R6-G9-7tb" firstAttribute="bottom" secondItem="5KX-27-YdL" secondAttribute="bottom" id="tsu-Xy-Fkf"/>
                             <constraint firstItem="l3k-J4-obb" firstAttribute="bottom" secondItem="5KX-27-YdL" secondAttribute="bottom" id="uXs-8T-VXI"/>
                             <constraint firstItem="5KX-27-YdL" firstAttribute="top" secondItem="Pr7-r6-4tJ" secondAttribute="top" constant="20" id="xd8-gl-0C2"/>
                         </constraints>
@@ -523,6 +535,14 @@
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="YPs-6k-7LO">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="640"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hSk-Ro-5HM" userLabel="PlaceHolderImage">
+                                <rect key="frame" x="127.66666666666669" y="167.66666666666666" width="175" height="171.99999999999997"/>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="175" id="LMe-PC-NOH"/>
+                                    <constraint firstAttribute="height" constant="175" id="MVt-5g-6ry"/>
+                                </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G8r-mT-2rI">
                                 <rect key="frame" x="115" y="166" width="200" height="200"/>
@@ -601,14 +621,18 @@
                             <constraint firstItem="wp5-hm-nSv" firstAttribute="top" relation="greaterThanOrEqual" secondItem="P7t-PE-sUl" secondAttribute="top" id="5F5-KS-QT5"/>
                             <constraint firstItem="P7t-PE-sUl" firstAttribute="trailing" secondItem="wp5-hm-nSv" secondAttribute="trailing" constant="24" id="5bs-uT-Aus"/>
                             <constraint firstItem="P7t-PE-sUl" firstAttribute="trailing" secondItem="YPs-6k-7LO" secondAttribute="trailing" id="5hC-qG-6BE"/>
+                            <constraint firstItem="hSk-Ro-5HM" firstAttribute="width" secondItem="G8r-mT-2rI" secondAttribute="width" multiplier="0.875" id="7JX-Ts-H7h"/>
                             <constraint firstItem="P7t-PE-sUl" firstAttribute="trailing" secondItem="n35-be-rfb" secondAttribute="trailing" constant="24" id="7XR-6L-cep"/>
                             <constraint firstItem="G8r-mT-2rI" firstAttribute="top" secondItem="P7t-PE-sUl" secondAttribute="top" constant="48" id="8Wf-Ua-UOr"/>
                             <constraint firstItem="n35-be-rfb" firstAttribute="top" secondItem="P7t-PE-sUl" secondAttribute="top" constant="24" id="AX6-pg-osH"/>
                             <constraint firstItem="YPs-6k-7LO" firstAttribute="top" secondItem="ID1-wH-KMw" secondAttribute="top" id="BAu-tI-9Xi"/>
                             <constraint firstItem="wp5-hm-nSv" firstAttribute="leading" secondItem="P7t-PE-sUl" secondAttribute="leading" constant="24" id="I2y-I4-4O3"/>
                             <constraint firstItem="G8r-mT-2rI" firstAttribute="centerX" secondItem="P7t-PE-sUl" secondAttribute="centerX" id="Rrc-DT-WsP"/>
+                            <constraint firstItem="hSk-Ro-5HM" firstAttribute="height" secondItem="G8r-mT-2rI" secondAttribute="height" multiplier="0.875" id="Vss-8D-lcX"/>
                             <constraint firstItem="wp5-hm-nSv" firstAttribute="top" secondItem="G8r-mT-2rI" secondAttribute="bottom" constant="24" id="YR7-dz-qjq"/>
                             <constraint firstAttribute="bottom" secondItem="YPs-6k-7LO" secondAttribute="bottom" id="iw5-kh-Vgl"/>
+                            <constraint firstItem="hSk-Ro-5HM" firstAttribute="centerX" secondItem="G8r-mT-2rI" secondAttribute="centerX" id="vOT-EX-huG"/>
+                            <constraint firstItem="hSk-Ro-5HM" firstAttribute="top" secondItem="G8r-mT-2rI" secondAttribute="top" id="yZj-Hl-6cf"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="430" height="621"/>
@@ -631,6 +655,7 @@
         <image name="close" width="1000" height="1000"/>
         <image name="follower" width="33.333332061767578" height="33.333332061767578"/>
         <image name="path" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
         <image name="time" width="24.666666030883789" height="24.666666030883789"/>
         <image name="total_distance" width="24.666666030883789" height="24.666666030883789"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
