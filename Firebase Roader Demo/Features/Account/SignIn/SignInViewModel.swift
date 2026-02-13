@@ -11,7 +11,14 @@ import FirebaseAuth
 import GoogleSignIn
 import FirebaseDatabase
 
+@Observable
 class SignInViewModel {
+    weak var controller: UIViewController?
+    
+    init(parent: UIViewController? = nil) {
+        self.controller = parent
+    }
+
     func signInWith(email: String, password: String) async -> Result<Any?, Error> {
         do {
             _ = try await Auth.auth().signIn(withEmail: email, password: password)
@@ -21,8 +28,7 @@ class SignInViewModel {
         }
     }
     
-    @MainActor
-    func googleSignIn(controller: UIViewController?) async -> Result<Any?, Error> {
+    func googleSignIn() async -> Result<Any?, Error> {
         do {
             guard let controller else { return .failure(NSError(domain: "No presenting screen", code: -999)) }
             
@@ -40,6 +46,13 @@ class SignInViewModel {
         } catch {
             return .failure(error)
         }
+    }
+    
+    func signUp() {
+        let storyboard = UIStoryboard(name: "Account", bundle: nil)
+        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
+        signUpViewController?.modalPresentationStyle = .fullScreen
+        controller?.present(signUpViewController!, animated: true, completion: nil)
     }
     
     func resetPassword(email: String) async -> Error? {
@@ -61,7 +74,7 @@ class SignInViewModel {
                 ]
                 
                 let ref = Database.database().reference()
-                try? await ref.child("Users").child(uid).updateChildValues(userDict)
+                _ = try? await ref.child("Users").child(uid).updateChildValues(userDict as [AnyHashable : Any])
             }
         }
     }

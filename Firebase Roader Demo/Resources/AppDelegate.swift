@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import GoogleSignIn
 import FirebaseAuth
+import SwiftUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -44,8 +45,10 @@ extension AppDelegate {
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
             controller = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController")
         } else {
-            let storyboard = UIStoryboard(name: "Account", bundle: nil)
-            controller = storyboard.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
+            let view = SignInView(viewModel: .init())
+            let hostVC = UIHostingController(rootView: view)
+            (hostVC.rootView as SignInView).viewModel.controller = hostVC
+            controller = hostVC
         }
         
         window = UIWindow(frame: UIScreen.main.bounds)
