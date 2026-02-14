@@ -13,7 +13,7 @@ struct URTextfieldStyle: TextFieldStyle {
         configuration.body
             .padding()
             .background(.white)
-            .foregroundStyle(.primary)
+            .foregroundStyle(.black)
             .clipShape(.capsule)
     }
 }

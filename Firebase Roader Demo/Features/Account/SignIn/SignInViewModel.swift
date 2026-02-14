@@ -48,13 +48,6 @@ class SignInViewModel {
         }
     }
     
-    func signUp() {
-        let storyboard = UIStoryboard(name: "Account", bundle: nil)
-        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
-        signUpViewController?.modalPresentationStyle = .fullScreen
-        controller?.present(signUpViewController!, animated: true, completion: nil)
-    }
-    
     func resetPassword(email: String) async -> Error? {
         do {
             try await Auth.auth().sendPasswordReset(withEmail: email)

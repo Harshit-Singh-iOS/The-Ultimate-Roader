@@ -15,23 +15,21 @@ struct SignInView: View {
     @State private var email: String = LoginConstants.em
     @State private var password: String = LoginConstants.pass
     @State private var isLoading: Bool = false
+    @State private var showSignUp: Bool = false
     
     var body: some View {
-        Image("Intro_screen")
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .blur(radius: 4)
-            .ignoresSafeArea()
-            .overlay {
-                signInForm
-                    .frame(maxWidth: 300)
-            }
+        signInForm
+            .frame(maxWidth: 300)
+            .appBackground()
             .overlay {
                 if isLoading {
                     ProgressView()
                         .foregroundStyle(.white)
                         .font(.largeTitle)
                 }
+            }
+            .sheet(isPresented: $showSignUp) {
+                SignUpView()
             }
     }
     
@@ -49,7 +47,7 @@ struct SignInView: View {
             SecureField("Password", text: $password)
                 .textContentType(.password)
                 .textFieldStyle(.URStyle)
-                
+            
             signInButtons
             
             otherButtons
@@ -106,7 +104,7 @@ struct SignInView: View {
     private var otherButtons: some View {
         HStack {
             Button("Sign up") {
-                viewModel.signUp()
+                showSignUp = true
             }
             .buttonStyle(.URSecondary)
             
