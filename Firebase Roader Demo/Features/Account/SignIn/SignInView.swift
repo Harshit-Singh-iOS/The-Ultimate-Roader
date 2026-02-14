@@ -20,7 +20,7 @@ struct SignInView: View {
         Image("Intro_screen")
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .blur(radius: 8)
+            .blur(radius: 4)
             .ignoresSafeArea()
             .overlay {
                 signInForm
@@ -37,12 +37,19 @@ struct SignInView: View {
     
     private var signInForm: some View {
         VStack(alignment: .center, spacing: 24) {
+            Image("logo2")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 200)
+            
             TextField("Email", text: $email)
-                .textFieldStyle(.roundedBorder)
+                .textContentType(.emailAddress)
+                .textFieldStyle(.URStyle)
             
-            TextField("Password", text: $password)
-                .textFieldStyle(.roundedBorder)
-            
+            SecureField("Password", text: $password)
+                .textContentType(.password)
+                .textFieldStyle(.URStyle)
+                
             signInButtons
             
             otherButtons
@@ -70,7 +77,7 @@ struct SignInView: View {
                     }
                 }
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(.URPrimary)
             
             Button {
                 Task { @MainActor in
@@ -91,7 +98,7 @@ struct SignInView: View {
                     Text("Sign in with Google")
                 }
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(.URPrimary)
         }
         .tint(Theme.themeColor)
     }
@@ -101,8 +108,7 @@ struct SignInView: View {
             Button("Sign up") {
                 viewModel.signUp()
             }
-            .buttonStyle(.bordered)
-            .foregroundStyle(Theme.themeColor)
+            .buttonStyle(.URSecondary)
             
             Button("Reset password") {
                 guard !email.isEmpty else {
@@ -122,8 +128,7 @@ struct SignInView: View {
                 }
                 
             }
-            .buttonStyle(.bordered)
-            .foregroundStyle(Theme.themeColor)
+            .buttonStyle(.URSecondary)
         }
     }
 }
