@@ -11,18 +11,20 @@ struct LocalInformationView: View {
     @State private var vm = LocalInformationViewModel()
 
     var body: some View {
-        VStack {
-            Text(vm.directionText)
-                .font(.title2)
-                .foregroundStyle(.white)
-            
-            compassView
-            weatherView
+        NavigationStack {
+            VStack {
+                Text(vm.directionText)
+                    .font(.title2)
+                    .foregroundStyle(.white)
+                
+                compassView
+                weatherView
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .appBackground()
+            .navigationTitle("Information")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .appBackground()
-        .navigationTitle("Information")
-        .navigationBarTitleDisplayMode(.inline)
         .overlay {
             if vm.isLoading { ProgressView().tint(Theme.themeColor) }
         }

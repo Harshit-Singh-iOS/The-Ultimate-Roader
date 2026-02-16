@@ -26,13 +26,12 @@ struct UserProfileView: View {
                     .textInputAutocapitalization(.never)
                     .keyboardType(.emailAddress)
                 TextField("City", text: $vm.city)
+                
+                Button("Save") { save() }
+                    .buttonStyle(.URPrimary)
             }
             .textFieldStyle(.URStyle)
             .frame(width: 300)
-        }
-        .safeAreaInset(edge: .bottom) {
-            Button("Save") { save() }
-                .buttonStyle(.URPrimary)
         }
         .appBackground()
         .navigationTitle("Profile")

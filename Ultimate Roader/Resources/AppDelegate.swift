@@ -42,8 +42,9 @@ extension AppDelegate {
         let controller: UIViewController?
         
         if authenticated {
-            let storyboard = UIStoryboard(name: "Home", bundle: nil)
-            controller = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController")
+            controller = UIHostingController(rootView: HomeTabView())
+//            let storyboard = UIStoryboard(name: "Home", bundle: nil)
+//            controller = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController")
         } else {
             let view = SignInView(viewModel: .init())
             let hostVC = UIHostingController(rootView: view)
