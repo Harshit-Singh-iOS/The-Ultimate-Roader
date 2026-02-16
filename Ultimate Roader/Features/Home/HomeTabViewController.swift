@@ -22,7 +22,7 @@ class HomeTabViewController: BaseViewController {
     }
 
     @IBAction func setting_action(_ sender: UIButton) {
-        let controller = UIHostingController(rootView: UserProfileView())
+        let controller = UIHostingController(rootView: SettingsView())
         navigationController?.pushViewController(controller, animated: true)
     }
     

@@ -14,6 +14,7 @@ struct LocalInformationView: View {
         VStack {
             Text(vm.directionText)
                 .font(.title2)
+                .foregroundStyle(.white)
             
             compassView
             weatherView

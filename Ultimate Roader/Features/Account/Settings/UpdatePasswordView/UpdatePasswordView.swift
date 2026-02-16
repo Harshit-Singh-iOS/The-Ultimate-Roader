@@ -21,12 +21,9 @@ struct UpdatePasswordView: View {
             SecureField("New password", text: $newPassword)
             SecureField("Confirm password", text: $confirmPassword)
 
-            Button("Change password") { changePassword() }
+            Button("Update") { changePassword() }
                 .buttonStyle(.URPrimary)
                 .padding(.top, 12)
-
-            Button("Cancel") { dismiss() }
-                .buttonStyle(.URSecondary)
         }
         .textFieldStyle(.URStyle)
         .frame(width: 300)

@@ -31,15 +31,8 @@ struct UserProfileView: View {
             .frame(width: 300)
         }
         .safeAreaInset(edge: .bottom) {
-            VStack(spacing: 12) {
-                Button("Save") { save() }
-                    .buttonStyle(.URPrimary)
-                NavigationLink("Change password") {
-                    UpdatePasswordView()
-                }
+            Button("Save") { save() }
                 .buttonStyle(.URPrimary)
-            }
-            .padding(.top, 24)
         }
         .appBackground()
         .navigationTitle("Settings")
