@@ -26,9 +26,13 @@ struct SignUpView: View {
                     TextField("First name", text: $vm.fName)
                     TextField("Last name", text: $vm.lName)
                     TextField("Email", text: $vm.email)
+                        .textInputAutocapitalization(.never)
+                        .keyboardType(.emailAddress)
                     TextField("city", text: $vm.city)
                     SecureField("Password", text: $vm.password)
+                        .textInputAutocapitalization(.never)
                     SecureField("Confirm password", text: $vm.confirmPassword)
+                        .textInputAutocapitalization(.never)
                 }
                 .textFieldStyle(.URStyle)
                 .frame(width: 300)

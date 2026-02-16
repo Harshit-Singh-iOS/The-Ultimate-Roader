@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import SVProgressHUD
+import SwiftUI
 
 class HomeTabViewController: BaseViewController {
 
@@ -21,10 +22,8 @@ class HomeTabViewController: BaseViewController {
     }
 
     @IBAction func setting_action(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Account", bundle: nil)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
-            navigationController?.pushViewController(controller, animated: true)
-        }
+        let controller = UIHostingController(rootView: UserProfileView())
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func information_btn_action(_ sender: UIButton) {

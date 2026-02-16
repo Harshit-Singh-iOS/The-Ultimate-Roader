@@ -12,7 +12,9 @@ import FirebaseStorage
 import FirebaseDatabase
 import UIKit
 import _PhotosUI_SwiftUI
+import FirebaseDatabaseInternal
 
+@Observable
 class SignUpViewModel {
     var databaseRef: DatabaseReference?
     var storageRef = Storage.storage().reference()

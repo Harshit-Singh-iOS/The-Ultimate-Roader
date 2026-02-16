@@ -46,7 +46,8 @@ struct SignInView: View {
                 .frame(width: 200)
             
             TextField("Email", text: $email)
-                .textContentType(.emailAddress)
+                .textInputAutocapitalization(.never)
+                .keyboardType(.emailAddress)
                 .textFieldStyle(.URStyle)
             
             SecureField("Password", text: $password)
