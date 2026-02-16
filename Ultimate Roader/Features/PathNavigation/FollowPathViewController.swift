@@ -16,7 +16,7 @@ enum buttonName: String {
     case StopTrip = "stop"
 }
 
-class FollowPathViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate, ShowSpotVCDelegate {
+class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, ShowSpotVCDelegate {
 
     var FollowPathDistanceDelta: CLLocationDistance = 5 //meters
     @IBOutlet weak var map_view: GMSMapView!

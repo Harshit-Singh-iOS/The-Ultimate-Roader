@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 
-class StartDrivingViewController: BaseViewController, MarkSpotProtocol {
+class StartDrivingViewController: UIViewController, MarkSpotProtocol {
     
     let vm = StartDrivingViewModel()
     

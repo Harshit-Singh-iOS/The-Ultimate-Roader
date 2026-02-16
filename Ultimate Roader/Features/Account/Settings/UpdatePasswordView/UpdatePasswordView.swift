@@ -14,16 +14,19 @@ struct UpdatePasswordView: View {
     @State private var newPassword: String = ""
     @State private var confirmPassword: String = ""
     @State private var isLoading: Bool = false
-
+    
     var body: some View {
-        VStack(spacing: 16) {
-            SecureField("Old password", text: $oldPassword)
-            SecureField("New password", text: $newPassword)
-            SecureField("Confirm password", text: $confirmPassword)
-
+        ScrollView {
+            VStack(spacing: 24) {
+                SecureField("Old password", text: $oldPassword)
+                SecureField("New password", text: $newPassword)
+                SecureField("Confirm password", text: $confirmPassword)
+            }
+            .padding(.top, 100)
+        }
+        .safeAreaInset(edge: .bottom) {
             Button("Update") { changePassword() }
                 .buttonStyle(.URPrimary)
-                .padding(.top, 12)
         }
         .textFieldStyle(.URStyle)
         .frame(width: 300)
@@ -34,10 +37,10 @@ struct UpdatePasswordView: View {
             if isLoading { ProgressView().tint(Theme.themeColor) }
         }
     }
-
+    
     private func changePassword() {
         guard let user = Auth.auth().currentUser else { return }
-
+        
         if newPassword.isEmpty || confirmPassword.isEmpty {
             SwiftMessageBar.showMessageWithTitle("Error", message: "Password is empty.", type: .error)
             return
@@ -50,7 +53,7 @@ struct UpdatePasswordView: View {
             SwiftMessageBar.showMessageWithTitle("Error", message: "Enter your current password.", type: .error)
             return
         }
-
+        
         Task { @MainActor in
             isLoading = true
             let credential = EmailAuthProvider.credential(withEmail: email, password: oldPassword)

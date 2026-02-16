@@ -12,11 +12,11 @@ import FirebaseAuth
 import SVProgressHUD
 import SwiftUI
 
-class HomeTabViewController: BaseViewController {
+class HomeTabViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "HOME"
+        title = "Home"
         SwiftMessageBar.setSharedConfig(Theme.barConfig)
         // Do any additional setup after loading the view.
     }

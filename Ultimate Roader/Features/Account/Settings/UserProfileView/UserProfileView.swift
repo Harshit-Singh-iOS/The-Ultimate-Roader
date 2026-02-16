@@ -15,7 +15,7 @@ struct UserProfileView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 16) {
+            VStack(spacing: 24) {
                 profileImagePicker
                     .padding(.top, 32)
                     .padding(.bottom, 24)
@@ -35,7 +35,7 @@ struct UserProfileView: View {
                 .buttonStyle(.URPrimary)
         }
         .appBackground()
-        .navigationTitle("Settings")
+        .navigationTitle("Profile")
         .navigationBarTitleDisplayMode(.inline)
         .overlay {
             if vm.isLoading { ProgressView().tint(Theme.themeColor) }

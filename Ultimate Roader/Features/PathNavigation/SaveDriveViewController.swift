@@ -24,7 +24,7 @@ class SaveDriveViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "FINISH PATH"
+        title = "Finish Drive"
         map_view.mapType = .standard
         databaseRef = Database.database().reference()
         SwiftMessageBar.setSharedConfig(Theme.barConfig)

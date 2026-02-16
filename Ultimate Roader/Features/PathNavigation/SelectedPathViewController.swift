@@ -11,7 +11,7 @@ import CoreLocation
 import SVProgressHUD
 import FirebaseDatabase
 
-class SelectedPathViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate, ShowSpotVCDelegate {
+class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, ShowSpotVCDelegate {
 
     var locationManager = CLLocationManager()
     var polyline = GMSPolyline()

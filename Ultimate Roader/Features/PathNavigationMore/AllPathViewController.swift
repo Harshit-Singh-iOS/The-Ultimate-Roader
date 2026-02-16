@@ -10,7 +10,7 @@ import UIKit
 import SVProgressHUD
 import CoreLocation
 
-class AllPathViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class AllPathViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     var path_list: [Path] = []
     var permanent_path_list: [Path] = []
@@ -20,7 +20,7 @@ class AllPathViewController: BaseViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsersPaths()
-        title = "DRIVE LIST"
+        title = "Drive List"
         path_table.tableFooterView = UIView()
         path_table.dataSource = self
         //path_table.rowHeight = 200

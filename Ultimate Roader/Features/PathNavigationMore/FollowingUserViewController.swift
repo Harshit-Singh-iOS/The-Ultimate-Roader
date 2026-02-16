@@ -20,7 +20,7 @@ class FollowingUserViewController: UIViewController, UITableViewDataSource, UITa
     var path: Path?
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "FOLLOWING USERS"
+        title = "Following Users"
         following_user_table.dataSource = self
         SVProgressHUD.show()
         getUserList()
