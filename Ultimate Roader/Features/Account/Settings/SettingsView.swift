@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct SettingsView: View {
     var body: some View {
@@ -18,6 +19,16 @@ struct SettingsView: View {
             
             NavigationLink("Change Password") {
                 UpdatePasswordView()
+            }
+            .listRowBackground(Color.clear)
+            
+            Button("Sign out", role: .destructive) {
+                do {
+                    try Auth.auth().signOut()
+                    SwiftMessageBar.showMessageWithTitle("Sign Out", message: "Sign out successful.", type: .success)
+                } catch {
+                    SwiftMessageBar.showMessageWithTitle("Problem!!", message: "Something went wrong.", type: .error)
+                }
             }
             .listRowBackground(Color.clear)
         }

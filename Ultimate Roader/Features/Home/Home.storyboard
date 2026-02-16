@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="fCo-x5-IWF">
-                                <rect key="frame" x="59" y="310" width="275" height="336"/>
+                                <rect key="frame" x="59" y="346" width="275" height="264"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrG-a2-lEK">
                                         <rect key="frame" x="0.0" y="0.0" width="275" height="48"/>
@@ -82,21 +82,6 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="startDriveAction:" destination="UWc-Q1-Taf" eventType="touchUpInside" id="pdE-P1-3pH"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFX-Oa-DDN">
-                                        <rect key="frame" x="0.0" y="288" width="275" height="48"/>
-                                        <color key="backgroundColor" red="0.72933533029999997" green="0.21148539180000001" blue="0.2957657595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <state key="normal" title="Sign out">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="buttonCornor">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="Signout_action:" destination="UWc-Q1-Taf" eventType="touchUpInside" id="seo-lH-UkE"/>
                                         </connections>
                                     </button>
                                 </subviews>

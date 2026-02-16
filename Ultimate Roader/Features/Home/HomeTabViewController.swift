@@ -46,20 +46,4 @@ class HomeTabViewController: UIViewController {
             navigationController?.pushViewController(controller, animated: true)
         }
     }
-    
-    @IBAction func Signout_action(_ sender: UIButton) {
-        SVProgressHUD.show()
-        do {
-            try Auth.auth().signOut()
-            SwiftMessageBar.showMessageWithTitle("Sign Out", message: "Sign out successful.", type: .success)
-        }
-        catch {
-            SwiftMessageBar.showMessageWithTitle("Problem!!", message: "Something went wrong.", type: .error)
-        }
-        SVProgressHUD.dismiss()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        SVProgressHUD.dismiss()
-    }
 }
