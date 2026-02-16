@@ -22,7 +22,7 @@ struct SignInView: View {
             signInForm
                 .offset(y: -60)
                 .frame(maxWidth: 300)
-                .appBackground()
+                .appBackground(.PreLogin)
                 .navigationTitle("Sign in")
                 .navigationBarTitleDisplayMode(.inline)
                 .overlay {

@@ -8,14 +8,21 @@
 
 import SwiftUI
 
+enum AppBackground: String {
+    case PreLogin = "Intro_screen"
+    case PostLogin = "PostLoginBackground"
+}
+
 struct AppBackgroundView: ViewModifier {
     let imageName: String
+    let blur: CGFloat
+    
     func body(content: Content) -> some View {
         ZStack {
             Image(imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .blur(radius: 4)
+                .blur(radius: blur)
                 .ignoresSafeArea()
             
             content
@@ -24,9 +31,9 @@ struct AppBackgroundView: ViewModifier {
 }
 
 extension View {
-    func appBackground(name: String = "Intro_screen") -> some View {
+    func appBackground(_ image: AppBackground = .PostLogin) -> some View {
         self
-            .modifier(AppBackgroundView(imageName: name))
+            .modifier(AppBackgroundView(imageName: image.rawValue, blur: image == .PreLogin ? 4 : 0))
     }
 }
 

@@ -207,7 +207,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="340.66666666666674"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="b6I-UK-VXu">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PostLoginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="b6I-UK-VXu">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="340.66666666666669"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Path Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Jv-QE-MMI">
@@ -451,7 +451,7 @@
         <image name="EasyPathModeIcon" width="55" height="46"/>
         <image name="HardPathmodeIcon" width="55" height="46"/>
         <image name="MediumPathModeIcon" width="55" height="46"/>
-        <image name="background" width="750" height="1334"/>
+        <image name="PostLoginBackground" width="750" height="1334"/>
         <image name="iphone.badge.location" catalog="system" width="89" height="128"/>
         <image name="mapViewButtonActive" width="32.5" height="31.5"/>
         <image name="navigation" width="30" height="30"/>

@@ -44,7 +44,7 @@ struct SignUpView: View {
                 .buttonStyle(.URPrimary)
                 .padding(.top, 32)
             }
-            .appBackground()
+            .appBackground(.PreLogin)
             .navigationTitle("Sign up")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

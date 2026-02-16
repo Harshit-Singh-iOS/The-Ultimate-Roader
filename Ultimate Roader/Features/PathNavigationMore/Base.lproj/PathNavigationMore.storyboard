@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="1g7-mO-zlX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PostLoginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="1g7-mO-zlX">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rgn-ZR-9Gx">
@@ -136,7 +136,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Pxd-Ld-AMB">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PostLoginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Pxd-Ld-AMB">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                             </imageView>
                             <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search Path" showsCancelButton="YES" scopeBarBackgroundImage="clear" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wId-uI-wY5">
@@ -407,7 +407,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="473"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="gcb-2F-hZE">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PostLoginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="gcb-2F-hZE">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="473"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7R6-G9-7tb" userLabel="PlaceHolderImage">
@@ -532,7 +532,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="621"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="YPs-6k-7LO">
+                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PostLoginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="YPs-6k-7LO">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="640"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
@@ -649,7 +649,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="750" height="1334"/>
+        <image name="PostLoginBackground" width="750" height="1334"/>
         <image name="checkmark.circle" catalog="system" width="128" height="123"/>
         <image name="clear" width="66.666664123535156" height="66.666664123535156"/>
         <image name="close" width="1000" height="1000"/>
