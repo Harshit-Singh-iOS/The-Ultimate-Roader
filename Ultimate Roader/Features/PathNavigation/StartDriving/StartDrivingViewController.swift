@@ -187,14 +187,12 @@ class StartDrivingViewController: BaseViewController, MarkSpotProtocol {
     @objc func updateLabel() {
         self.vm.time += 1
         
-        let hours = self.vm.time / 3600
-        let minutes = self.vm.time / 60
-        let seconds = self.vm.time % 60
-        
         DispatchQueue.main.async { [unowned self] in
-            self.timeLabel.text = String(format: "%02d", hours) + ":"
-            + String(format: "%02d", minutes) + ":"
-            + String(format: "%02d", seconds)
+            let time = FTMathCalculations.timeInHoursAndMins(TimeInterval(vm.time))
+            
+            self.timeLabel.text = String(format: "%02d", time.hours) + ":"
+            + String(format: "%02d", time.mins) + ":"
+            + String(format: "%02d", time.seconds)
         }
     }
 }

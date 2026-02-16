@@ -121,8 +121,3 @@ class StartDrivingViewModel {
         ref.child("SpotList").child((spot?.id)!).removeValue()
     }
 }
-
-extension Double {
-    func degreesToRadians() -> Double { return self * Double.pi / 180.0 }
-    func radiansToDegrees() -> Double { return self * 180.0 / Double.pi }
-}

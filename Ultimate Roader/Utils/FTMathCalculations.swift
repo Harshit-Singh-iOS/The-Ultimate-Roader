@@ -9,15 +9,12 @@
 import UIKit
 import CoreLocation
 
-class FTMathCalculations: NSObject {
+extension Double {
+    func degreesToRadians() -> Double { return self * Double.pi / 180.0 }
+    func radiansToDegrees() -> Double { return self * 180.0 / Double.pi }
+}
 
-    class func DegreesToRadians (_ value:Double) -> Double {
-        return (value * Double.pi / 180.0)
-    }
-    
-    class func RadiansToDegrees (_ value:Double) -> Double {
-        return (value * 180.0 / Double.pi)
-    }
+class FTMathCalculations: NSObject {
     
     class func directionForCoordinate(_ coordinates:CLLocationCoordinate2D) -> String {
         let latitude = coordinates.latitude
@@ -38,17 +35,14 @@ class FTMathCalculations: NSObject {
         let latitudeDirection = (latitude >= 0) ? "N" : "S"
         let longitudeDirection = (longitude >= 0) ? "E" : "W"
         
-        return "\(latitudeDegrees)° \(latitudeMinutes)' \(latitudeSeconds)\" \(latitudeDirection), \(longitudeDegrees)° \(longitudeMinutes)' \(longitudeSeconds)\" \(longitudeDirection)"
+        return "\(latitudeDirection) \(latitudeDegrees)° \(latitudeMinutes)' \(latitudeSeconds)\"\n\(longitudeDirection) \(longitudeDegrees)° \(longitudeMinutes)' \(longitudeSeconds)\""
     }
     
-    class func distanceBetweenTwoLocations(_ firstLocation: CLLocation, secondLocation: CLLocation) -> Double{ // distance in KM
-        return firstLocation.distance(from: secondLocation)/1000
-    }
-    
-   class func timeInHoursAndMins(_ timeWaiting: TimeInterval) -> (hours: Int, mins: Int) {
+    class func timeInHoursAndMins(_ timeWaiting: TimeInterval) -> (hours: Int, mins: Int, seconds: Int) {
         let totalTime = round(timeWaiting)
         let hours = Int(totalTime / 3600)
         let mins = Int((totalTime.truncatingRemainder(dividingBy: 3600)) / 60)
-        return (hours, mins)
+        let seconds = Int(timeWaiting) % 60
+        return (hours, mins, seconds)
     }
 }

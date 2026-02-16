@@ -27,10 +27,8 @@ class HomeTabViewController: BaseViewController {
     }
     
     @IBAction func information_btn_action(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "InformationViewController") as? InformationViewController {
-            navigationController?.pushViewController(controller, animated: true)
-        }
+        let controller = UIHostingController(rootView: LocalInformationView())
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func allDrivesAction(_ sender: UIButton) {
