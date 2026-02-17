@@ -23,11 +23,17 @@ struct HomeTabView: View {
                     Text("Info")
                 }
             
-            AllDrives()
+            AllDrivesVC()
                 .ignoresSafeArea()
                 .tabItem {
                     Image(systemName: "car.top.lane.dashed.badge.steeringwheel")
                     Text("Drive")
+                }
+            
+            AllDriveView()
+                .tabItem {
+                    Image(systemName: "car.top.lane.dashed.badge.steeringwheel")
+                    Text("NEW Drive")
                 }
             
             SettingsView()
@@ -40,7 +46,7 @@ struct HomeTabView: View {
     }
 }
 
-struct AllDrives: UIViewControllerRepresentable {
+struct AllDrivesVC: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UINavigationController {
         let storyboard = UIStoryboard(name: "PathNavigationMore", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "AllPathViewController") as! AllPathViewController
