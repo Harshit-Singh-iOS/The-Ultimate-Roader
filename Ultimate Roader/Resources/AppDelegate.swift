@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         authManager.authStateDidChange = updateAuthenticatedState
         authManager.registerAuthStateListener()
+        SwiftMessageBar.setSharedConfig(Theme.barConfig)
         return true
     }
     

@@ -220,14 +220,10 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
     func popUpForPathComplete() {
         ManagePathManager.sharedinstance.addFollowedUser(path: pathToFollow!)
         let alert = UIAlertController(title: "Trip complete!!", message: "You have reach destination.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ok", style: .default) { (act) in
-            for controller in (self.navigationController?.viewControllers)! {
-                if controller.isKind(of: HomeTabViewController.self)  {
-                    self.locationManager.stopUpdatingLocation()
-                    DispatchQueue.main.async {
-                        self.navigationController?.popToViewController(controller, animated: true)
-                    }
-                }
+        let action = UIAlertAction(title: "Ok", style: .default) { [weak self] (act) in
+            self?.locationManager.stopUpdatingLocation()
+            DispatchQueue.main.async {
+                self?.navigationController?.popToRootViewController(animated: true)
             }
         }
         alert.addAction(action)

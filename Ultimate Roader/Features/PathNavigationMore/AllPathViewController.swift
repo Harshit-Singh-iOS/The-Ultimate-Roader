@@ -26,6 +26,13 @@ class AllPathViewController: UIViewController, UITableViewDataSource, UITableVie
         //path_table.rowHeight = 200
     }
     
+    @IBAction func startDriveAction() {
+        let storyboard = UIStoryboard(name: "PathNavigation", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "StartDrivingViewController") as? StartDrivingViewController {
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
     func getUsersPaths() {
         SVProgressHUD.show()
         ManagePathManager.sharedinstance.getUsersPaths { (all_path) in

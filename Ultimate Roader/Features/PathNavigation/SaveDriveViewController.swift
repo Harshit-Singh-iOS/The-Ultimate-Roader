@@ -73,11 +73,7 @@ class SaveDriveViewController: UIViewController {
             databaseRef?.child("Paths").child((path?.pathID)!).updateChildValues(["pathName": path?.pathName ?? "New drive", "pathType": path?.pathType.rawValue ?? "public", "difficulty": path?.difficulty.rawValue ?? "easy"])
         
             SwiftMessageBar.showMessageWithTitle("Success", message: "Drive saved successfully.", type: .success)
-            for controller in (navigationController?.viewControllers)! {
-                if controller.isKind(of: HomeTabViewController.self)  {
-                    navigationController?.popToViewController(controller, animated: true)
-                }
-            }
+            navigationController?.popToRootViewController(animated: true)
         } else {
             SwiftMessageBar.showMessageWithTitle("Drive name empty.", message: "Enter drive name.", type: .error)
         }

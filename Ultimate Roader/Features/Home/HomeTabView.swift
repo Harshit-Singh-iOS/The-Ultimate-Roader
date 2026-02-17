@@ -24,6 +24,7 @@ struct HomeTabView: View {
                 }
             
             AllDrives()
+                .ignoresSafeArea()
                 .tabItem {
                     Image(systemName: "car.top.lane.dashed.badge.steeringwheel")
                     Text("Drive")
@@ -39,21 +40,15 @@ struct HomeTabView: View {
     }
 }
 
-struct AllDrives: UIViewRepresentable {
-    let controller: AllPathViewController
-    
-    init() {
+struct AllDrives: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> UINavigationController {
         let storyboard = UIStoryboard(name: "PathNavigationMore", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "AllPathViewController") as! AllPathViewController
-        self.controller = controller
+        let nav = UINavigationController(rootViewController: controller)
+        return nav
     }
     
-    func makeUIView(context: Context) -> UIView {
-        controller.view
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {
-        controller.view = uiView
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
     }
 }
 
