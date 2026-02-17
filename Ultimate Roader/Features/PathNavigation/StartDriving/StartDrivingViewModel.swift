@@ -64,7 +64,7 @@ class StartDrivingViewModel {
                     Database.database().reference().child("SpotList").child(spotId).updateChildValues(spotDict)
                 }
                 
-                if let img = spList[index].spotImage, let spotId = spList[index].id {
+                if let img = spList[index].spotSelectedImage, let spotId = spList[index].id {
                     let data = img.jpegData(compressionQuality: 0.8)
                     let metaData = StorageMetadata()
                     metaData.contentType = "image/jpeg"

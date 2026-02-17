@@ -83,7 +83,7 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
         spot?.spotDescription = spotDescriptionTf.text
         
         if let image = spotImageView.image {
-            spot?.spotImage = image
+            spot?.spotSelectedImage = image
         }
         delegate?.addSpotMarker(spot: spot!)
         dismiss(animated: true)

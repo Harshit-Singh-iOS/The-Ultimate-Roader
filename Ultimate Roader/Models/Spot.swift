@@ -40,7 +40,7 @@ extension Path {
         var location : CLLocation?
         var spotImageUrl : String?
         var cat : String?
-        var spotImage: UIImage?
+        var spotSelectedImage: UIImage?
         var category: Category = .General
         
         init(withSnap snapshot: DataSnapshot) {
@@ -56,15 +56,6 @@ extension Path {
             
             if let urlStr = dict["spotImageUrl"] as? String {
                 spotImageUrl = urlStr
-                self.loadImage()
-            }
-        }
-        
-        mutating func loadImage() {
-            if let urlStr = spotImageUrl,
-               let url = URL(string: urlStr),
-               let imgData = try? Data.init(contentsOf: url) {
-                spotImage = UIImage(data: imgData)
             }
         }
         
