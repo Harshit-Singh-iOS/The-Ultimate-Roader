@@ -45,24 +45,26 @@ class StartDrivingViewModel {
         let pathDict = ["UserId": userId, "pathName": "New path", "pathID": self.path?.pathID ?? "", "time": String(format: "%.1d", self.time / 60), "distance": String(describing: self.length), "date": date] as [String: Any]
         
         //MARK: - NEW FUNC SPOT ADDED
-        if let spList = path?.spotArray, !spList.isEmpty {
-            for spot in spList {
+        if var spList = path?.spotArray, !spList.isEmpty {
+            for index in 0..<spList.endIndex {
                 let spotRef = Database.database().reference().child("SpotList").childByAutoId()
-                spot.id = spotRef.key
-                if let pathId = path?.pathID, let spotId = spot.id {
+                spList[index].id = spotRef.key
+                if let pathId = path?.pathID, let spotId = spList[index].id {
                     Database.database().reference().child("Paths").child(pathId).child("SpotList").updateChildValues([spotId: "id"])
                 }
-                var spotDict = ["spotId": spot.id as Any, "description": spot.spotDescription ?? ""]
-                if let lat = spot.location?.coordinate.latitude, let lng = spot.location?.coordinate.longitude, let cat = spot.cat {
+                var spotDict = ["spotId": spList[index].id as Any, "description": spList[index].spotDescription ?? ""]
+                if let lat = spList[index].location?.coordinate.latitude,
+                    let lng = spList[index].location?.coordinate.longitude,
+                    let cat = spList[index].cat {
                     spotDict["lat"] = "\(lat)"
                     spotDict["long"] = "\(lng)"
                     spotDict["category"] = cat
                 }
-                if let spotId = spot.id {
+                if let spotId = spList[index].id {
                     Database.database().reference().child("SpotList").child(spotId).updateChildValues(spotDict)
                 }
                 
-                if let img = spot.spotImage, let spotId = spot.id {
+                if let img = spList[index].spotImage, let spotId = spList[index].id {
                     let data = img.jpegData(compressionQuality: 0.8)
                     let metaData = StorageMetadata()
                     metaData.contentType = "image/jpeg"
@@ -75,10 +77,10 @@ class StartDrivingViewModel {
                         }
                         self?.storageRef.downloadURL { url, error in
                             let spotImageUrl = url?.absoluteString
-                            if let spotId = spot.id {
+                            if let spotId = spList[index].id {
                                 Database.database().reference().child("SpotList").child(spotId).updateChildValues(["spotImageUrl": spotImageUrl as Any])
                             }
-                            spot.spotImageUrl = spotImageUrl
+                            spList[index].spotImageUrl = spotImageUrl
                             if let error = error {
                                 print(error.localizedDescription)
                             }
@@ -86,6 +88,7 @@ class StartDrivingViewModel {
                     }
                 }
             }
+            self.path?.spotArray = spList
         }
         
         self.databaseRef?.updateChildValues(pathDict, withCompletionBlock: { (error, ref) in

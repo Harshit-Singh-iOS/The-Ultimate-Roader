@@ -10,8 +10,13 @@ import Foundation
 import CoreLocation
 import Firebase
 
-class Path: NSObject {
-    
+let dateFormatter: DateFormatter = {
+    let new = DateFormatter()
+    new.dateFormat = "dd MMM yyyy"
+    return new
+}()
+
+struct Path {
     var pathID: String?
     var time: String?
     var distance: String?
@@ -24,6 +29,8 @@ class Path: NSObject {
     var spotArray: [Spot] = []
     var spotDict: [String:String] = [:]
     var userId: String?
+    var dateRaw: Date?
+    
     init(withsnap snapshot: DataSnapshot) {
         guard let dict = snapshot.value as? Dictionary<String,Any> else { return }
         pathName = dict["pathName"] as? String
@@ -45,6 +52,8 @@ class Path: NSObject {
         if let d = dict["SpotList"] as? [String:String] {
             spotDict = d
         }
+        
+        dateRaw = dateFormatter.date(from: createdDate ?? "")
     }
     
     init(withDict dict: Dictionary<String,Any>) {
@@ -67,6 +76,8 @@ class Path: NSObject {
         if let d = dict["SpotList"] as? [String:String] {
             spotDict = d
         }
+        
+        dateRaw = dateFormatter.date(from: createdDate ?? "")
     }
     
     enum Difficulty: String {
@@ -82,6 +93,6 @@ class Path: NSObject {
         static let allValues: [PathType] = [.Public, .Private]
     }
     
-    override required init() { }
+    init() { }
 }
 

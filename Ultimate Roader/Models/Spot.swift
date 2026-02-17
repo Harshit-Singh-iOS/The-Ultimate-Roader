@@ -21,7 +21,7 @@ enum Icon {
 }
 
 extension Path {
-    class Spot: NSObject {
+    struct Spot {
 
         enum Category: String, CaseIterable {
             case Scenic
@@ -43,7 +43,8 @@ extension Path {
         var spotImage: UIImage?
         var category: Category = .General
         
-        init(withSnap snapshot:DataSnapshot) {
+        init(withSnap snapshot: DataSnapshot) {
+            //super.init()
             guard let dict = snapshot.value as?[String : Any] else { return  }
             id = dict["spotId"] as? String
             cat = dict["category"] as? String
@@ -53,14 +54,23 @@ extension Path {
             let lngDegree = CLLocationDegrees(exactly: Double(dict["long"] as! String)!)
             location = CLLocation(latitude: latDegree!, longitude: lngDegree!)
             
-            if let urlStr = dict["spotImageUrl"] as? String, let url = URL(string: urlStr), let imgData = try? Data.init(contentsOf: url) {
+            if let urlStr = dict["spotImageUrl"] as? String {
                 spotImageUrl = urlStr
+                self.loadImage()
+            }
+        }
+        
+        mutating func loadImage() {
+            if let urlStr = spotImageUrl,
+               let url = URL(string: urlStr),
+               let imgData = try? Data.init(contentsOf: url) {
                 spotImage = UIImage(data: imgData)
             }
         }
         
-        override required init() {
-            super.init()
+//        override required
+        init() {
+            //super.init()
         }
     }
 }

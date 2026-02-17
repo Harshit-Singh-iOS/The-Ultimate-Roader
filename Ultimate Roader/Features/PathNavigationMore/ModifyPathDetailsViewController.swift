@@ -8,9 +8,15 @@
 
 import UIKit
 
-class ModifyPathDetailsViewController: UIViewController {
+protocol ModifyPathDetailsViewControllerDelegate: AnyObject {
+    func didUpdatePath(path: Path)
+}
 
-    var path: Path?
+class ModifyPathDetailsViewController: UIViewController {
+    weak var delegate: ModifyPathDetailsViewControllerDelegate?
+    
+    var path: Path!
+    
     @IBOutlet weak var pathname_tf: UITextField!
     @IBOutlet weak var easy_imgV: UIImageView!
     @IBOutlet weak var med_imgV: UIImageView!
@@ -20,7 +26,6 @@ class ModifyPathDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pathname_tf.text = path?.pathName
         pub_pri_button_setup()
     }
     
@@ -42,6 +47,7 @@ class ModifyPathDetailsViewController: UIViewController {
         med_imgV.image = UIImage(named:"MediumPathModeIcon")
         hard_imgV.image = UIImage(named:"HardPathmodeIcon")
         path?.difficulty = .Easy
+        delegate?.didUpdatePath(path: path)
     }
     
     @IBAction func medium_btn_action(_ sender: UIButton) {
@@ -49,6 +55,7 @@ class ModifyPathDetailsViewController: UIViewController {
         med_imgV.image = UIImage(named:"MediumPathModeIconSec")
         hard_imgV.image = UIImage(named:"HardPathmodeIcon")
         path?.difficulty = .Medium
+        delegate?.didUpdatePath(path: path)
     }
     
     @IBAction func hard_btn_action(_ sender: UIButton) {
@@ -56,18 +63,21 @@ class ModifyPathDetailsViewController: UIViewController {
         med_imgV.image = UIImage(named:"MediumPathModeIcon")
         hard_imgV.image = UIImage(named:"HardPathmodeIconSec")
         path?.difficulty = .Hard
+        delegate?.didUpdatePath(path: path)
     }
     
     @IBAction func private_path_btn(_ sender: UIButton) {
         path?.pathType = .Private
         private_btn.backgroundColor = Theme.uiThemeColor
         public_btn.backgroundColor = UIColor.darkGray
+        delegate?.didUpdatePath(path: path)
     }
     
     @IBAction func public_path_btn(_ sender: UIButton) {
         path?.pathType = .Public
         public_btn.backgroundColor = Theme.uiThemeColor
         private_btn.backgroundColor = UIColor.darkGray
+        delegate?.didUpdatePath(path: path)
     }
 
 }
@@ -76,6 +86,7 @@ extension ModifyPathDetailsViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersInRanges ranges: [NSValue], replacementString string: String) -> Bool {
         if textField == pathname_tf {
             path?.pathName = pathname_tf.text
+            delegate?.didUpdatePath(path: path)
         }
         return true
     }

@@ -18,7 +18,7 @@ class SaveDriveViewController: UIViewController {
     var polyline = GMSPolyline()
     var gmsPath = GMSMutablePath()
     var animated_marker = GMSMarker()
-    var path: Path?
+    var path: Path!
     var databaseRef: DatabaseReference?
     @IBOutlet weak var save_btn: UIButton!
     
@@ -78,11 +78,17 @@ class SaveDriveViewController: UIViewController {
             SwiftMessageBar.showMessageWithTitle("Drive name empty.", message: "Enter drive name.", type: .error)
         }
     }
-    
+}
+
+extension SaveDriveViewController: ModifyPathDetailsViewControllerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? ModifyPathDetailsViewController {
             controller.path = path
+            controller.delegate = self
         }
     }
-
+    
+    func didUpdatePath(path: Path) {
+        self.path = path
+    }
 }

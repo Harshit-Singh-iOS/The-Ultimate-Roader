@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-protocol ShowSpotVCDelegate {
+protocol ShowSpotVCDelegate: AnyObject {
     func didPressRemoveSpotAt(index: Int)
 }
 
@@ -19,7 +19,7 @@ class ShowSpotViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var spotImageView: UIImageView!
     @IBOutlet weak var deleteBtn: UIButton!
-    var delegate: ShowSpotVCDelegate?
+    weak var delegate: ShowSpotVCDelegate?
     var spot: Path.Spot?
     var spotIndex: Int?
     var userId: String?
@@ -42,7 +42,6 @@ class ShowSpotViewController: UIViewController {
             alertCont.addAction(okAction)
             present(alertCont, animated: true, completion: nil)
         }
-
     }
     
     @IBAction func closeAction(_ sender: UIButton) {

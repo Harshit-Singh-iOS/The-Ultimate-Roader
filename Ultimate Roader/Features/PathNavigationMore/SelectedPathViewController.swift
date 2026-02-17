@@ -37,11 +37,15 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
     
     func setUpPath() {
         SVProgressHUD.show()
-        ManagePathManager.sharedinstance.getPathFromFile(name: file_name!) { (track) in
+        ManagePathManager.sharedinstance.getPathFromFile(name: file_name!) { [weak self] (track) in
+            guard let self = self else { return }
+            
             if let cord_list = track as? [CLLocation] {
                 self.path?.track = cord_list
             }
-            ManageSpots.getAllSpots(spotDict: self.path!.spotDict, completion: { (array) in
+            ManageSpots.getAllSpots(spotDict: self.path!.spotDict, completion: { [weak self] (array) in
+                guard let self = self else { return }
+                
                 if let sp_arr = array as? [Path.Spot] {
                     self.path?.spotArray = sp_arr
                     DispatchQueue.main.async {
@@ -118,8 +122,14 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let storyboard = UIStoryboard(name: "PathNavigationMore", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "ShowSpotViewController") as? ShowSpotViewController {
-            controller.spot = path?.spotArray[Int(marker.title!)!]
-            controller.spotIndex = Int(marker.title!)
+            if let title = marker.title,
+               let intTitle = Int(title),
+               let spot = path?.spotArray[intTitle] {
+                controller.spot = spot
+                controller.spotIndex = intTitle
+            }
+            
+            
             controller.delegate = self
             controller.userId = path?.userId
             controller.sheetPresentationController?.detents = [.medium()]

@@ -64,11 +64,13 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
 
     @IBAction func pickImageAction(_ sender: UIButton) {
         let alertController = UIAlertController(title: "", message: "Select", preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Camera", style: .default) { (action) in
+        alertController.addAction(UIAlertAction(title: "Camera", style: .default) { [weak self] _ in
+            guard let self else { return }
             self.imagePickerCont.sourceType = .camera
             self.present(self.imagePickerCont, animated: true, completion: nil)
         })
-        alertController.addAction(UIAlertAction(title: "Photo Gallery", style: .default) { (action) in
+        alertController.addAction(UIAlertAction(title: "Photo Gallery", style: .default) { [weak self] _ in
+            guard let self else { return }
             self.imagePickerCont.sourceType = .photoLibrary
             self.present(self.imagePickerCont, animated: true, completion: nil)
         })

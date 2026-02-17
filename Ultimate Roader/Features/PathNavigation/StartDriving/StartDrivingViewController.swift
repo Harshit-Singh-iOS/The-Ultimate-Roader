@@ -29,7 +29,6 @@ class StartDrivingViewController: UIViewController, MarkSpotProtocol {
     private var distance: Double = 0.0
     private var timer = Timer()
 
-    private var color: UIColor?
     private var spotIndex = 0
     
     override func viewDidLoad() {
@@ -104,8 +103,8 @@ class StartDrivingViewController: UIViewController, MarkSpotProtocol {
                 controller.cord_val = "(\(String(format: "%.04f", lat)), \(String(format: "%.04f", lng)))"
             }
             controller.sheetPresentationController?.detents = [.medium()]
-            DispatchQueue.main.async {
-                self.present(controller, animated: true, completion: nil)
+            DispatchQueue.main.async { [weak self] in
+                self?.present(controller, animated: true, completion: nil)
             }
         }
     }
@@ -187,7 +186,8 @@ class StartDrivingViewController: UIViewController, MarkSpotProtocol {
     @objc func updateLabel() {
         self.vm.time += 1
         
-        DispatchQueue.main.async { [unowned self] in
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
             let time = FTMathCalculations.timeInHoursAndMins(TimeInterval(vm.time))
             
             self.timeLabel.text = String(format: "%02d", time.hours) + ":"
@@ -214,7 +214,8 @@ extension StartDrivingViewController: CLLocationManagerDelegate, GMSMapViewDeleg
             addRouteToPath(loc: loc)
             
             vm.length = distance / 1000
-            DispatchQueue.main.async { [unowned self] in
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
                 self.distanceLabel.text = String(format: "%.01f", self.vm.length)+" km"
             }
         }
@@ -234,8 +235,8 @@ extension StartDrivingViewController: CLLocationManagerDelegate, GMSMapViewDeleg
             controller.userId = vm.path?.userId
             controller.delegate = self
             controller.sheetPresentationController?.detents = [.medium()]
-            DispatchQueue.main.async {
-                self.present(controller, animated: true, completion: nil)
+            DispatchQueue.main.async { [weak self] in
+                self?.present(controller, animated: true, completion: nil)
             }
         }
         return true

@@ -143,7 +143,7 @@ enum GMSLengthKind {
     case geodesic
 }
 
-final class GMSMutablePath {
+class GMSMutablePath {
     private(set) var coordinates: [CLLocationCoordinate2D] = []
 
     func add(_ coord: CLLocationCoordinate2D) {
@@ -179,15 +179,15 @@ final class GMSMutablePath {
     }
 }
 
-final class GMSPolyline {
-    var path: GMSMutablePath?
+struct GMSPolyline {
+    weak var path: GMSMutablePath?
     var strokeColor: UIColor = .systemBlue
     var strokeWidth: CGFloat = Theme.pathWidth
     var zIndex: Int32 = 0
 
     private var overlay: MKPolyline?
 
-    var map: GMSMapView? {
+    weak var map: GMSMapView? {
         didSet {
             if let old = oldValue, let overlay = overlay {
                 old.removeOverlay(overlay)
@@ -213,7 +213,7 @@ private final class GMSMarkerAnnotation: MKPointAnnotation {
     }
 }
 
-final class GMSMarker {
+class GMSMarker {
     var position: CLLocationCoordinate2D
     var title: String?
     var snippet: String?
@@ -222,7 +222,7 @@ final class GMSMarker {
     var isDraggable: Bool = false
     var groundAnchor: CGPoint = .zero
 
-    private var annotation: GMSMarkerAnnotation?
+    private weak var annotation: GMSMarkerAnnotation?
 
     init() {
         self.position = CLLocationCoordinate2D(latitude: 0, longitude: 0)
@@ -232,7 +232,7 @@ final class GMSMarker {
         self.position = position
     }
 
-    var map: GMSMapView? {
+    weak var map: GMSMapView? {
         didSet {
             if let old = oldValue, let annotation = annotation {
                 old.removeAnnotation(annotation)
@@ -249,8 +249,7 @@ final class GMSMarker {
 }
 
 // MARK: - Ground Overlay (no-op)
-
-final class GMSGroundOverlay {
+struct GMSGroundOverlay {
     var bounds: GMSCoordinateBounds
     var icon: UIImage?
     var bearing: CLLocationDirection = 0
@@ -264,5 +263,5 @@ final class GMSGroundOverlay {
         self.icon = icon
     }
 
-    var map: GMSMapView?
+    weak var map: GMSMapView?
 }

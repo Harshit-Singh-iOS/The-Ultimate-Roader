@@ -36,7 +36,8 @@ class AllPathViewController: UIViewController, UITableViewDataSource, UITableVie
     func getUsersPaths() {
         SVProgressHUD.show()
         ManagePathManager.sharedinstance.getUsersPaths { (all_path) in
-            if let paths = all_path as? [Path] {
+            if var paths = all_path as? [Path] {
+                paths = paths.sorted(by: { $0.dateRaw ?? .distantPast > $1.dateRaw ?? .distantPast })
                 self.path_list = paths
                 self.permanent_path_list = paths
                 DispatchQueue.main.async {
@@ -53,8 +54,9 @@ class AllPathViewController: UIViewController, UITableViewDataSource, UITableVie
     func getAllPublicPaths() {
         SVProgressHUD.show()
         ManagePathManager.sharedinstance.getAllPublicPaths{ (all_path) in
-            if let paths = all_path as? [Path] {
-                self.path_list = paths
+            if var paths = all_path as? [Path] {
+                paths = paths.sorted(by: { $0.dateRaw ?? .distantPast > $1.dateRaw ?? .distantPast })
+                self.path_list = paths.sorted(by: { $0.dateRaw ?? .distantPast > $1.dateRaw ?? .distantPast })
                 self.permanent_path_list = paths
                 DispatchQueue.main.async {
                     self.path_table.reloadData()

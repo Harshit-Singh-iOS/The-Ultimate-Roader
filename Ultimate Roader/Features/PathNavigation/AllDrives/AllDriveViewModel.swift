@@ -21,7 +21,7 @@ final class AllDriveViewModel {
         ManagePathManager.sharedinstance.getUsersPaths { [weak self] all_path in
             guard let self else { return }
             if let paths = all_path as? [Path] {
-                self.allPaths = paths
+                self.allPaths = paths.sorted(by: { $0.dateRaw ?? .distantPast > $1.dateRaw ?? .distantPast })
                 self.applyFilter()
             } else {
                 self.allPaths = []
