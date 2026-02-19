@@ -22,7 +22,7 @@ struct AllDriveItemView: View {
                         .font(.headline)
                         .foregroundStyle(.white)
                     
-                    Text(path.createdDate ?? "")
+                    Text(path.dateForDisplay ?? "")
                 }
             }
             otherDetails
@@ -123,7 +123,7 @@ extension AllDriveItemView {
         "UserId": "12345",
         "pathType": "public",
         "pathID": "1234567890",
-        "date": "25th Feb 2025"
+        "createdDate": "2026-02-19T15:59:19Z"
     ])
     
     VStack {

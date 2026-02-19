@@ -43,13 +43,12 @@ class StartDrivingViewModel {
         
         let userId = Auth.auth().currentUser?.uid ?? ""
         // insert date code and add date to to dict
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        let date = dateFormatter.string(from: Date())
+        let dateFormatter = ISO8601DateFormatter()
+        let date = dateFormatter.string(from: Date.now)
         // upload spot
         
         
-        let pathDict = ["UserId": userId, "pathName": "New path", "pathID": pathId, "time": String(format: "%.1d", self.time / 60), "distance": String(describing: self.length), "date": date] as [String: Any]
+        let pathDict = ["UserId": userId, "pathName": "New path", "pathID": pathId, "time": String(format: "%.1d", self.time / 60), "distance": String(describing: self.length), "createdDate": date] as [String: Any]
         
         //MARK: - NEW FUNC SPOT ADDED
         if var spList = path?.spotArray, !spList.isEmpty {

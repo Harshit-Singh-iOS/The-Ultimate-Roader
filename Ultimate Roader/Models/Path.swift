@@ -10,18 +10,12 @@ import Foundation
 import CoreLocation
 import Firebase
 
-let dateFormatter: DateFormatter = {
-    let new = DateFormatter()
-    new.dateFormat = "dd MMM yyyy"
-    return new
-}()
-
 struct Path {
     var pathID: String?
     var time: String?
     var distance: String?
     var pathName: String?
-    var createdDate: String?
+    var createdDate: Date?
     var followed_user: Dictionary<String,Any> = [:]
     var pathType: PathType = .Private
     var difficulty: Difficulty = .Easy
@@ -29,7 +23,10 @@ struct Path {
     var spotArray: [Spot] = []
     var spotDict: [String:String] = [:]
     var userId: String?
-    var dateRaw: Date?
+    
+    var dateForDisplay: String? {
+        URDateFomatter.string(from: createdDate) ?? nil
+    }
     
     init(withsnap snapshot: DataSnapshot) {
         guard let dict = snapshot.value as? Dictionary<String,Any> else { return }
@@ -37,7 +34,9 @@ struct Path {
         pathID = dict["pathID"] as? String
         time = dict["time"] as? String
         distance = dict["distance"] as? String
-        createdDate = dict["date"] as? String
+        if let createdDate = dict["createdDate"] as? String {
+            self.createdDate = ISO8601DateFormatter().date(from: createdDate)
+        }
         userId = dict["UserId"] as? String
         if let follow_dict = dict["FollowedUsers"] as? [String:Any] {
             followed_user = follow_dict
@@ -52,8 +51,6 @@ struct Path {
         if let d = dict["SpotList"] as? [String:String] {
             spotDict = d
         }
-        
-        dateRaw = dateFormatter.date(from: createdDate ?? "")
     }
     
     init(withDict dict: Dictionary<String,Any>) {
@@ -61,7 +58,9 @@ struct Path {
         pathID = dict["pathID"] as? String
         time = dict["time"] as? String
         distance = dict["distance"] as? String
-        createdDate = dict["date"] as? String
+        if let createdDate = dict["createdDate"] as? String {
+            self.createdDate = ISO8601DateFormatter().date(from: createdDate)
+        }
         userId = dict["UserId"] as? String
         spotArray = []
         if let follow_dict = dict["FollowedUsers"] as? [String:Any] {
@@ -76,8 +75,6 @@ struct Path {
         if let d = dict["SpotList"] as? [String:String] {
             spotDict = d
         }
-        
-        dateRaw = dateFormatter.date(from: createdDate ?? "")
     }
     
     enum Difficulty: String {

@@ -22,7 +22,7 @@ final class AllDriveViewModel {
             self?.isLoading = false
             guard let self else { return }
             if let paths = all_path as? [Path] {
-                self.allPaths = paths.sorted(by: { $0.dateRaw ?? .distantPast > $1.dateRaw ?? .distantPast })
+                self.allPaths = paths.sorted(by: { $0.createdDate ?? .distantPast > $1.createdDate ?? .distantPast })
                 self.applyFilter()
             } else {
                 self.allPaths = []
@@ -37,7 +37,7 @@ final class AllDriveViewModel {
             self?.isLoading = false
             guard let self else { return }
             if let paths = all_path as? [Path] {
-                self.allPaths = paths.sorted(by: { $0.dateRaw ?? .distantPast > $1.dateRaw ?? .distantPast })
+                self.allPaths = paths.sorted(by: { $0.createdDate ?? .distantPast > $1.createdDate ?? .distantPast })
                 self.applyFilter()
             } else {
                 self.allPaths = []
