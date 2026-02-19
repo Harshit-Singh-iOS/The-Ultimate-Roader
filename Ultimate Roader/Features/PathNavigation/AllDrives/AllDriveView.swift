@@ -33,8 +33,9 @@ struct AllDriveView: View {
             .onAppear { vm.loadUserPaths() }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        
+                    NavigationLink {
+                        StartDrivingView()
+                            .ignoresSafeArea()
                     } label: {
                         Image(systemName: "steeringwheel")
                             .resizable()
@@ -68,38 +69,13 @@ struct AllDriveView: View {
     
     private var listView: some View {
         ForEach(0..<vm.paths.count, id: \.self) { index in
-            Button {
-                openSelected(path: vm.paths[index])
+            NavigationLink {
+                SelectedPathView(path: vm.paths[index])
+                    .ignoresSafeArea()
             } label: {
-                AllDriveItemView(path: vm.paths[index], didTapFollowingUser: navigateUserToFollowing)
+                AllDriveItemView(path: vm.paths[index])
                     .frame(maxWidth: .infinity)
             }
-        }
-    }
-    
-    private func openSelected(path: Path) {
-        guard let fileName = path.pathID else { return }
-        let storyboard = UIStoryboard(name: "PathNavigation", bundle: nil)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "SelectedPathViewController") as? SelectedPathViewController {
-            controller.path = path
-            controller.file_name = fileName
-            controller.name = path.pathName ?? ""
-            UIApplication.shared.topMostNavigationController()?.pushViewController(controller, animated: true)
-        }
-    }
-    
-    func navigateUserToFollowing(path: Path) {
-        let storyboard = UIStoryboard(name: "PathNavigationMore", bundle: nil)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "FollowingUserViewController") as? FollowingUserViewController {
-            controller.path = path
-            UIApplication.shared.topMostNavigationController()?.pushViewController(controller, animated: true)
-        }
-    }
-    
-    func navigateUserToStartDriving() {
-        let storyboard = UIStoryboard(name: "PathNavigation", bundle: nil)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "StartDrivingViewController") as? StartDrivingViewController {
-            UIApplication.shared.topMostNavigationController()?.pushViewController(controller, animated: true)
         }
     }
 }
@@ -107,15 +83,3 @@ struct AllDriveView: View {
 //#Preview {
 //    AllDriveView()
 //}
-
-private extension UIApplication {
-    func topMostNavigationController(base: UIViewController? = UIApplication.shared.connectedScenes
-        .compactMap { ($0 as? UIWindowScene)?.keyWindow }
-        .first?.rootViewController) -> UINavigationController? {
-            if let nav = base as? UINavigationController { return nav }
-            if let tab = base as? UITabBarController { return topMostNavigationController(base: tab.selectedViewController) }
-            if let presented = base?.presentedViewController { return topMostNavigationController(base: presented) }
-            if let nav = base?.navigationController { return nav }
-            return nil
-        }
-}

@@ -22,7 +22,6 @@ enum Icon {
 
 extension Path {
     struct Spot {
-
         enum Category: String, CaseIterable {
             case Scenic
             case Lake
@@ -41,7 +40,6 @@ extension Path {
         var spotImageUrl : String?
         var cat : String?
         var spotSelectedImage: UIImage?
-        var category: Category = .General
         
         init(withSnap snapshot: DataSnapshot) {
             //super.init()
@@ -49,7 +47,6 @@ extension Path {
             id = dict["spotId"] as? String
             cat = dict["category"] as? String
             spotDescription = dict["description"] as? String
-            category = Category(rawValue: cat!)!
             let latDegree = CLLocationDegrees(exactly: Double(dict["lat"] as! String)!)
             let lngDegree = CLLocationDegrees(exactly: Double(dict["long"] as! String)!)
             location = CLLocation(latitude: latDegree!, longitude: lngDegree!)

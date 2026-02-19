@@ -10,7 +10,6 @@ import SwiftUI
 
 struct AllDriveItemView: View {
     let path: Path
-    let didTapFollowingUser: (Path) -> Void
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -56,18 +55,39 @@ struct AllDriveItemView: View {
                 Spacer()
             }
 
-            Button {
-                didTapFollowingUser(path)
+            NavigationLink {
+                // TODO: NOT WORKING
+                FollowingUserView(path: path)
+                    .ignoresSafeArea()
             } label: {
-                HStack {
-                    Spacer()
-                    VStack {
-                        Image("follower")
-                            .resizable()
-                            .frame(width: 24, height: 24)
-                        Text("\(path.followed_user.keys.count)")
+                // TODO: Remove iOS 26
+                if #available(iOS 26.0, *) {
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Image("follower")
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                            Text("\(path.followed_user.keys.count)")
+                        }
+                        Spacer()
                     }
-                    Spacer()
+                    .glassEffect()
+                    .contentShape(.rect)
+                } else {
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Image("follower")
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                            Text("\(path.followed_user.keys.count)")
+                        }
+                        Spacer()
+                    }
+                    .background(.white.opacity(0.2))
+                    .clipShape(.rect(cornerRadius: 4))
+                    .contentShape(.rect)
                 }
             }
         }
@@ -104,11 +124,10 @@ extension AllDriveItemView {
         "pathType": "public",
         "pathID": "1234567890",
         "date": "25th Feb 2025"
-        
     ])
     
     VStack {
-        AllDriveItemView(path: path, didTapFollowingUser: {_ in })
+        AllDriveItemView(path: path)
     }
     .appBackground()
 }

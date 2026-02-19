@@ -37,7 +37,6 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
         typePickerView.delegate = self
         spot = Path.Spot()
         spot?.cat = Path.Spot.Category.allCases[0].rawValue
-        spot?.category = .General
         spot?.location = loc
         
         setupUI()
@@ -117,8 +116,7 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        spot?.category = Path.Spot.Category.allCases[row]
-        spot?.cat = spot?.category.rawValue
+        spot?.cat = Path.Spot.Category.allCases[row].rawValue
         title = "Add " + (spot?.cat)! + " note."
     }
 }

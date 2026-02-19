@@ -19,6 +19,7 @@ final class AllDriveViewModel {
     func loadUserPaths() {
         isLoading = true
         ManagePathManager.sharedinstance.getUsersPaths { [weak self] all_path in
+            self?.isLoading = false
             guard let self else { return }
             if let paths = all_path as? [Path] {
                 self.allPaths = paths.sorted(by: { $0.dateRaw ?? .distantPast > $1.dateRaw ?? .distantPast })
@@ -27,22 +28,21 @@ final class AllDriveViewModel {
                 self.allPaths = []
                 self.paths = []
             }
-            self.isLoading = false
         }
     }
 
     func loadPublicPaths() {
         isLoading = true
         ManagePathManager.sharedinstance.getAllPublicPaths { [weak self] all_path in
+            self?.isLoading = false
             guard let self else { return }
             if let paths = all_path as? [Path] {
-                self.allPaths = paths
+                self.allPaths = paths.sorted(by: { $0.dateRaw ?? .distantPast > $1.dateRaw ?? .distantPast })
                 self.applyFilter()
             } else {
                 self.allPaths = []
                 self.paths = []
             }
-            self.isLoading = false
         }
     }
 

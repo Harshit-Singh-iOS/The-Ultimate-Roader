@@ -23,17 +23,10 @@ struct HomeTabView: View {
                     Text("Info")
                 }
             
-            AllDrivesVC()
-                .ignoresSafeArea()
-                .tabItem {
-                    Image(systemName: "car.top.lane.dashed.badge.steeringwheel")
-                    Text("Drive")
-                }
-            
             AllDriveView()
                 .tabItem {
                     Image(systemName: "car.top.lane.dashed.badge.steeringwheel")
-                    Text("NEW Drive")
+                    Text("Drive")
                 }
             
             SettingsView()
@@ -43,18 +36,6 @@ struct HomeTabView: View {
                 }
         }
         .tint(Theme.themeColor)
-    }
-}
-
-struct AllDrivesVC: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> UINavigationController {
-        let storyboard = UIStoryboard(name: "PathNavigationMore", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "AllPathViewController") as! AllPathViewController
-        let nav = UINavigationController(rootViewController: controller)
-        return nav
-    }
-    
-    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
     }
 }
 

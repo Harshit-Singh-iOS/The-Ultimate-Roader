@@ -17,14 +17,12 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
     var polyline = GMSPolyline()
     var gmsPath = GMSMutablePath()
     var path: Path?
-    var name = ""
     var file_name: String?
     
     @IBOutlet weak var map_view: GMSMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = name
         setUpLocationServices()
         setUpPath()
     }
@@ -38,13 +36,20 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
     func setUpPath() {
         SVProgressHUD.show()
         ManagePathManager.sharedinstance.getPathFromFile(name: file_name!) { [weak self] (track) in
-            guard let self = self else { return }
+            guard let self = self else {
+                SVProgressHUD.dismiss()
+                return
+            }
             
             if let cord_list = track as? [CLLocation] {
                 self.path?.track = cord_list
             }
+            
             ManageSpots.getAllSpots(spotDict: self.path!.spotDict, completion: { [weak self] (array) in
-                guard let self = self else { return }
+                guard let self = self else {
+                    SVProgressHUD.dismiss()
+                    return
+                }
                 
                 if let sp_arr = array as? [Path.Spot] {
                     self.path?.spotArray = sp_arr
@@ -57,6 +62,7 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
             DispatchQueue.main.async {
                 self.makePath()
                 self.setMapBounds()
+                SVProgressHUD.dismiss()
             }
         }
     }
@@ -78,7 +84,6 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
             navigationController?.pushViewController(controller, animated: true)
         }
     }
-    
     
     func createMarker(loc: CLLocation, name: String) {
         let marker = GMSMarker()
@@ -110,12 +115,14 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
     func putSpots() {
         var i = 0
         for spot in path!.spotArray {
-            let marker = GMSMarker(position: spot.location!.coordinate)
-            marker.map = map_view
-            marker.title = "\(i)"
-            i += 1
-            marker.snippet = spot.spotDescription
-            marker.iconView = UIImageView(image: UIImage(named: "edit_camera"))
+            if let location = spot.location {
+                let marker = GMSMarker(position: location.coordinate)
+                marker.map = map_view
+                marker.title = "\(i)"
+                i += 1
+                marker.snippet = spot.spotDescription
+                marker.iconView = UIImageView(image: UIImage(named: "edit_camera"))
+            }
         }
     }
     
