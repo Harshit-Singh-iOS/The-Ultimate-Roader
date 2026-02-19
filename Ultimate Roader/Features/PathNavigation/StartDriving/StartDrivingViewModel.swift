@@ -33,7 +33,14 @@ class StartDrivingViewModel {
         }
     }
     
-    func createPathTableInFire(completion: @escaping () -> Void) {
+    func saveDriveInformation(completion: @escaping () -> Void) {
+        guard let pathId = path?.pathID else {
+            completion()
+            return
+        }
+        
+        ManagePathManager.sharedinstance.addEndpath(pathId: pathId)
+        
         let userId = Auth.auth().currentUser?.uid ?? ""
         // insert date code and add date to to dict
         let dateFormatter = DateFormatter()
@@ -42,14 +49,14 @@ class StartDrivingViewModel {
         // upload spot
         
         
-        let pathDict = ["UserId": userId, "pathName": "New path", "pathID": self.path?.pathID ?? "", "time": String(format: "%.1d", self.time / 60), "distance": String(describing: self.length), "date": date] as [String: Any]
+        let pathDict = ["UserId": userId, "pathName": "New path", "pathID": pathId, "time": String(format: "%.1d", self.time / 60), "distance": String(describing: self.length), "date": date] as [String: Any]
         
         //MARK: - NEW FUNC SPOT ADDED
         if var spList = path?.spotArray, !spList.isEmpty {
             for index in 0..<spList.endIndex {
                 let spotRef = Database.database().reference().child("SpotList").childByAutoId()
                 spList[index].id = spotRef.key
-                if let pathId = path?.pathID, let spotId = spList[index].id {
+                if let spotId = spList[index].id {
                     Database.database().reference().child("Paths").child(pathId).child("SpotList").updateChildValues([spotId: "id"])
                 }
                 var spotDict = ["spotId": spList[index].id as Any, "description": spList[index].spotDescription ?? ""]

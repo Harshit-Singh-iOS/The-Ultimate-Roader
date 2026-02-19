@@ -77,6 +77,8 @@ struct AllDriveView: View {
                     .frame(maxWidth: .infinity)
             }
         }
+        .onDelete(perform: vm.deletePath)
+        .deleteDisabled(!showingUserPaths)
     }
 }
 

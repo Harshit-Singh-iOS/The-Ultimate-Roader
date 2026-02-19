@@ -29,6 +29,7 @@ class SaveDriveViewController: UIViewController {
         databaseRef = Database.database().reference()
         SwiftMessageBar.setSharedConfig(Theme.barConfig)
         // Do any additional setup after loading the view.
+        navigationItem.setHidesBackButton(true, animated: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {

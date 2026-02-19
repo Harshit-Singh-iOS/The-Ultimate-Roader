@@ -8,9 +8,9 @@
 
 import UIKit
 import CoreLocation
+import SVProgressHUD
 
-
-class StartDrivingViewController: UIViewController, MarkSpotProtocol {
+class StartDrivingViewController: UIViewController {
     
     let vm = StartDrivingViewModel()
     
@@ -51,7 +51,7 @@ class StartDrivingViewController: UIViewController, MarkSpotProtocol {
     }
     
     deinit {
-        stopTrackingPath()
+        finishTrip(save: false)
     }
     
     func setUpLocationServices() {
@@ -73,24 +73,9 @@ class StartDrivingViewController: UIViewController, MarkSpotProtocol {
     @IBAction func finishTripAction(_ sender: UIButton) {
         
         if vm.time > 59 || vm.length > 0.1 {
-            stopTrackingPath()
+            finishTrip()
             setMapBounds()
             createMarker(loc: (vm.path?.track.last)!, name: "ending_point")
-            SwiftMessageBar.showMessageWithTitle("Trip Complete!!", message: "Fill information.", type: .success)
-            vm.createPathTableInFire {
-                DispatchQueue.main.async { [weak self] in
-                    let alertController = UIAlertController.init(title: "Complete Drive!", message: "Go to next.", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "Ok", style: .default, handler: { (alert) in
-                        let storyboard = UIStoryboard(name: "PathNavigation", bundle: nil)
-                        if let controller = storyboard.instantiateViewController(withIdentifier: "SaveDriveViewController") as? SaveDriveViewController {
-                            controller.path = self?.vm.path
-                            self?.navigationController?.pushViewController(controller, animated: true)
-                        }
-                    })
-                    alertController.addAction(action)
-                    self?.present(alertController, animated: true, completion: nil)
-                }
-            }
         } else {
             SwiftMessageBar.showMessageWithTitle("Warning", message: "Drive should be 0.1 km or 1 min", type: .info)
         }
@@ -128,18 +113,41 @@ class StartDrivingViewController: UIViewController, MarkSpotProtocol {
         }
     }
     
-    private func stopTrackingPath() {
+    private func finishTrip(save: Bool = true) {
         timer.invalidate()
         locationManager.stopUpdatingLocation()
         
-        if let pathID = vm.path?.pathID {
-            ManagePathManager.sharedinstance.addEndpath(pathId: pathID)
+        if save {
+            SVProgressHUD.show(UIImage(), status: "Saving drive...")
+            vm.saveDriveInformation {[weak self] in
+                SVProgressHUD.dismiss()
+                self?.completeSavingDrive()
+            }
         }
         
         animated_marker.icon = nil
         animated_marker.map = nil
         polyline.map = nil
         gmsPath.removeAllCoordinates()
+    }
+    
+    func completeSavingDrive() {
+        DispatchQueue.main.async { [weak self] in
+            let alertController = UIAlertController.init(
+                title: "Finish Drive!",
+                message: "Proceed to fill details.",
+                preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "Proceed", style: .default, handler: { _ in
+                let storyboard = UIStoryboard(name: "PathNavigation", bundle: nil)
+                if let controller = storyboard.instantiateViewController(withIdentifier: "SaveDriveViewController") as? SaveDriveViewController {
+                    controller.path = self?.vm.path
+                    self?.navigationController?.pushViewController(controller, animated: true)
+                }
+            })
+            alertController.addAction(action)
+            self?.present(alertController, animated: true, completion: nil)
+        }
     }
     
     func createMarker(loc: CLLocation, name: String) {
@@ -164,16 +172,6 @@ class StartDrivingViewController: UIViewController, MarkSpotProtocol {
         CATransaction.commit()
         
         distance = gmsPath.length(of: .geodesic)
-    }
-    
-    func addSpotMarker(spot: Path.Spot) {
-        let marker = GMSMarker(position: (spot.location?.coordinate)!)
-        marker.map = mapView
-        marker.title = "\(spotIndex)"
-        spotIndex += 1
-        marker.snippet = spot.spotDescription
-        marker.iconView = UIImageView(image: UIImage(named: "edit_camera"))
-        vm.path?.spotArray.append(spot)
     }
     
     func setMapBounds() {
@@ -243,8 +241,18 @@ extension StartDrivingViewController: CLLocationManagerDelegate, GMSMapViewDeleg
     }
 }
 
-extension StartDrivingViewController: ShowSpotVCDelegate {
+extension StartDrivingViewController: ShowSpotVCDelegate, MarkSpotProtocol {
     func didPressRemoveSpotAt(index: Int) {
         vm.removeSpot(at: index)
+    }
+    
+    func addSpotMarker(spot: Path.Spot) {
+        let marker = GMSMarker(position: (spot.location?.coordinate)!)
+        marker.map = mapView
+        marker.title = "\(spotIndex)"
+        spotIndex += 1
+        marker.snippet = spot.spotDescription
+        marker.iconView = UIImageView(image: UIImage(named: "edit_camera"))
+        vm.path?.spotArray.append(spot)
     }
 }

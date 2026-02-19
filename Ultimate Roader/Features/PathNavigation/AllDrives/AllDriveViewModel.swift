@@ -51,4 +51,17 @@ final class AllDriveViewModel {
         let query = searchText.lowercased()
         paths = allPaths.filter { ($0.pathName ?? "").lowercased().contains(query) }
     }
+    
+    func deletePath(offset: IndexSet) {
+        Task {
+            for index in offset {
+                let path = allPaths[index]
+                await ManagePathManager.sharedinstance.deletePath(path: path)
+            }
+            
+            loadUserPaths()
+            loadPublicPaths()
+        }
+        
+    }
 }

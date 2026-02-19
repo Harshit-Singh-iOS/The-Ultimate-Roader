@@ -50,7 +50,7 @@ class User {
     }
 }
 
-typealias handler = (Any) -> ()
+typealias handler = (Any?) -> ()
 
 class ManipulateUser: NSObject {
     private override init() {}
@@ -65,6 +65,8 @@ class ManipulateUser: NSObject {
             if let data = snapshot as? DataSnapshot {
                 user = User(withsnap: data)
                 completion(user)
+            } else {
+                completion(nil)
             }
         }
     }
@@ -76,9 +78,11 @@ class ManipulateUser: NSObject {
         
         ref.child("Users").child((u?.uid)!).observeSingleEvent(of: .value) { (snapshot) in
             guard let value = snapshot.value as? Dictionary<String,Any> else {
+                completion(nil)
                 return
             }
             guard let list = value["Paths"] as? [String:Any] else {
+                completion(nil)
                 return
             }
             pathList = list
@@ -88,6 +92,7 @@ class ManipulateUser: NSObject {
     
     static func getUserForpath(path: Path, completion: @escaping handler) {
         guard let userlist = path.followed_user as? [String:String] else {
+            completion(nil)
             return
         }
         
@@ -106,6 +111,8 @@ class ManipulateUser: NSObject {
                     userObjlist.append(allObjList[user_key]!)
                 }
                 completion(userObjlist)
+            } else {
+                completion(nil)
             }
         }
 
@@ -117,5 +124,6 @@ class ManipulateUser: NSObject {
                 }
             })
         }
+        completion(userObjlist)
     }
 }

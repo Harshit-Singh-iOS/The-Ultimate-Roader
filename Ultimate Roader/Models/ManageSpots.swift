@@ -24,5 +24,6 @@ class ManageSpots: NSObject {
                 }
             })
         }
+        completion(spotArray)
     }
 }

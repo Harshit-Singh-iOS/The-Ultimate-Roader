@@ -50,7 +50,27 @@ class ManagePathManager: NSObject {
         fileHandle?.write("]}".data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!)
         try? fileHandle?.close()
         fileHandle = nil
-        uploadToFireBase(pathId: pathId)
+        
+        // Upload path file to firebase
+        var storageRef = Storage.storage().reference()
+        guard let url = file_url else { return }
+        
+        do {
+            let data: Data = try Data(contentsOf: url)
+            let metaData = StorageMetadata()
+            metaData.contentType = "text"
+            
+            let file_name = "PathFiles/\(String(describing: pathId)).txt"
+            storageRef = storageRef.child(file_name)
+            
+            storageRef.putData(data,metadata: metaData) { (data, error) in
+                if error != nil {
+                    print(error?.localizedDescription ?? "Error")
+                }
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     func addCordinateTopath(latidude: Double, longitude: Double) {
@@ -86,6 +106,7 @@ class ManagePathManager: NSObject {
                     }
                 }
             }
+            completion(pathObjList)
         }
     }
     
@@ -98,40 +119,15 @@ class ManagePathManager: NSObject {
                     if let path_dict = v.value as? Dictionary<String,Any> {
                         if let ptype = path_dict["pathType"] as? String {
                             if ptype == "public" {
-                                
                                 path_list.append(Path(withDict: path_dict))
-                                
-                                
                             }
                         }
                     }
                 }
                 completion(path_list)
+            } else {
+                completion([])
             }
-        }
-    }
-    
-    func uploadToFireBase(pathId: String) {
-        var storageRef = Storage.storage().reference()
-        guard let url = file_url else{
-            return
-        }
-        do{
-            let data: Data = try Data(contentsOf: url)
-            let metaData = StorageMetadata()
-            metaData.contentType = "text"
-            
-            let file_name = "PathFiles/\(String(describing: pathId)).txt"
-            storageRef = storageRef.child(file_name)
-            
-            storageRef.putData(data,metadata: metaData) { (data, error) in
-                if error != nil {
-                    print(error?.localizedDescription ?? "Error")
-                }
-            }
-        }
-        catch {
-            print(error.localizedDescription)
         }
     }
     
@@ -145,6 +141,7 @@ class ManagePathManager: NSObject {
         storageRef.getData(maxSize: 1024*1024*1024) { (data, error) in
             guard let path_data = data else {
                 print(error)
+                completion(nil)
                 return
             }
             
@@ -160,9 +157,12 @@ class ManagePathManager: NSObject {
                     }
                     completion(path)
                     
+                } else {
+                    completion(nil)
                 }
             } catch {
                 print(error)
+                completion(nil)
             }
         }
         
@@ -198,4 +198,49 @@ class ManagePathManager: NSObject {
         databaseRef.child("Paths").child(path.pathID!).child("FollowedUsers").updateChildValues(user_dict)
     }
     
+    func deletePath(path: Path) async {
+        // Remove path text file
+        // Remove path from database
+        // Remove path from User data
+        
+        let databaseRef = Database.database().reference()
+        var storageRef = Storage.storage().reference()
+        
+        await removeSpots(for: path)
+        
+        // REMOVE PATH FILE
+        do {
+            if let pathId = path.pathID {
+                try await databaseRef.child("Users").child((Auth.auth().currentUser?.uid)!).child("Paths").child(pathId).removeValue()
+                try await databaseRef.child("Paths").child(pathId).removeValue()
+                
+                let file_name = "PathFiles/\(String(describing: pathId)).txt"
+                storageRef = storageRef.child(file_name)
+                try await storageRef.delete()
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func removeSpots(for path: Path) async {
+        do {
+            // Remove spot image from Photos
+            // Remove spot from spotlist database
+            let databaseRef = Database.database().reference()
+            let storageRef = Storage.storage().reference()
+            
+            var spots = path.spotDict.map { $0.key }
+            if spots.isEmpty {
+                spots = path.spotArray.compactMap { $0.id }
+            }
+            
+            for spot in spots {
+                try? await storageRef.child("SpotImage").child("\(spot).jpeg").delete()
+                try await databaseRef.child("SpotList").child(spot).removeValue()
+            }
+        } catch {
+            print(error)
+        }
+    }
 }

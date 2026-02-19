@@ -169,10 +169,13 @@ class Weather: NSObject {
                                 temperature = "No temp"
                                 completion((temperature,description,name))
                             }
+                        } else {
+                            completion((0,"",""))
                         }
                     }
                     catch{
                         print("cannot parse weather")
+                        completion((0,"",""))
                     }
                 }
             }.resume()
