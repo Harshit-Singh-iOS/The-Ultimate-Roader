@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LocalInformationView: View {
     @State private var vm = LocalInformationViewModel()
+    @State private var heading: CGFloat = 0
 
     var body: some View {
         NavigationStack {
@@ -28,6 +29,9 @@ struct LocalInformationView: View {
         .overlay {
             if vm.isLoading { ProgressView().tint(Theme.themeColor) }
         }
+        .task { vm.updateHeading = updateHeading }
+        .onAppear(perform: vm.startUpdatingHeading)
+        .onDisappear(perform: vm.stopUpdatingHeading)
     }
     
     private var compassView: some View {
@@ -35,13 +39,12 @@ struct LocalInformationView: View {
             Image("compassCircle")
                 .resizable()
                 .scaledToFit()
-                .rotationEffect(.radians(Double(vm.headingRadians)))
-            
+                
             Image("compassNeedleNorth")
                 .resizable()
                 .scaledToFit()
-                .rotationEffect(.radians(Double(vm.headingRadians)))
         }
+        .rotationEffect(.radians(Double(heading)))
     }
     
     private var weatherView: some View {
@@ -61,6 +64,12 @@ struct LocalInformationView: View {
                 .font(.largeTitle)
         }
         .foregroundStyle(.white)
+    }
+    
+    private func updateHeading(_ heading: CGFloat) {
+        withAnimation(.smooth) {
+            self.heading = heading
+        }
     }
 }
 

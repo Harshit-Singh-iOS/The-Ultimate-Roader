@@ -15,9 +15,9 @@ class LocalInformationViewModel: NSObject, CLLocationManagerDelegate {
     var temperatureText: String = "\u{2103}"
     var placeText: String = ""
     var weatherImage: UIImage
-    var headingRadians: CGFloat = 0
     var directionText: String = ""
     var isLoading: Bool = false
+    var updateHeading: ((CGFloat) -> Void)?
     
     private let locationManager = CLLocationManager()
     
@@ -25,6 +25,15 @@ class LocalInformationViewModel: NSObject, CLLocationManagerDelegate {
         weatherImage = defaultWeatherImage
         super.init()
         setupLocationServices()
+    }
+    
+    func startUpdatingHeading() {
+        locationManager.startUpdatingHeading()
+    }
+    
+    func stopUpdatingHeading() {
+        locationManager.stopUpdatingHeading()
+        locationManager.stopUpdatingLocation()
     }
     
     private func setupLocationServices() {
@@ -48,7 +57,7 @@ class LocalInformationViewModel: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         if newHeading.headingAccuracy < 0 { return }
         let radians = CGFloat(newHeading.magneticHeading.degreesToRadians())
-        headingRadians = -radians
+        updateHeading?(-radians)
     }
     
     private func getWeather(lat: String, long: String) {
