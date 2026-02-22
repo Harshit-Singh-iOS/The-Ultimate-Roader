@@ -117,10 +117,9 @@ class ManagePathManager: NSObject {
                 var path_list: [Path] = []
                 for v in val {
                     if let path_dict = v.value as? Dictionary<String,Any> {
-                        if let ptype = path_dict["pathType"] as? String {
-                            if ptype == "public" {
-                                path_list.append(Path(withDict: path_dict))
-                            }
+                        let path = Path(withDict: path_dict)
+                        if path.pathType == PathType.public {
+                            path_list.append(path)
                         }
                     }
                 }
@@ -140,26 +139,22 @@ class ManagePathManager: NSObject {
         
         storageRef.getData(maxSize: 1024*1024*1024) { (data, error) in
             guard let path_data = data else {
-                print(error)
+                if let error {
+                    print(error)
+                }
                 completion(nil)
                 return
             }
             
             do {
-                if let path_json = try JSONSerialization.jsonObject(with: path_data, options: []) as? Dictionary<String,Any>,
-                   let new_path = path_json["path"] as? [Dictionary<String,String>] {
-                    
-                    for cord in new_path {
-                        let lat = Double(cord["latitude"]!)
-                        let long = Double(cord["longitude"]!)
-                        let c = CLLocation(latitude: lat!, longitude: long!)
-                        path.append(c)
-                    }
-                    completion(path)
-                    
-                } else {
-                    completion(nil)
+                let decoded = try JSONDecoder().decode(PathFile.self, from: path_data)
+                for coordinate in decoded.path {
+                    guard let lat = coordinate.latitude.value,
+                          let long = coordinate.longitude.value
+                    else { continue }
+                    path.append(CLLocation(latitude: lat, longitude: long))
                 }
+                completion(path)
             } catch {
                 print(error)
                 completion(nil)
@@ -243,4 +238,13 @@ class ManagePathManager: NSObject {
             print(error)
         }
     }
+}
+
+private struct PathFile: Decodable {
+    let path: [PathFileCoordinate]
+}
+
+private struct PathFileCoordinate: Decodable {
+    let latitude: LossyDouble
+    let longitude: LossyDouble
 }

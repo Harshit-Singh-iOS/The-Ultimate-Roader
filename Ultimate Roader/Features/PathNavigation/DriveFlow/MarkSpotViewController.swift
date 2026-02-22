@@ -108,7 +108,7 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        var str = Path.Spot.Category.allCases[row].rawValue
+        let str = Path.Spot.Category.allCases[row].rawValue
         
         let type = NSAttributedString(string: str, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         

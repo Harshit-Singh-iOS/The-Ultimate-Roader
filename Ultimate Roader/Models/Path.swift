@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 import Firebase
 
-struct Path {
+struct Path: Decodable {
     var pathID: String?
     var time: String?
     var distance: String?
@@ -29,58 +29,55 @@ struct Path {
     }
     
     init(withsnap snapshot: DataSnapshot) {
-        guard let dict = snapshot.value as? Dictionary<String,Any> else { return }
-        pathName = dict["pathName"] as? String
-        pathID = dict["pathID"] as? String
-        time = dict["time"] as? String
-        distance = dict["distance"] as? String
-        if let createdDate = dict["createdDate"] as? String {
-            self.createdDate = ISO8601DateFormatter().date(from: createdDate)
-        }
-        userId = dict["UserId"] as? String
-        if let follow_dict = dict["FollowedUsers"] as? [String:Any] {
-            followed_user = follow_dict
-        }
-        
-        self.pathType =  (dict["pathType"] as? String) ?? PathType.private
-        
-        if let difficulty = dict["difficulty"] as? String {
-            self.difficulty = PathDifficulty(rawValue: difficulty) ?? .Easy
-        }
-        if let d = dict["SpotList"] as? [String:String] {
-            spotDict = d
-        }
+        self.init()
+        guard let dict = snapshot.value as? [String: Any] else { return }
+        guard let decoded = try? FirebaseCodable.decode(Path.self, from: dict) else { return }
+        self = decoded
     }
     
     init(withDict dict: Dictionary<String,Any>) {
-        pathName = dict["pathName"] as? String
-        pathID = dict["pathID"] as? String
-        time = dict["time"] as? String
-        distance = dict["distance"] as? String
-        if let createdDate = dict["createdDate"] as? String {
-            self.createdDate = ISO8601DateFormatter().date(from: createdDate)
-        }
-        userId = dict["UserId"] as? String
-        spotArray = []
-        if let follow_dict = dict["FollowedUsers"] as? [String:Any] {
-            followed_user = follow_dict
-        }
-
-        self.pathType =  (dict["pathType"] as? String) ?? PathType.private
-        
-        if let difficulty = dict["difficulty"] as? String {
-            self.difficulty = PathDifficulty(rawValue: difficulty) ?? .Easy
-        }
-        if let d = dict["SpotList"] as? [String:String] {
-            spotDict = d
-        }
+        self.init()
+        guard let decoded = try? FirebaseCodable.decode(Path.self, from: dict) else { return }
+        self = decoded
     }
     
     init() { }
+
+    enum CodingKeys: String, CodingKey {
+        case pathID
+        case time
+        case distance
+        case pathName
+        case createdDate
+        case followedUser = "FollowedUsers"
+        case pathType
+        case difficulty
+        case spotDict = "SpotList"
+        case userId = "UserId"
+    }
+
+    init(from decoder: Decoder) throws {
+        self.init()
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        pathID = try container.decodeIfPresent(String.self, forKey: .pathID)
+        time = try container.decodeIfPresent(String.self, forKey: .time)
+        distance = try container.decodeIfPresent(String.self, forKey: .distance)
+        pathName = try container.decodeIfPresent(String.self, forKey: .pathName)
+        createdDate = try container.decodeIfPresent(Date.self, forKey: .createdDate)
+        pathType = try container.decodeIfPresent(String.self, forKey: .pathType) ?? PathType.private
+        difficulty = try container.decodeIfPresent(PathDifficulty.self, forKey: .difficulty) ?? .Easy
+        spotDict = try container.decodeIfPresent([String: String].self, forKey: .spotDict) ?? [:]
+        userId = try container.decodeIfPresent(String.self, forKey: .userId)
+
+        if let followed = try container.decodeIfPresent([String: AnyCodable].self, forKey: .followedUser) {
+            followed_user = followed.mapValues(\.value)
+        }
+    }
 }
 
 
-enum PathDifficulty: String {
+enum PathDifficulty: String, Codable {
     case Easy = "easy"
     case Medium = "medium"
     case Hard = "hard"

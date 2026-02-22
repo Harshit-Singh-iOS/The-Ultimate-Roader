@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class User {
+class User: Decodable {
     
     var firstname: String?
     var lastname: String?
@@ -21,32 +21,55 @@ class User {
     var userImageUrl: String?
     var userID: String?
     var pathList: [String:Any] = [:]
-    init(withsnap snapshot: DataSnapshot) {
-        guard let dict = snapshot.value as? Dictionary<String,Any> else { return }
-        userID = dict["UserId"] as? String
-        firstname = dict["FirstName"] as? String
-        lastname = dict["LastName"] as? String
-        city = dict["City"] as? String
-        email = dict["EmailID"] as? String
-        password = dict["Password"] as? String
-        userImageUrl = dict["userImageUrl"] as? String
-        if let path_dict = dict["Paths"] as? [String:Any] {
-            pathList = path_dict
+
+    enum CodingKeys: String, CodingKey {
+        case userID = "UserId"
+        case firstname = "FirstName"
+        case lastname = "LastName"
+        case city = "City"
+        case email = "EmailID"
+        case password = "Password"
+        case userImageUrl
+        case pathList = "Paths"
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        userID = try container.decodeIfPresent(String.self, forKey: .userID)
+        firstname = try container.decodeIfPresent(String.self, forKey: .firstname)
+        lastname = try container.decodeIfPresent(String.self, forKey: .lastname)
+        city = try container.decodeIfPresent(String.self, forKey: .city)
+        email = try container.decodeIfPresent(String.self, forKey: .email)
+        password = try container.decodeIfPresent(String.self, forKey: .password)
+        userImageUrl = try container.decodeIfPresent(String.self, forKey: .userImageUrl)
+
+        if let decodedPaths = try container.decodeIfPresent([String: AnyCodable].self, forKey: .pathList) {
+            pathList = decodedPaths.mapValues(\.value)
+        } else {
+            pathList = [:]
         }
+    }
+
+    init(withsnap snapshot: DataSnapshot) {
+        guard let dict = snapshot.value as? [String: Any] else { return }
+        guard let decoded = try? FirebaseCodable.decode(User.self, from: dict) else { return }
+        copy(from: decoded)
     }
     
     init(withDict dict_user: [String:Any]) {
-        guard let dict = dict_user as? Dictionary<String,Any> else { return }
-        userID = dict["UserId"] as? String
-        firstname = dict["FirstName"] as? String
-        lastname = dict["LastName"] as? String
-        city = dict["City"] as? String
-        email = dict["EmailID"] as? String
-        password = dict["Password"] as? String
-        userImageUrl = dict["userImageUrl"] as? String
-        if let path_dict = dict["Paths"] as? [String:Any] {
-            pathList = path_dict
-        }
+        guard let decoded = try? FirebaseCodable.decode(User.self, from: dict_user) else { return }
+        copy(from: decoded)
+    }
+
+    private func copy(from user: User) {
+        userID = user.userID
+        firstname = user.firstname
+        lastname = user.lastname
+        city = user.city
+        email = user.email
+        password = user.password
+        userImageUrl = user.userImageUrl
+        pathList = user.pathList
     }
 }
 
@@ -62,31 +85,28 @@ class ManipulateUser: NSObject {
         let u = Auth.auth().currentUser
         
         ref.child(Firebase.Table.Users).child((u?.uid)!).observeSingleEvent(of: .value) { (snapshot) in
-            if let data = snapshot as? DataSnapshot {
-                user = User(withsnap: data)
-                completion(user)
-            } else {
-                completion(nil)
-            }
+            user = User(withsnap: snapshot)
+            completion(user)
         }
     }
     
     static func getPathNameList(completion: @escaping handler) {
-        var pathList: [String:Any]?
         let ref: DatabaseReference = Database.database().reference()
         let u = Auth.auth().currentUser
         
         ref.child(Firebase.Table.Users).child((u?.uid)!).observeSingleEvent(of: .value) { (snapshot) in
-            guard let value = snapshot.value as? Dictionary<String,Any> else {
+            guard let dict = snapshot.value as? [String: Any],
+                  let user = try? FirebaseCodable.decode(User.self, from: dict)
+            else {
                 completion(nil)
                 return
             }
-            guard let list = value["Paths"] as? [String:Any] else {
+
+            if user.pathList.isEmpty {
                 completion(nil)
-                return
+            } else {
+                completion(user.pathList)
             }
-            pathList = list
-            completion(pathList)
         }
     }
     

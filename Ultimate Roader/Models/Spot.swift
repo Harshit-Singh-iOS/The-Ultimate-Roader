@@ -42,18 +42,10 @@ extension Path {
         var spotSelectedImage: UIImage?
         
         init(withSnap snapshot: DataSnapshot) {
-            //super.init()
-            guard let dict = snapshot.value as?[String : Any] else { return  }
-            id = dict["spotId"] as? String
-            cat = dict["category"] as? String
-            spotDescription = dict["description"] as? String
-            let latDegree = CLLocationDegrees(exactly: Double(dict["lat"] as! String)!)
-            let lngDegree = CLLocationDegrees(exactly: Double(dict["long"] as! String)!)
-            location = CLLocation(latitude: latDegree!, longitude: lngDegree!)
-            
-            if let urlStr = dict["spotImageUrl"] as? String {
-                spotImageUrl = urlStr
-            }
+            self.init()
+            guard let dict = snapshot.value as? [String: Any] else { return }
+            guard let decoded = try? FirebaseCodable.decode(Path.Spot.self, from: dict) else { return }
+            self = decoded
         }
         
 //        override required
@@ -63,6 +55,32 @@ extension Path {
     }
 }
 
+extension Path.Spot: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case id = "spotId"
+        case spotDescription = "description"
+        case cat = "category"
+        case lat
+        case long
+        case spotImageUrl
+    }
+
+    init(from decoder: Decoder) throws {
+        self.init()
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decodeIfPresent(String.self, forKey: .id)
+        spotDescription = try container.decodeIfPresent(String.self, forKey: .spotDescription)
+        cat = try container.decodeIfPresent(String.self, forKey: .cat)
+        spotImageUrl = try container.decodeIfPresent(String.self, forKey: .spotImageUrl)
+
+        let latitude = try container.decodeIfPresent(LossyDouble.self, forKey: .lat)?.value
+        let longitude = try container.decodeIfPresent(LossyDouble.self, forKey: .long)?.value
+        if let latitude, let longitude {
+            location = CLLocation(latitude: latitude, longitude: longitude)
+        }
+    }
+}
 
 
 
