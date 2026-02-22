@@ -25,7 +25,7 @@ class StartDrivingViewModel {
     }
     
     func startTrip() {
-        databaseRef = Database.database().reference().child("Paths").childByAutoId()
+        databaseRef = Database.database().reference().child(Firebase.Table.Paths).childByAutoId()
         path = Path()
         path?.pathID = databaseRef?.key
         if let pathId = path?.pathID {
@@ -53,10 +53,10 @@ class StartDrivingViewModel {
         //MARK: - NEW FUNC SPOT ADDED
         if var spList = path?.spotArray, !spList.isEmpty {
             for index in 0..<spList.endIndex {
-                let spotRef = Database.database().reference().child("SpotList").childByAutoId()
+                let spotRef = Database.database().reference().child(Firebase.Table.SpotList).childByAutoId()
                 spList[index].id = spotRef.key
                 if let spotId = spList[index].id {
-                    Database.database().reference().child("Paths").child(pathId).child("SpotList").updateChildValues([spotId: "id"])
+                    Database.database().reference().child(Firebase.Table.Paths).child(pathId).child(Firebase.Table.SpotList).updateChildValues([spotId: "id"])
                 }
                 var spotDict = ["spotId": spList[index].id as Any, "description": spList[index].spotDescription ?? ""]
                 if let lat = spList[index].location?.coordinate.latitude,
@@ -67,14 +67,14 @@ class StartDrivingViewModel {
                     spotDict["category"] = cat
                 }
                 if let spotId = spList[index].id {
-                    Database.database().reference().child("SpotList").child(spotId).updateChildValues(spotDict)
+                    Database.database().reference().child(Firebase.Table.SpotList).child(spotId).updateChildValues(spotDict)
                 }
                 
                 if let img = spList[index].spotSelectedImage, let spotId = spList[index].id {
                     let data = img.jpegData(compressionQuality: 0.8)
                     let metaData = StorageMetadata()
                     metaData.contentType = "image/jpeg"
-                    let imagename = "SpotImage/\(spotId).jpeg"
+                    let imagename = Firebase.Folder.SpotImages + "\(spotId).jpeg"
                     storageRef = storageRef.child(imagename)
                     storageRef.putData(data!,metadata: metaData) { [weak self] (_, error) in
                         if let error = error {
@@ -84,7 +84,7 @@ class StartDrivingViewModel {
                         self?.storageRef.downloadURL { url, error in
                             let spotImageUrl = url?.absoluteString
                             if let spotId = spList[index].id {
-                                Database.database().reference().child("SpotList").child(spotId).updateChildValues(["spotImageUrl": spotImageUrl as Any])
+                                Database.database().reference().child(Firebase.Table.SpotList).child(spotId).updateChildValues(["spotImageUrl": spotImageUrl as Any])
                             }
                             spList[index].spotImageUrl = spotImageUrl
                             if let error = error {
@@ -99,7 +99,7 @@ class StartDrivingViewModel {
         
         self.databaseRef?.updateChildValues(pathDict, withCompletionBlock: { (error, ref) in
             if let key = ref.key {
-                Database.database().reference().child("Users").child(userId).child("Paths").updateChildValues([key: "id"])
+                Database.database().reference().child(Firebase.Table.Users).child(userId).child(Firebase.Table.Paths).updateChildValues([key: "id"])
             }
             completion()
         })
@@ -126,7 +126,8 @@ class StartDrivingViewModel {
         let spot = path?.spotArray[index]
         path?.spotArray.remove(at: index)
         let ref = Database.database().reference()
-        ref.child("Paths").child((path?.pathID)!).child("SpotList").child((spot?.id)!).removeValue()
-        ref.child("SpotList").child((spot?.id)!).removeValue()
+        ref.child(Firebase.Table.Paths).child((path?.pathID)!).child(Firebase.Table.SpotList).child((spot?.id)!).removeValue()
+        ref.child(Firebase.Table.SpotList).child((spot?.id)!).removeValue()
     }
 }
+

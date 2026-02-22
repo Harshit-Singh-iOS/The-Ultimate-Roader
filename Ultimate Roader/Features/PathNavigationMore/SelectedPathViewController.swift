@@ -151,8 +151,8 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
         let spot = path?.spotArray[index]
         path?.spotArray.remove(at: index)
         let ref = Database.database().reference()
-        ref.child("Paths").child((path?.pathID)!).child("SpotList").child((spot?.id)!).removeValue()
-        ref.child("SpotList").child((spot?.id)!).removeValue()
+        ref.child(Firebase.Table.Paths).child((path?.pathID)!).child(Firebase.Table.SpotList).child((spot?.id)!).removeValue()
+        ref.child(Firebase.Table.SpotList).child((spot?.id)!).removeValue()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -163,3 +163,4 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
         super.didReceiveMemoryWarning()
     }
 }
+

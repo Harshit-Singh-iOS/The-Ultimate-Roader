@@ -164,8 +164,8 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
         let spot = pathToFollow?.spotArray[index]
         pathToFollow?.spotArray.remove(at: index)
         let ref = Database.database().reference()
-        ref.child("Paths").child((pathToFollow?.pathID)!).child("SpotList").child((spot?.id)!).removeValue()
-        ref.child("SpotList").child((spot?.id)!).removeValue()
+        ref.child(Firebase.Table.Paths).child((pathToFollow?.pathID)!).child(Firebase.Table.SpotList).child((spot?.id)!).removeValue()
+        ref.child(Firebase.Table.SpotList).child((spot?.id)!).removeValue()
     }
     
     func createMarker(loc: CLLocation, name: String) {
@@ -248,3 +248,4 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
         
     }
 }
+

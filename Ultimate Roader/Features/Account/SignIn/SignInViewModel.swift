@@ -67,7 +67,7 @@ class SignInViewModel {
                 ]
                 
                 let ref = Database.database().reference()
-                _ = try? await ref.child("Users").child(uid).updateChildValues(userDict as [AnyHashable : Any])
+                _ = try? await ref.child(Firebase.Table.Users).child(uid).updateChildValues(userDict as [AnyHashable : Any])
             }
         }
     }

@@ -71,7 +71,7 @@ class SaveDriveViewController: UIViewController {
     
     @IBAction func save_btn_action(_ sender: UIButton) {
         if path?.pathName?.isEmpty == false {
-            databaseRef?.child("Paths").child((path?.pathID)!).updateChildValues(["pathName": path?.pathName ?? "New drive", "pathType": path?.pathType.rawValue ?? "public", "difficulty": path?.difficulty.rawValue ?? "easy"])
+            databaseRef?.child(Firebase.Table.Paths).child((path?.pathID)!).updateChildValues(["pathName": path?.pathName ?? "New drive", "pathType": path?.pathType ?? PathType.public, "difficulty": path?.difficulty.rawValue ?? "easy"])
         
             SwiftMessageBar.showMessageWithTitle("Success", message: "Drive saved successfully.", type: .success)
             navigationController?.popToRootViewController(animated: true)

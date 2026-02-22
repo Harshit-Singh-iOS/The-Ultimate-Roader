@@ -67,14 +67,14 @@ class ModifyPathDetailsViewController: UIViewController {
     }
     
     @IBAction func private_path_btn(_ sender: UIButton) {
-        path?.pathType = .Private
+        path?.pathType = PathType.private
         private_btn.backgroundColor = Theme.uiThemeColor
         public_btn.backgroundColor = UIColor.darkGray
         delegate?.didUpdatePath(path: path)
     }
     
     @IBAction func public_path_btn(_ sender: UIButton) {
-        path?.pathType = .Public
+        path?.pathType = PathType.public
         public_btn.backgroundColor = Theme.uiThemeColor
         private_btn.backgroundColor = UIColor.darkGray
         delegate?.didUpdatePath(path: path)

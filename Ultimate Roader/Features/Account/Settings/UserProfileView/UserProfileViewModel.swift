@@ -35,7 +35,7 @@ class UserProfileViewModel {
         isLoading = true
         defer { isLoading = false }
         do {
-            let snapshot = try await databaseRef?.child("Users").child(uid).getData()
+            let snapshot = try await databaseRef?.child(Firebase.Table.Users).child(uid).getData()
             if let dict = snapshot?.value as? [String: Any] {
                 self.fName = dict["FirstName"] as? String ?? ""
                 self.lName = dict["LastName"] as? String ?? ""
@@ -69,7 +69,7 @@ class UserProfileViewModel {
                     update["userImageUrl"] = url.absoluteString
                 }
             }
-            _ = try await databaseRef?.child("Users").child(uid).updateChildValues(update)
+            _ = try await databaseRef?.child(Firebase.Table.Users).child(uid).updateChildValues(update)
             return .success(true)
         } catch {
             return .failure(error)

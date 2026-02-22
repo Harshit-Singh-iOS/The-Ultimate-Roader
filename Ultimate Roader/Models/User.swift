@@ -61,7 +61,7 @@ class ManipulateUser: NSObject {
         let ref: DatabaseReference = Database.database().reference()
         let u = Auth.auth().currentUser
         
-        ref.child("Users").child((u?.uid)!).observeSingleEvent(of: .value) { (snapshot) in
+        ref.child(Firebase.Table.Users).child((u?.uid)!).observeSingleEvent(of: .value) { (snapshot) in
             if let data = snapshot as? DataSnapshot {
                 user = User(withsnap: data)
                 completion(user)
@@ -76,7 +76,7 @@ class ManipulateUser: NSObject {
         let ref: DatabaseReference = Database.database().reference()
         let u = Auth.auth().currentUser
         
-        ref.child("Users").child((u?.uid)!).observeSingleEvent(of: .value) { (snapshot) in
+        ref.child(Firebase.Table.Users).child((u?.uid)!).observeSingleEvent(of: .value) { (snapshot) in
             guard let value = snapshot.value as? Dictionary<String,Any> else {
                 completion(nil)
                 return
@@ -100,7 +100,7 @@ class ManipulateUser: NSObject {
         var userObjlist: [User] = []
         var allObjList: [String: User] = [:]
         
-        ref.child("Users").observeSingleEvent(of: .value) { (snapshot) in
+        ref.child(Firebase.Table.Users).observeSingleEvent(of: .value) { (snapshot) in
             if let val = snapshot.value as? [String:Any] {
                 for v in val {
                     if let dict = v.value as? Dictionary<String,Any> {
@@ -117,7 +117,7 @@ class ManipulateUser: NSObject {
         }
 
         for user in userlist.keys {
-            ref.child("Users").child(user).observeSingleEvent(of: .value, with: { (snapshot) in
+            ref.child(Firebase.Table.Users).child(user).observeSingleEvent(of: .value, with: { (snapshot) in
                 userObjlist.append(User(withsnap: snapshot))
                 if userObjlist.count == userlist.keys.count {
                     completion(userObjlist)

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AllDriveItemView: View {
     let path: Path
+    var onSelectFollowers: (() -> Void)? = nil
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -55,10 +56,8 @@ struct AllDriveItemView: View {
                 Spacer()
             }
 
-            NavigationLink {
-                // TODO: NOT WORKING
-                FollowingUserView(path: path)
-                    .ignoresSafeArea()
+            Button {
+                onSelectFollowers?()
             } label: {
                 // TODO: Remove iOS 26
                 if #available(iOS 26.0, *) {
@@ -90,6 +89,8 @@ struct AllDriveItemView: View {
                     .contentShape(.rect)
                 }
             }
+            .buttonStyle(.borderless)
+            .disabled(onSelectFollowers == nil)
         }
         .padding(.vertical, 4)
     }

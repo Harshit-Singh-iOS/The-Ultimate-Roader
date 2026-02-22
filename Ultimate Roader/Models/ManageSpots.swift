@@ -16,7 +16,7 @@ class ManageSpots: NSObject {
         let ref = Database.database().reference()
         var spotArray :[Path.Spot] = []
         for key in spotDict.keys {
-            ref.child("SpotList").child(key).observe(.value, with: { (snapshot) in
+            ref.child(Firebase.Table.SpotList).child(key).observe(.value, with: { (snapshot) in
                 let spot = Path.Spot(withSnap: snapshot)
                 spotArray.append(spot)
                 if spotDict.count == spotArray.count {
@@ -27,3 +27,4 @@ class ManageSpots: NSObject {
         completion(spotArray)
     }
 }
+

@@ -17,8 +17,8 @@ struct Path {
     var pathName: String?
     var createdDate: Date?
     var followed_user: Dictionary<String,Any> = [:]
-    var pathType: PathType = .Private
-    var difficulty: Difficulty = .Easy
+    var pathType: String = PathType.private
+    var difficulty: PathDifficulty = .Easy
     var track: Array<CLLocation> = []
     var spotArray: [Spot] = []
     var spotDict: [String:String] = [:]
@@ -42,11 +42,10 @@ struct Path {
             followed_user = follow_dict
         }
         
-        if let path_type = dict["pathType"] as? String {
-            self.pathType = PathType(rawValue: path_type) ?? .Private
-        }
+        self.pathType =  (dict["pathType"] as? String) ?? PathType.private
+        
         if let difficulty = dict["difficulty"] as? String {
-            self.difficulty = Difficulty(rawValue: difficulty) ?? .Easy
+            self.difficulty = PathDifficulty(rawValue: difficulty) ?? .Easy
         }
         if let d = dict["SpotList"] as? [String:String] {
             spotDict = d
@@ -66,30 +65,30 @@ struct Path {
         if let follow_dict = dict["FollowedUsers"] as? [String:Any] {
             followed_user = follow_dict
         }
-        if let path_type = dict["pathType"] as? String {
-            self.pathType = PathType(rawValue: path_type) ?? .Private
-        }
+
+        self.pathType =  (dict["pathType"] as? String) ?? PathType.private
+        
         if let difficulty = dict["difficulty"] as? String {
-            self.difficulty = Difficulty(rawValue: difficulty) ?? .Easy
+            self.difficulty = PathDifficulty(rawValue: difficulty) ?? .Easy
         }
         if let d = dict["SpotList"] as? [String:String] {
             spotDict = d
         }
     }
     
-    enum Difficulty: String {
-        case Easy = "easy"
-        case Medium = "medium"
-        case Hard = "hard"
-        static let allValues: [Difficulty] = [.Easy, .Medium, .Hard]
-    }
-    
-    enum PathType: String {
-        case Public = "public"
-        case Private = "private"
-        static let allValues: [PathType] = [.Public, .Private]
-    }
-    
     init() { }
 }
 
+
+enum PathDifficulty: String {
+    case Easy = "easy"
+    case Medium = "medium"
+    case Hard = "hard"
+    static let allValues: [PathDifficulty] = [.Easy, .Medium, .Hard]
+}
+
+enum PathType {
+    static let `public`: String = "public"
+    static let `private`: String = "private"
+    static let allValues: [String] = [PathType.public, PathType.private]
+}

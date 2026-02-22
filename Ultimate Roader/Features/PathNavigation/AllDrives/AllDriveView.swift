@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct AllDriveView: View {
+    private enum Route: Hashable {
+        case selectedPath(Int)
+        case followingUsers(Int)
+    }
+
     @State private var vm = AllDriveViewModel()
     @State private var showingUserPaths = true
+    @State private var navPath = NavigationPath()
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navPath) {
             List {
                 header
                     .listRowBackground(Color.clear)
@@ -31,6 +37,26 @@ struct AllDriveView: View {
             .navigationBarTitleDisplayMode(.inline)
             .appBackground()
             .onAppear { vm.loadUserPaths() }
+            .navigationDestination(for: Route.self) { route in
+                switch route {
+                case .selectedPath(let index):
+                    if vm.paths.indices.contains(index) {
+                        SelectedPathView(path: vm.paths[index])
+                            .ignoresSafeArea()
+                    } else {
+                        Text("Drive not available.")
+                            .foregroundStyle(.secondary)
+                    }
+                case .followingUsers(let index):
+                    if vm.paths.indices.contains(index) {
+                        FollowingUserView(path: vm.paths[index])
+                            .ignoresSafeArea()
+                    } else {
+                        Text("Drive not available.")
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
@@ -69,12 +95,10 @@ struct AllDriveView: View {
     
     private var listView: some View {
         ForEach(0..<vm.paths.count, id: \.self) { index in
-            NavigationLink {
-                SelectedPathView(path: vm.paths[index])
-                    .ignoresSafeArea()
-            } label: {
-                AllDriveItemView(path: vm.paths[index])
-                    .frame(maxWidth: .infinity)
+            NavigationLink(value: Route.selectedPath(index)) {
+                AllDriveItemView(path: vm.paths[index],
+                                 onSelectFollowers: { navPath.append(Route.followingUsers(index)) })
+                .frame(maxWidth: .infinity)
             }
         }
         .onDelete(perform: vm.deletePath)

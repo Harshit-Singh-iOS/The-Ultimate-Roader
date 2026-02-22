@@ -56,7 +56,7 @@ class SignUpViewModel {
                 userDict["userImageUrl"] = url.absoluteString
             }
             
-            _ = try await self.databaseRef?.child("Users").child(user.uid).updateChildValues(userDict)
+            _ = try await self.databaseRef?.child(Firebase.Table.Users).child(user.uid).updateChildValues(userDict)
             
             return .success(true)
         } catch {
@@ -73,7 +73,7 @@ class SignUpViewModel {
             let metaData = StorageMetadata()
             metaData.contentType = "image/jpeg"
             
-            let imagename = "UserImages/\(String(describing:id.uid)).jpeg"
+            let imagename = Firebase.Folder.UserImages + "\(id.uid).jpeg"
             storageRef = storageRef.child(imagename)
             _ = try await storageRef.putDataAsync(pickedImageData, metadata: metaData)
             
@@ -93,3 +93,4 @@ class SignUpViewModel {
         }
     }
 }
+

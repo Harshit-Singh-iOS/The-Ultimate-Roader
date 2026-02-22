@@ -60,7 +60,7 @@ class ManagePathManager: NSObject {
             let metaData = StorageMetadata()
             metaData.contentType = "text"
             
-            let file_name = "PathFiles/\(String(describing: pathId)).txt"
+            let file_name = Firebase.Folder.PathFiles + "\(pathId).txt"
             storageRef = storageRef.child(file_name)
             
             storageRef.putData(data,metadata: metaData) { (data, error) in
@@ -98,7 +98,7 @@ class ManagePathManager: NSObject {
             var path: Path?
             
             for name in pathNameList.keys {
-                databaseRef.child("Paths").child(name).observeSingleEvent(of: .value) { (snapshot) in
+                databaseRef.child(Firebase.Table.Paths).child(name).observeSingleEvent(of: .value) { (snapshot) in
                     path = Path(withsnap: snapshot)
                     pathObjList.append(path!)
                     if pathObjList.count == pathNameList.count {
@@ -112,7 +112,7 @@ class ManagePathManager: NSObject {
     
     func getAllPublicPaths(completion: @escaping handler) {
         let databaseRef = Database.database().reference()
-        databaseRef.child("Paths").observeSingleEvent(of: .value) { (snapshot) in
+        databaseRef.child(Firebase.Table.Paths).observeSingleEvent(of: .value) { (snapshot) in
             if let val = snapshot.value as? Dictionary<String,Any> {
                 var path_list: [Path] = []
                 for v in val {
@@ -135,7 +135,7 @@ class ManagePathManager: NSObject {
         var storageRef = Storage.storage().reference()
         var path: [CLLocation] = []
         
-        let file_name = "PathFiles/\(String(describing: name)).txt"
+        let file_name = Firebase.Folder.PathFiles + "\(name).txt"
         storageRef = storageRef.child(file_name)
         
         storageRef.getData(maxSize: 1024*1024*1024) { (data, error) in
@@ -195,7 +195,7 @@ class ManagePathManager: NSObject {
     func addFollowedUser(path: Path) {
         let user_dict:[String: Any] = [(Auth.auth().currentUser?.uid)!: "id"]
         let databaseRef = Database.database().reference()
-        databaseRef.child("Paths").child(path.pathID!).child("FollowedUsers").updateChildValues(user_dict)
+        databaseRef.child(Firebase.Table.Paths).child(path.pathID!).child("FollowedUsers").updateChildValues(user_dict)
     }
     
     func deletePath(path: Path) async {
@@ -211,10 +211,10 @@ class ManagePathManager: NSObject {
         // REMOVE PATH FILE
         do {
             if let pathId = path.pathID {
-                try await databaseRef.child("Users").child((Auth.auth().currentUser?.uid)!).child("Paths").child(pathId).removeValue()
-                try await databaseRef.child("Paths").child(pathId).removeValue()
+                try await databaseRef.child(Firebase.Table.Users).child((Auth.auth().currentUser?.uid)!).child(Firebase.Table.Paths).child(pathId).removeValue()
+                try await databaseRef.child(Firebase.Table.Paths).child(pathId).removeValue()
                 
-                let file_name = "PathFiles/\(String(describing: pathId)).txt"
+                let file_name = Firebase.Folder.PathFiles + "\(pathId).txt"
                 storageRef = storageRef.child(file_name)
                 try await storageRef.delete()
             }
@@ -236,8 +236,8 @@ class ManagePathManager: NSObject {
             }
             
             for spot in spots {
-                try? await storageRef.child("SpotImage").child("\(spot).jpeg").delete()
-                try await databaseRef.child("SpotList").child(spot).removeValue()
+                try? await storageRef.child(Firebase.Folder.SpotImages).child("\(spot).jpeg").delete()
+                try await databaseRef.child(Firebase.Table.SpotList).child(spot).removeValue()
             }
         } catch {
             print(error)
