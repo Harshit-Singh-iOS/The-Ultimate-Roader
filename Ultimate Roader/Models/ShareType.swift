@@ -8,20 +8,20 @@
 
 import Foundation
 
-class ShareType {
+enum ShareApp: String {
+    case Whatsapp = "Whatsapp"
+    case Message = "Message"
+    case Copy = "Copy"
+    
+    static let allValues: [ShareApp] = [.Whatsapp, .Message, .Copy]
+}
+
+struct ShareType {
     var name: ShareApp?
     var imageName: String
     
     init(_ shareName: String) {
         name = ShareApp(rawValue: shareName)
         imageName = shareName
-    }
-    
-    enum ShareApp: String {
-        case Whatsapp = "Whatsapp"
-        case Message = "Message"
-        case Copy = "Copy"
-        
-        static let allValues: [ShareApp] = [.Whatsapp, .Message, .Copy]
     }
 }

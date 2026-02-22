@@ -52,17 +52,14 @@ class LocalInformationViewModel: NSObject, CLLocationManagerDelegate {
     }
     
     private func getWeather(lat: String, long: String) {
-        Weather.sharedInstance.get_weather(latitude: lat, longitude: long) { [weak self] temp_desc in
-            guard let self else { return }
-            Task {
-                if let t_d = temp_desc as? (String, String, String) {
-                    let name = Weather.Condition(rawValue: t_d.1)?.title
-                    self.weatherImage = UIImage(named: name ?? "clouds") ?? self.defaultWeatherImage
-                    self.temperatureText = "\(t_d.0)\u{2103}"
-                    self.placeText = t_d.2
-                }
-                self.isLoading = false
-            }
+        Task { @MainActor in
+            self.isLoading = true
+            let summary = await WeatherDataManager.shared.getWeather(latitude: lat, longitude: long)
+            let name = WeatherCondition(rawValue: summary.description)?.title
+            self.weatherImage = UIImage(named: name ?? "clouds") ?? self.defaultWeatherImage
+            self.temperatureText = "\(summary.temperatureC)\u{2103}"
+            self.placeText = summary.city
+            self.isLoading = false
         }
     }
 }
