@@ -28,6 +28,7 @@ class SignInViewModel {
         }
     }
     
+    @MainActor
     func googleSignIn() async -> Result<Any?, Error> {
         do {
             guard let controller else { return .failure(NSError(domain: "No presenting screen", code: -999)) }

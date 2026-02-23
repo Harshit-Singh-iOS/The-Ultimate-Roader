@@ -36,20 +36,28 @@ struct AllDriveView: View {
             .navigationTitle("Drive List")
             .navigationBarTitleDisplayMode(.inline)
             .appBackground()
-            .onAppear { vm.loadUserPaths() }
+            .onAppear {
+                if showingUserPaths {
+                    vm.loadUserPaths()
+                } else {
+                    vm.loadPublicPaths()
+                }
+            }
             .navigationDestination(for: Route.self) { route in
                 switch route {
                 case .selectedPath(let index):
-                    if vm.paths.indices.contains(index) {
-                        SelectedPathView(path: vm.paths[index])
+                    let filtered = showingUserPaths ? vm.filteredMyPaths : vm.filteredPublicPaths
+                    if filtered.indices.contains(index) {
+                        SelectedPathView(path: filtered[index])
                             .ignoresSafeArea()
                     } else {
                         Text("Drive not available.")
                             .foregroundStyle(.secondary)
                     }
                 case .followingUsers(let index):
-                    if vm.paths.indices.contains(index) {
-                        FollowingUserView(path: vm.paths[index])
+                    let filtered = showingUserPaths ? vm.filteredMyPaths : vm.filteredPublicPaths
+                    if filtered.indices.contains(index) {
+                        FollowingUserView(path: filtered[index])
                             .ignoresSafeArea()
                     } else {
                         Text("Drive not available.")
@@ -88,20 +96,31 @@ struct AllDriveView: View {
             
             TextField("Search", text: $vm.searchText)
                 .textFieldStyle(.URStyle)
-                .onChange(of: vm.searchText) { _, _ in vm.applyFilter() }
+                .onChange(of: vm.searchText) { _, _ in
+                    if showingUserPaths {
+                        vm.filterMyPaths()
+                    } else {
+                        vm.filterPublicPaths()
+                    }
+                }
         }
         .padding(.vertical, 8)
     }
     
     private var listView: some View {
-        ForEach(0..<vm.paths.count, id: \.self) { index in
+        let filtered = showingUserPaths ? vm.filteredMyPaths : vm.filteredPublicPaths
+        
+        return ForEach(0..<filtered.count, id: \.self) { index in
             NavigationLink(value: Route.selectedPath(index)) {
-                AllDriveItemView(path: vm.paths[index],
+                AllDriveItemView(path: filtered[index],
                                  onSelectFollowers: { navPath.append(Route.followingUsers(index)) })
                 .frame(maxWidth: .infinity)
             }
         }
-        .onDelete(perform: vm.deletePath)
+        .onDelete { offsets in
+            let section: SectionType = showingUserPaths ? .myDrive : .publicDrive
+            vm.deletePath(offset: offsets, section: section)
+        }
         .deleteDisabled(!showingUserPaths)
     }
 }

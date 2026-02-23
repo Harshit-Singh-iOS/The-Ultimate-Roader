@@ -58,10 +58,13 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
             typePickerView.layer.cornerRadius = 8
             spotImageView.layer.cornerRadius = 24
         }
+        
+        spotImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pickImageAction)))
+        spotImageView.isUserInteractionEnabled = true
     }
     
 
-    @IBAction func pickImageAction(_ sender: UIButton) {
+    @objc private func pickImageAction(_ sender: UIButton) {
         let alertController = UIAlertController(title: "", message: "Select", preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Camera", style: .default) { [weak self] _ in
             guard let self else { return }

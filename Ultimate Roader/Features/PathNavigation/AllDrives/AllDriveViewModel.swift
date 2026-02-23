@@ -10,11 +10,13 @@ import Foundation
 
 @Observable
 final class AllDriveViewModel {
-    var paths: [Path] = []
+    var filteredMyPaths: [Path] = []
+    var filteredPublicPaths: [Path] = []
     var isLoading = false
     var searchText: String = ""
 
-    private var allPaths: [Path] = []
+    private var myPaths: [Path] = []
+    private var publicPaths: [Path] = []
 
     func loadUserPaths() {
         isLoading = true
@@ -22,11 +24,11 @@ final class AllDriveViewModel {
             self?.isLoading = false
             guard let self else { return }
             if let paths = all_path as? [Path] {
-                self.allPaths = paths.sorted(by: { $0.createdDate ?? .distantPast > $1.createdDate ?? .distantPast })
-                self.applyFilter()
+                self.myPaths = paths.sorted(by: { $0.createdDate ?? .distantPast > $1.createdDate ?? .distantPast })
+                self.filterMyPaths()
             } else {
-                self.allPaths = []
-                self.paths = []
+                self.myPaths = []
+                self.filteredMyPaths = []
             }
         }
     }
@@ -37,31 +39,48 @@ final class AllDriveViewModel {
             self?.isLoading = false
             guard let self else { return }
             if let paths = all_path as? [Path] {
-                self.allPaths = paths.sorted(by: { $0.createdDate ?? .distantPast > $1.createdDate ?? .distantPast })
-                self.applyFilter()
+                self.publicPaths = paths.sorted(by: { $0.createdDate ?? .distantPast > $1.createdDate ?? .distantPast })
+                self.filterPublicPaths()
             } else {
-                self.allPaths = []
-                self.paths = []
+                self.publicPaths = []
+                self.filteredPublicPaths = []
             }
         }
     }
 
-    func applyFilter() {
-        guard !searchText.isEmpty else { paths = allPaths; return }
+    func filterMyPaths() {
+        guard !searchText.isEmpty else { filteredMyPaths = myPaths; return }
         let query = searchText.lowercased()
-        paths = allPaths.filter { ($0.pathName ?? "").lowercased().contains(query) }
+        filteredMyPaths = myPaths.filter { ($0.pathName ?? "").lowercased().contains(query) }
+    }
+
+    func filterPublicPaths() {
+        guard !searchText.isEmpty else { filteredPublicPaths = publicPaths; return }
+        let query = searchText.lowercased()
+        filteredPublicPaths = publicPaths.filter { ($0.pathName ?? "").lowercased().contains(query) }
     }
     
-    func deletePath(offset: IndexSet) {
+    func deletePath(offset: IndexSet, section: SectionType) {
         Task {
-            for index in offset {
-                let path = allPaths[index]
-                await ManagePathManager.sharedinstance.deletePath(path: path)
+            switch section {
+            case .myDrive:
+                for index in offset {
+                    let path = myPaths[index]
+                    await ManagePathManager.sharedinstance.deletePath(path: path)
+                }
+                loadUserPaths()
+            case .publicDrive:
+                for index in offset {
+                    let path = publicPaths[index]
+                    await ManagePathManager.sharedinstance.deletePath(path: path)
+                }
+                loadPublicPaths()
             }
-            
-            loadUserPaths()
-            loadPublicPaths()
         }
-        
     }
 }
+enum SectionType {
+    case myDrive
+    case publicDrive
+}
+

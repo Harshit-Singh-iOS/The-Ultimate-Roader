@@ -90,7 +90,8 @@ struct AllDriveItemView: View {
                 }
             }
             .buttonStyle(.borderless)
-            .disabled(onSelectFollowers == nil)
+            .disabled(onSelectFollowers == nil || path.pathType == PathType.private)
+            .opacity(path.pathType != PathType.private ? 1 : 0)
         }
         .padding(.vertical, 4)
     }
