@@ -18,7 +18,8 @@ struct Theme {
     
     static let barConfig2 = MessageBarConfig.Builder()
     
-    static let path_color = UIColor(red: 0.0/255.0, green: 255.0/255, blue:230.0/255, alpha: 1.0)
+    static let pathColor = UIColor(red: 0.0/255.0, green: 255.0/255, blue:230.0/255, alpha: 1.0)
+    static let pathColor2 = UIColor(named: "themeColor")!
     static let uiThemeColor = UIColor(named: "themeColor")!
     static let themeColor = Color("themeColor")
     

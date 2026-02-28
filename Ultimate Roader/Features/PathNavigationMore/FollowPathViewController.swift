@@ -27,7 +27,7 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
     var polylineFollow = GMSPolyline()
     var gmsPath = GMSMutablePath()
     var gmsFollowPath = GMSMutablePath()
-    var animated_marker = GMSMarker()
+    var animated_marker = GMSMarker(annotationType: .current)
     var myTrack: [CLLocation] = []
     var pathToFollow: Path?
     var location: CLLocation?
@@ -75,8 +75,8 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
     
     override func viewWillAppear(_ animated: Bool) {
         
-        createMarker(loc: (pathToFollow?.track.first)!, name: "starting_point")
-        createMarker(loc: (pathToFollow?.track.last)!, name: "ending_point")
+        createMarker(loc: (pathToFollow?.track.first)!, name: .start)
+        createMarker(loc: (pathToFollow?.track.last)!, name: .finish)
         map_view.gmsCamera = GMSCameraPosition(target: (pathToFollow?.track.first?.coordinate)!, zoom: 10, bearing: 0, viewingAngle: 0)
         
         for cord in (pathToFollow?.track)! {
@@ -85,14 +85,11 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
         
         var i = 0
         for spot in (pathToFollow?.spotArray)! {
-            let marker = GMSMarker(position: (spot.location!.coordinate))
+            let marker = GMSMarker(annotationType: .spot, position: (spot.location!.coordinate))
             marker.map = map_view
-            marker.iconView = UIImageView(image: UIImage(named: "edit_camera"))
-            marker.title = "\(i)"
+            marker.spotTitle = "\(i)"
             i += 1
             marker.snippet = spot.spotDescription
-            //marker.icon = UIImage(named: name)
-            
         }
     }
     
@@ -105,7 +102,7 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
         animated_marker.position = location.coordinate
         if start_following {
             myTrack.append(location)
-            createMarker(loc: myTrack.first!, name: "starting_point")
+            createMarker(loc: myTrack.first!, name: .start)
             addRouteToPath2(loc: location)
         }
         
@@ -116,7 +113,7 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
         
         if isFinished {
             start_following = false
-            createMarker(loc: myTrack.last!, name: "ending_point")
+            createMarker(loc: myTrack.last!, name: .finish)
             popUpForPathComplete()
         }
     }
@@ -148,8 +145,8 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let storyboard = UIStoryboard(name: "PathNavigationMore", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "ShowSpotViewController") as? ShowSpotViewController {
-            controller.spot = pathToFollow?.spotArray[Int(marker.title!)!]
-            controller.spotIndex = Int(marker.title!)
+            controller.spot = pathToFollow?.spotArray[Int(marker.spotTitle!)!]
+            controller.spotIndex = Int(marker.spotTitle!)
             controller.delegate = self
             controller.userId = pathToFollow?.userId
             controller.sheetPresentationController?.detents = [.medium()]
@@ -168,19 +165,17 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
         ref.child(Firebase.Table.SpotList).child((spot?.id)!).removeValue()
     }
     
-    func createMarker(loc: CLLocation, name: String) {
-        let marker = GMSMarker()
+    func createMarker(loc: CLLocation, name: MapAnnotation) {
+        let marker = GMSMarker(annotationType: name)
         marker.position = loc.coordinate
-        marker.title = name
         marker.map = map_view
         marker.isDraggable = true
-        marker.icon = UIImage(named: name)
     }
     
     func addRouteToPath(loc: CLLocation) {
         gmsFollowPath.add(loc.coordinate)
         polylineFollow.path = gmsFollowPath
-        polylineFollow.strokeColor = Theme.path_color
+        polylineFollow.strokeColor = Theme.pathColor
         polylineFollow.strokeWidth = Theme.pathWidth
         polylineFollow.zIndex = 10
         CATransaction.begin()
@@ -209,12 +204,7 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
     }
     
     func animationImage() {
-        var imageArr : Array<UIImage> = []
-        for i in 1...44
-        {
-            imageArr.append(UIImage(named : "Anim 2_\(i)")!)
-        }
-        animated_marker.icon = UIImage.animatedImage(with: imageArr, duration: 3.0)
+        animated_marker.icon = UIImage.animatedImage(with: Constants.animationImage, duration: 3.0)
     }
     
     func popUpForPathComplete() {
@@ -234,7 +224,7 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
     
     func putSpots() {
         for spot in pathToFollow!.spotArray {
-            let marker = GMSMarker(position: spot.location!.coordinate)
+            let marker = GMSMarker(annotationType: .spot, position: spot.location!.coordinate)
             marker.map = map_view
         }
     }

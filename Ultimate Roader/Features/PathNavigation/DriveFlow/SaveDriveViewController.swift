@@ -17,7 +17,7 @@ class SaveDriveViewController: UIViewController {
     @IBOutlet weak var map_view: GMSMapView!
     var polyline = GMSPolyline()
     var gmsPath = GMSMutablePath()
-    var animated_marker = GMSMarker()
+    var animated_marker = GMSMarker(annotationType: .current)
     var path: Path!
     var databaseRef: DatabaseReference?
     @IBOutlet weak var save_btn: UIButton!
@@ -37,19 +37,17 @@ class SaveDriveViewController: UIViewController {
             for loc in track{
                 addRouteToPath(loc: loc)
             }
-            createMarker(loc: track.first!, name: "starting_point")
-            createMarker(loc: track.last!, name: "ending_point")
+            createMarker(loc: track.first!, name: .start)
+            createMarker(loc: track.last!, name: .finish)
         }
         setMapBounds()
     }
     
-    func createMarker(loc: CLLocation, name: String) {
-        let marker = GMSMarker()
+    func createMarker(loc: CLLocation, name: MapAnnotation) {
+        let marker = GMSMarker(annotationType: name)
         marker.position = loc.coordinate
-        marker.title = name.contains("start") ? "Start" : "Finish"
         marker.map = map_view
         marker.isDraggable = true
-        marker.icon = UIImage(named: name)
     }
     
     func setMapBounds() {
@@ -61,7 +59,7 @@ class SaveDriveViewController: UIViewController {
     func addRouteToPath(loc: CLLocation) {
         gmsPath.add(loc.coordinate)
         polyline.path = gmsPath
-        polyline.strokeColor = Theme.path_color
+        polyline.strokeColor = Theme.pathColor
         polyline.strokeWidth = Theme.pathWidth
         CATransaction.begin()
         CATransaction.setAnimationDuration(2.0)

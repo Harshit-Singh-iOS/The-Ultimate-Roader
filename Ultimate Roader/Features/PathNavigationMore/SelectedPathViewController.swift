@@ -68,8 +68,8 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
     }
     
     func makePath() {
-        createMarker(loc: (path?.track.first)!, name: "starting_point")
-        createMarker(loc: (path?.track.last)!, name: "ending_point")
+        createMarker(loc: (path?.track.first)!, name: .start)
+        createMarker(loc: (path?.track.last)!, name: .finish)
         map_view.gmsCamera = GMSCameraPosition(target: (path?.track.first?.coordinate)!, zoom: 10, bearing: 0, viewingAngle: 0)
         
         for cord in (path?.track)! {
@@ -85,19 +85,17 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
         }
     }
     
-    func createMarker(loc: CLLocation, name: String) {
-        let marker = GMSMarker()
+    func createMarker(loc: CLLocation, name: MapAnnotation) {
+        let marker = GMSMarker(annotationType: name)
         marker.position = loc.coordinate
-        marker.title = name.contains("start") ? "Start" : "Finish"
         marker.map = map_view
         marker.isDraggable = true
-        marker.icon = UIImage(named: name)
     }
     
     func addRouteToPath(loc: CLLocation) {
         gmsPath.add(loc.coordinate)
         polyline.path = gmsPath
-        polyline.strokeColor = Theme.path_color
+        polyline.strokeColor = Theme.pathColor
         polyline.strokeWidth = Theme.pathWidth
         CATransaction.begin()
         CATransaction.setAnimationDuration(2.0)
@@ -116,9 +114,9 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
         var i = 0
         for spot in path!.spotArray {
             if let location = spot.location {
-                let marker = GMSMarker(position: location.coordinate)
+                let marker = GMSMarker(annotationType: .spot, position: location.coordinate)
                 marker.map = map_view
-                marker.title = "\(i)"
+                marker.spotTitle = "\(i)"
                 i += 1
                 marker.snippet = spot.spotDescription
                 marker.iconView = UIImageView(image: UIImage(named: "edit_camera"))
@@ -129,7 +127,7 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let storyboard = UIStoryboard(name: "PathNavigationMore", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "ShowSpotViewController") as? ShowSpotViewController {
-            if let title = marker.title,
+            if let title = marker.spotTitle,
                let intTitle = Int(title),
                let spot = path?.spotArray[intTitle] {
                 controller.spot = spot

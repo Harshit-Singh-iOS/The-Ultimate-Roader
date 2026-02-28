@@ -23,7 +23,7 @@ class StartDrivingViewController: UIViewController {
     private var iskeepFocus: Bool = true
     private var polyline = GMSPolyline()
     private var gmsPath = GMSMutablePath()
-    private var animated_marker = GMSMarker()
+    private var animated_marker = GMSMarker(annotationType: .current)
     private var uuid: String?
 
     private var distance: Double = 0.0
@@ -81,7 +81,7 @@ class StartDrivingViewController: UIViewController {
         if vm.time > 59 || vm.length > 0.1 {
             finishTrip()
             setMapBounds()
-            createMarker(loc: (vm.path?.track.last)!, name: "ending_point")
+            createMarker(loc: (vm.path?.track.last)!, name: .finish)
         } else {
             SwiftMessageBar.showMessageWithTitle("Warning", message: "Drive should be 0.1 km or 1 min", type: .info)
         }
@@ -156,20 +156,18 @@ class StartDrivingViewController: UIViewController {
         }
     }
     
-    func createMarker(loc: CLLocation, name: String) {
-        let marker = GMSMarker()
+    func createMarker(loc: CLLocation, name: MapAnnotation) {
+        let marker = GMSMarker(annotationType: name)
         marker.position = loc.coordinate
-        marker.title = name.contains("start") ? "Start" : "Finish"
         marker.map = mapView
         marker.isDraggable = true
-        marker.icon = UIImage(named: name)
     }
     
     func addRouteToPath(loc: CLLocation) {
         ManagePathManager.sharedinstance.addCordinateTopath(latidude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
         gmsPath.add(loc.coordinate)
         polyline.path = gmsPath
-        polyline.strokeColor = Theme.path_color
+        polyline.strokeColor = Theme.pathColor
         polyline.strokeWidth = Theme.pathWidth
         polyline.zIndex = 10
         CATransaction.begin()
@@ -205,17 +203,19 @@ extension StartDrivingViewController: CLLocationManagerDelegate, GMSMapViewDeleg
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let loc = locations.last {
             if (vm.path?.track.isEmpty)! {
-                createMarker(loc: loc, name: "starting_point")
+                createMarker(loc: loc, name: .start)
             }
             animated_marker.position = loc.coordinate
+            vm.path?.track.append(loc)
+            addRouteToPath(loc: loc)
             
             if iskeepFocus && vm.path?.track.isEmpty == false {
                 let cameraPosition = GMSCameraPosition.camera(withTarget: loc.coordinate, zoom: 15, bearing: vm.getBearingBetweenTwoPoints((vm.path?.track.last)!, point2: loc), viewingAngle: mapView.gmsCamera.viewingAngle)
-                mapView.animate(to: cameraPosition)
+                
+                UIView.animate {
+                    mapView.animate(to: cameraPosition)
+                }
             }
-            
-            vm.path?.track.append(loc)
-            addRouteToPath(loc: loc)
             
             vm.length = distance / 1000
             DispatchQueue.main.async { [weak self] in
@@ -234,8 +234,8 @@ extension StartDrivingViewController: CLLocationManagerDelegate, GMSMapViewDeleg
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let storyboard = UIStoryboard(name: "PathNavigationMore", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "ShowSpotViewController") as? ShowSpotViewController {
-            controller.spot = vm.path?.spotArray[Int(marker.title!)!]
-            controller.spotIndex = Int(marker.title!)
+            controller.spot = vm.path?.spotArray[Int(marker.spotTitle!)!]
+            controller.spotIndex = Int(marker.spotTitle!)
             controller.userId = vm.path?.userId
             controller.delegate = self
             controller.sheetPresentationController?.detents = [.medium()]
@@ -253,12 +253,11 @@ extension StartDrivingViewController: ShowSpotVCDelegate, MarkSpotProtocol {
     }
     
     func addSpotMarker(spot: Path.Spot) {
-        let marker = GMSMarker(position: (spot.location?.coordinate)!)
+        let marker = GMSMarker(annotationType: .spot, position: (spot.location?.coordinate)!)
         marker.map = mapView
-        marker.title = "\(spotIndex)"
+        marker.spotTitle = "\(spotIndex)"
         spotIndex += 1
         marker.snippet = spot.spotDescription
-        marker.iconView = UIImageView(image: UIImage(named: "edit_camera"))
         vm.path?.spotArray.append(spot)
     }
 }
