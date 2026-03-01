@@ -77,11 +77,12 @@ class StartDrivingViewController: UIViewController {
     }
     
     @IBAction func finishTripAction(_ sender: UIButton) {
+        guard let last = vm.path?.track.last else { return }
         
         if vm.time > 59 || vm.length > 0.1 {
             finishTrip()
             setMapBounds()
-            createMarker(loc: (vm.path?.track.last)!, name: .finish)
+            createMarker(loc: last, name: .finish)
         } else {
             SwiftMessageBar.showMessageWithTitle("Warning", message: "Drive should be 0.1 km or 1 min", type: .info)
         }
@@ -210,7 +211,9 @@ extension StartDrivingViewController: CLLocationManagerDelegate, GMSMapViewDeleg
             addRouteToPath(loc: loc)
             
             if iskeepFocus && vm.path?.track.isEmpty == false {
-                let cameraPosition = GMSCameraPosition.camera(withTarget: loc.coordinate, zoom: 15, bearing: vm.getBearingBetweenTwoPoints((vm.path?.track.last)!, point2: loc), viewingAngle: mapView.gmsCamera.viewingAngle)
+                guard let last = vm.path?.track.last else { return }
+                
+                let cameraPosition = GMSCameraPosition.camera(withTarget: loc.coordinate, zoom: 15, bearing: vm.getBearingBetweenTwoPoints(last, point2: loc), viewingAngle: mapView.gmsCamera.viewingAngle)
                 
                 UIView.animate {
                     mapView.animate(to: cameraPosition)
@@ -234,8 +237,12 @@ extension StartDrivingViewController: CLLocationManagerDelegate, GMSMapViewDeleg
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let storyboard = UIStoryboard(name: "PathNavigationMore", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "ShowSpotViewController") as? ShowSpotViewController {
-            controller.spot = vm.path?.spotArray[Int(marker.spotTitle!)!]
-            controller.spotIndex = Int(marker.spotTitle!)
+            if let title = marker.spotTitle,
+               let intTitle = Int(title) {
+                controller.spot = vm.path?.spotArray[intTitle]
+                controller.spotIndex = intTitle
+            }
+            
             controller.userId = vm.path?.userId
             controller.delegate = self
             controller.sheetPresentationController?.detents = [.medium()]
@@ -253,7 +260,9 @@ extension StartDrivingViewController: ShowSpotVCDelegate, MarkSpotProtocol {
     }
     
     func addSpotMarker(spot: Path.Spot) {
-        let marker = GMSMarker(annotationType: .spot, position: (spot.location?.coordinate)!)
+        guard let coord = spot.location?.coordinate else { return }
+        
+        let marker = GMSMarker(annotationType: .spot, position: coord)
         marker.map = mapView
         marker.spotTitle = "\(spotIndex)"
         spotIndex += 1

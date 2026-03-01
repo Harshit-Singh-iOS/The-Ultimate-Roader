@@ -145,8 +145,11 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let storyboard = UIStoryboard(name: "PathNavigationMore", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier: "ShowSpotViewController") as? ShowSpotViewController {
-            controller.spot = pathToFollow?.spotArray[Int(marker.spotTitle!)!]
-            controller.spotIndex = Int(marker.spotTitle!)
+            if let title = marker.title,
+               let intTitle = Int(title) {
+                controller.spot = pathToFollow?.spotArray[intTitle]
+                controller.spotIndex = intTitle
+            }
             controller.delegate = self
             controller.userId = pathToFollow?.userId
             controller.sheetPresentationController?.detents = [.medium()]

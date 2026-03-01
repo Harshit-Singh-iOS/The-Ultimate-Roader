@@ -120,6 +120,9 @@ class MarkSpotViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         spot?.cat = Path.Spot.Category.allCases[row].rawValue
-        title = "Add " + (spot?.cat)! + " note."
+        if let cat = spot?.cat {
+            title = "Add " + cat + " note."
+        }
+        
     }
 }
