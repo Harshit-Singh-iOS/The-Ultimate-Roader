@@ -95,7 +95,7 @@ class SelectedPathViewController: UIViewController, CLLocationManagerDelegate, G
     func addRouteToPath(loc: CLLocation) {
         gmsPath.add(loc.coordinate)
         polyline.path = gmsPath
-        polyline.strokeColor = Theme.pathColor
+        polyline.strokeColor = Theme.uiPathColor
         polyline.strokeWidth = Theme.pathWidth
         CATransaction.begin()
         CATransaction.setAnimationDuration(2.0)

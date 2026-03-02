@@ -92,7 +92,7 @@ class GMSMutablePath {
 
 struct GMSPolyline {
     weak var path: GMSMutablePath?
-    var strokeColor: UIColor = Theme.pathColor
+    var strokeColor: UIColor = Theme.uiPathColor
     var strokeWidth: CGFloat = Theme.pathWidth
     var zIndex: Int32 = 0
 

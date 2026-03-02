@@ -178,7 +178,7 @@ class FollowPathViewController: UIViewController, CLLocationManagerDelegate, GMS
     func addRouteToPath(loc: CLLocation) {
         gmsFollowPath.add(loc.coordinate)
         polylineFollow.path = gmsFollowPath
-        polylineFollow.strokeColor = Theme.pathColor
+        polylineFollow.strokeColor = Theme.uiPathColor
         polylineFollow.strokeWidth = Theme.pathWidth
         polylineFollow.zIndex = 10
         CATransaction.begin()

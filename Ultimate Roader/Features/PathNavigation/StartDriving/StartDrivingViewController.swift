@@ -168,7 +168,7 @@ class StartDrivingViewController: UIViewController {
         ManagePathManager.sharedinstance.addCordinateTopath(latidude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
         gmsPath.add(loc.coordinate)
         polyline.path = gmsPath
-        polyline.strokeColor = Theme.pathColor
+        polyline.strokeColor = Theme.uiPathColor
         polyline.strokeWidth = Theme.pathWidth
         polyline.zIndex = 10
         CATransaction.begin()

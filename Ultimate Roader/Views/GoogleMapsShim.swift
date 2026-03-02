@@ -110,7 +110,7 @@ final class GMSMapView: MKMapView, MKMapViewDelegate {
         }
         if let polyline = overlay as? MKPolyline {
             let renderer = MKPolylineRenderer(polyline: polyline)
-            renderer.strokeColor = Theme.pathColor
+            renderer.strokeColor = Theme.uiPathColor
             renderer.lineWidth = 4
             return renderer
         }
